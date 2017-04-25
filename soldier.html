@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soldier Management</title>
+</head>
+<body>
+<form action="/soldier" method="post">
+Add New Soldier: <input type="text" name="name"><br>
+    <select name="platoon">
+  <option value="Nightmare">Nightmare</option>
+  <option value="Viking">Viking</option>
+  <option value="Guardian">Guardian</option>
+  <option value="Whiskey">Whiskey</option>
+</select><br>
+    <input type="submit" value="Submit">
+
+</form>
+<br>
+
+{% for i in soldiers %}
+    {{i.soldierName}} {{i.platoon}}<br>
+{% endfor %}
+
+
+</body>
+</html>
