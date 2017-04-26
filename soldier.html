@@ -8,19 +8,51 @@
 <form action="/soldier" method="post">
 Add New Soldier: <input type="text" name="name"><br>
     <select name="platoon">
-  <option value="Nightmare">Nightmare</option>
-  <option value="Viking">Viking</option>
-  <option value="Guardian">Guardian</option>
-  <option value="Whiskey">Whiskey</option>
+        <option value="Nightmare">Nightmare</option>
+        <option value="Viking">Viking</option>
+        <option value="Guardian">Guardian</option>
+        <option value="Whiskey">Whiskey</option>
+        <option value="TOC">TOC</option>
 </select><br>
     <input type="submit" value="Submit">
 
 </form>
-<br>
+<p>Soldier Listing</p>
+<table border="1">
+  <tr>
+      <th>Rank</th>
+      <th>Soldier Name</th>
+      <th>Platoon</th>
+      <th>Ribbons</th>
+      <th>Pistol</th>
+      <th>Staff Officer</th>
+      <th>Command</th>
+      <th>AT</th>
+      <th>Ground Defense</th>
+      <th>Designated Marksman</th>
+      <th>Support</th>
+  </tr>
+    {% for i in soldiers %}
+  <tr>
 
-{% for i in soldiers %}
-    {{i.soldierName}} {{i.platoon}}<br>
-{% endfor %}
+      <td>{{i.rank}}</td>
+      <td><a href="/soldier.html?{{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
+      <td>{{i.platoon}}</td>
+      <td> - </td>
+      <td>{{i.ribPistol}}</td>
+      <td>{{i.ribStaff}}</td>
+      <td>{{i.ribCommand}}</td>
+      <td>{{i.ribAT}}</td>
+      <td>{{i.ribGround}}</td>
+      <td>{{i.ribDM}}</td>
+      <td>{{i.ripSupport}}</td>
+
+
+  </tr>
+    {% endfor %}
+</table>
+
+
 
 
 </body>

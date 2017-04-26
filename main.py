@@ -24,9 +24,11 @@ class SoldierPage(webapp2.RequestHandler):
     def get(self):
         s_query = models.SoldierData.query()
         soldier_data = s_query.fetch()
+        #soldier_id = s_query.key()
 
         template_values = {
             'soldiers' : soldier_data,
+            #'soldier_id' : soldier_id,
 
         }
 
@@ -38,7 +40,8 @@ class SoldierPage(webapp2.RequestHandler):
         e = models.SoldierData(
             soldierName=self.request.get('name'),
             addedDate= datetime.datetime.now().date(),
-            platoon = self.request.get('platoon')
+            platoon = self.request.get('platoon'),
+            rank = 'RCT'
         )
         e.put()
 
