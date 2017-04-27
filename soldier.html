@@ -17,9 +17,10 @@ Add New Soldier: <input type="text" name="name"><br>
     <input type="submit" value="Submit">
 
 </form>
-<p>Soldier Listing</p>
 <center>
-    <table border="1">
+    <p>Soldier Listing</p>
+
+    <table style="height: 144px; border-color: #000000; background-color: #ffffff;" border="2" width="540" cellpadding="2">
   <tr>
       <th>Rank</th>
       <th>Soldier Name</th>
@@ -35,20 +36,17 @@ Add New Soldier: <input type="text" name="name"><br>
   </tr>
     {% for i in soldiers %}
   <tr>
-
-      <td>{{i.rank}}</td>
-      <td><a href="/soldier.html?{{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
-      <td>{{i.platoon}}</td>
-      <td> - </td>
-      <td>{{i.ribPistol}}</td>
-      <td>{{i.ribStaff}}</td>
-      <td>{{i.ribCommand}}</td>
-      <td>{{i.ribAT}}</td>
-      <td>{{i.ribGround}}</td>
-      <td>{{i.ribDM}}</td>
-      <td>{{i.ripSupport}}</td>
-
-
+      <td><center>{{i.rank}}</td>
+      <td><center><a href="/soldier.html?{{i.key.urlsafe()}}">{{i.soldierName}}</a></center></td>
+      <td><center>{{i.platoon}}</center></td>
+      <td><center> - </center></td>
+      <td><center>{{i.ribPistol}}</center></td>
+      <td><center>{{i.ribStaff}}</center></td>
+      <td><center>{{i.ribCommand}}</center></td>
+      <td><center>{{i.ribAT}}</center></td>
+      <td><center>{{i.ribGround}}</center></td>
+      <td><center>{{i.ribDM}}</center></td>
+      <td><center>{{i.ripSupport}}</center></td>
   </tr>
     {% endfor %}
 </table>
