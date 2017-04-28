@@ -1,7 +1,8 @@
 import webapp2
 import jinja2
 import os
-import logging
+
+
 import models
 import datetime
 
@@ -24,11 +25,10 @@ class SoldierPage(webapp2.RequestHandler):
     def get(self):
         s_query = models.SoldierData.query()
         soldier_data = s_query.fetch()
-        #soldier_id = s_query.key()
+
 
         template_values = {
             'soldiers' : soldier_data,
-            #'soldier_id' : soldier_id,
 
         }
 
@@ -49,8 +49,21 @@ class SoldierPage(webapp2.RequestHandler):
 
         return self.redirect('/soldier')
 
+class DetailSoldier(webapp2.RequestHandler):
+    def get(self):
+        soldier_id = self.request.get('soldier')
+
+
+        template_values = {
+            #'soldier' : soldier_data,
+
+        }
+
+        template = jinja_environment.get_template('detailsoldier.html')
+        self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/soldier', SoldierPage),
+    ('/detailsoldier', DetailSoldier),
 ], debug=True)

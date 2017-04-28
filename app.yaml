@@ -6,7 +6,10 @@ handlers:
 - url: .*
   script: main.app
 - url: /img
-  static_dir: static/img
+  static_dir: img
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
 
 libraries:
 - name: jinja2

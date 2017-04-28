@@ -17,7 +17,7 @@ Add New Soldier: <input type="text" name="name"><br>
     <input type="submit" value="Submit">
 
 </form>
-<center>
+
     <p>Soldier Listing</p>
 
     <table style="height: 144px; border-color: #000000; background-color: #ffffff;" border="2" width="540" cellpadding="2">
@@ -26,31 +26,53 @@ Add New Soldier: <input type="text" name="name"><br>
       <th>Soldier Name</th>
       <th>Platoon</th>
       <th>Ribbons</th>
-      <th>Pistol</th>
+      <th><img src="/img/pistol.png" height="105" width="110"/>Pistol</th>
       <th>Staff Officer</th>
       <th>Command</th>
       <th>AT</th>
       <th>Ground Defense</th>
       <th>Designated Marksman</th>
       <th>Support</th>
+      <th>Badges</th>
+      <th>Jump Badge</th>
+      <th>Combat Infantry</th>
+      <th>Infantryman</th>
+      <th>Medic</th>
+      <th>Explosives</th>
+      <th>Combat Action</th>
+      <th>Air Defense</th>
+      <th>Armor</th>
+      <th>Transport</th>
+      <th>Combat Medic</th>
   </tr>
     {% for i in soldiers %}
   <tr>
-      <td><center>{{i.rank}}</td>
-      <td><center><a href="/soldier.html?{{i.key.urlsafe()}}">{{i.soldierName}}</a></center></td>
-      <td><center>{{i.platoon}}</center></td>
-      <td><center> - </center></td>
-      <td><center>{{i.ribPistol}}</center></td>
-      <td><center>{{i.ribStaff}}</center></td>
-      <td><center>{{i.ribCommand}}</center></td>
-      <td><center>{{i.ribAT}}</center></td>
-      <td><center>{{i.ribGround}}</center></td>
-      <td><center>{{i.ribDM}}</center></td>
-      <td><center>{{i.ripSupport}}</center></td>
+      <td>{{i.rank}}</td>
+      <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
+      <td>{{i.platoon}}</td>
+      <td> - </td>
+      <td>{{i.ribPistol}}</td>
+      <td>{{i.ribStaff}}</td>
+      <td>{{i.ribCommand}}</td>
+      <td>{{i.ribAT}}</td>
+      <td>{{i.ribGround}}</td>
+      <td>{{i.ribDM}}</td>
+      <td>{{i.ripSupport}}</td>
+      <td> - </td>
+      <td>{{i.badgeJump}}</td>
+      <td>{{i.badgeCIB}}</td>
+      <td>{{i.badgeIB}}</td>
+      <td>{{i.badgeMedic}}</td>
+      <td>{{i.badgeExposive}}</td>
+      <td>{{i.badgeCAB}}</td>
+      <td>{{i.badgeAirDefense}}</td>
+      <td>{{i.badgeArmor}}</td>
+      <td>{{i.badgeTransport}}</td>
+      <td>{{i.badgeCombatMedic}}</td>
   </tr>
     {% endfor %}
 </table>
-    </center>
+  
 
 
 
