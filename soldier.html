@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+    th, td {
+    text-align: center;
+}
+    body {background-color: darkorange;}
+    h1 {color: black;}
+</style>
     <meta charset="UTF-8">
     <title>Soldier Management</title>
 </head>
@@ -18,15 +25,15 @@ Add New Soldier: <input type="text" name="name"><br>
 
 </form>
 
-    <p>Soldier Listing</p>
+    <h1 align="center"><u><i>SOLDIER LISTING</i></u></h1>
 
-    <table style="height: 144px; border-color: #000000; background-color: #ffffff;" border="2" width="540" cellpadding="2">
+    <table align="center" style="height: 90px; border-color: #000000; background-color: #ffffff;" border="2" width= 100%>
   <tr>
       <th>Rank</th>
       <th>Soldier Name</th>
       <th>Platoon</th>
       <th>Ribbons</th>
-      <th><img src="/img/pistol.png" height="105" width="110"/>Pistol</th>
+      <th>Pistol</th>
       <th>Staff Officer</th>
       <th>Command</th>
       <th>AT</th>
@@ -72,7 +79,7 @@ Add New Soldier: <input type="text" name="name"><br>
   </tr>
     {% endfor %}
 </table>
-  
+
 
 
 
