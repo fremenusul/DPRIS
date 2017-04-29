@@ -2,17 +2,33 @@
 <html>
 <head>
 <style>
+	body{
+		background-repeat: no-repeat;
+
+	}
 	div.container {
     width: 100%;
-    border: 1px solid gray;
+    
 }
 
-header, footer{
+header{
+	padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+footer{
     padding: 1em;
     color: white;
     background-color: black;
     clear: left;
     text-align: center;
+	position: absolute;
+	right: 0;
+	bottom:0;
+	left: 0;
 }
 
 nav {
@@ -26,6 +42,7 @@ nav {
 nav ul {
     list-style-type: none;
     padding: 0;
+	
 }
    
 nav ul a {
@@ -34,40 +51,40 @@ nav ul a {
 
 article {
     margin-left: 170px;
-    border-left: 1px solid black;
+    border-left: 1px solid white;
 	color: white;
-    background-color: dimgrey;
+    
     padding: 1em;
     overflow: hidden;
 }
 </style>
 </head>
-<body>
+<body background="img/image.jpg">
 	
 	<div class="container">
 
 <header>	
-<p style="text-align: center;">Welcome to the 21st United States Army Ranger Regiment's Defense Personnel Records Imaging System. </p>
-<br>
+<p style="text-align: center;"><font size="4">Welcome to the 21st United States Army Ranger Regiment's Defense Personnel Records Imaging System.</font></p>
+<p style="text-align: center;"><font size="4">This system keeps accurate records of all members currently assigned to elements in the 21st.</font></p>
 </header>
 <nav style="text-align: center;">
 	<ul>
-		<li><a href="/soldier">Add Soldier</a></li>
+		<li><a href="/soldier"><font size="4">Add Soldier</font></a></li>
 	</ul>
 </nav>
-<article>
-<p style="text-align: center;">This system keeps accurate records of all members currently assigned to elements in the 21st.</p>
+<article style="text-align: center;">
+
 <br>
-<p style="text-align: left;">Elements in the 21st USARR:</p>
-<ul>
+<p><font size="6">Elements in the 21st USARR:</p>
+<ul style="text-align: left;">
 	<li style="tect-align: left;">Tactical Operations Command</li>
 	<li style="tect-align: left;">1st Platoon "Nightmare"</li>
 	<li style="tect-align: left;">2nd Platoon "Viking"</li>
 	<li style="tect-align: left;">3rd Platoon "Guardian"</li>
 	<li style="tect-align: left;">Air Team "Whiskey"</li>
 </ul>
-<p style="text-align: left;">This system will keep track of the following records:</p>
-<ul>
+<p>This system will keep track of the following records:</p>
+<ul style="text-align: left;">
 	<li>Rank</li>
 	<li>Name</li>
 	<li>Platoon</li>
@@ -75,6 +92,12 @@ article {
 	<li>Awards</li>
 	<li>Certifications</li>
 </ul>
+</font>
+<br>
+<br>
+<br>
+<br>
+<br>
 	</article>
 <footer>
 	All content within this site is property of the 21st US Army Ranger Regiment Arma 3 Community
