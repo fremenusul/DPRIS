@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 import logging
+import calendar
 
 import models
 import datetime
@@ -38,6 +39,7 @@ class SoldierPage(webapp2.RequestHandler):
         e = models.SoldierData(
             soldierName=self.request.get('name'),
             addedDate=datetime.datetime.now().date(),
+            lastpromoted=datetime.datetime.now().date(),
             platoon=self.request.get('platoon'),
             rank='RCT'
         )
@@ -51,7 +53,7 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_id = self.request.get('soldier')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
-        logging.info(soldier_data)
+        #logging.info(soldier_data)
 
         template_values = {
             'soldier': soldier_data,
@@ -62,8 +64,25 @@ class DetailSoldier(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
 
+class Attendance(webapp2.RequestHandler):
+    def get(self):
+        cal = calendar.Calendar()
+
+        monthdates = [x for x in cal.itermonthdays(2017, 4) if x !=0]
+
+        #logging.info(monthdates)
+
+        template_values = {
+            'monthdays' : monthdates
+        }
+
+        template = jinja_environment.get_template('attendance.html')
+        self.response.out.write(template.render(template_values))
+
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/soldier', SoldierPage),
     ('/detailsoldier', DetailSoldier),
+    ('/attendance', Attendance),
 ], debug=True)

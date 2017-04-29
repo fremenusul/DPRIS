@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+</head>
+<body>
+Attendance <br>
+<table border="1">
+   <tr>
+        {% for i in monthdays %}
+       <th><br>{{i}}</th>
+       {% endfor %}
+   </tr>
+   <tr>
+       {% for i in monthdays %}
+       <td>N/A</td>
+       {% endfor %}
+   </tr>
+   </tr>
+ </table>
+
+</body>
+</html>
