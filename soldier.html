@@ -27,37 +27,36 @@ Add New Soldier: <input type="text" name="name"><br>
         <option value="Guardian">Guardian</option>
         <option value="Whiskey">Whiskey</option>
         <option value="TOC">TOC</option>
-</select><br>
+    </select><br>
     <input type="submit" value="Submit">
 
 </form>
 
     <h1 align="center"><u><i>SOLDIER LISTING</i></u></h1>
+    <form action="/soldier" method="post">
+    <select name="selection">
+        <option value="squadview">Squad View</option>
+        <option value="certifications">Certification</option>
+        <option value="ribbons">Ribbons</option>
+        <option value="badges">Badges</option>
+        <option value="medals">Medals</option>
+    </select>
+    </form>
 
     <table align="center" style="border-color: #000000; background-color: #ffffff;" border="2" width= 100%>
   <tr>
       <th>Rank</th>
       <th>Soldier Name</th>
       <th>Platoon</th>
-      <th>Ribbons</th>
-      <th>Pistol</th>
-      <th>Staff Officer</th>
-      <th>Command</th>
-      <th>AT</th>
-      <th>Ground Defense</th>
-      <th>Designated Marksman</th>
-      <th>Support</th>
-      <th>Badges</th>
-      <th>Jump Badge</th>
-      <th>Combat Infantry</th>
-      <th>Infantryman</th>
-      <th>Medic</th>
-      <th>Explosives</th>
-      <th>Combat Action</th>
-      <th>Air Defense</th>
-      <th>Armor</th>
-      <th>Transport</th>
-      <th>Combat Medic</th>
+      <!-- Need to update this when doing select dropdown -->
+      <th>Squad View</th>
+      <th><img src="img/sapper.png" height="105" width="110"/>Sapper</th>
+      <th><img src="img/ranger.png" height="105" width="110"/>Ranger</th>
+      <!-- Need a new Fister Tab -->
+      <th><img src="img/fister.png" height="84" width="200"/>FO</th>
+      <th><img src="img/fdc.png" height="105" width="110"/>FDC</th>
+      <th><img src="img/jfo.png" height="105" width="110"/>JFO</th>
+      <th><img src="img/rslc.png" height="105" width="110"/>RSLC</th>
   </tr>
     {% for i in soldiers %}
   <tr>
@@ -65,24 +64,13 @@ Add New Soldier: <input type="text" name="name"><br>
       <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
       <td>{{i.platoon}}</td>
       <td> - </td>
-      <td>{{i.ribPistol}}</td>
-      <td>{{i.ribStaff}}</td>
-      <td>{{i.ribCommand}}</td>
-      <td>{{i.ribAT}}</td>
-      <td>{{i.ribGround}}</td>
-      <td>{{i.ribDM}}</td>
-      <td>{{i.ripSupport}}</td>
-      <td> - </td>
-      <td>{{i.badgeJump}}</td>
-      <td>{{i.badgeCIB}}</td>
-      <td>{{i.badgeIB}}</td>
-      <td>{{i.badgeMedic}}</td>
-      <td>{{i.badgeExposive}}</td>
-      <td>{{i.badgeCAB}}</td>
-      <td>{{i.badgeAirDefense}}</td>
-      <td>{{i.badgeArmor}}</td>
-      <td>{{i.badgeTransport}}</td>
-      <td>{{i.badgeCombatMedic}}</td>
+      <td>{{i.certSapper}}</td>
+      <td>{{i.certRanger}}</td>
+      <td>{{i.certFO}}</td>
+      <td>{{i.certFDC}}</td>
+      <td>{{i.certJFO}}</td>
+      <td>{{i.certRSLC}}</td>
+
   </tr>
     {% endfor %}
 </table>
