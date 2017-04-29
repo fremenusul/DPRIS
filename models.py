@@ -55,7 +55,12 @@ class SoldierData(ndb.Model):
     medAir = ndb.IntegerProperty(indexed=False)
     medAFCombatAction= ndb.IntegerProperty(indexed=False)
     medCombatHelo = ndb.IntegerProperty(indexed=False)
+    lastPromoted = ndb.DateProperty(indexed=False)
 
+def get_entity_from_url_safe_key(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    return soldier
 
 
 

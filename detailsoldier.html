@@ -5,8 +5,74 @@
     <title>Soldier Detail</title>
 </head>
 <body>
-Soldier Name: {{name}}
+Soldier Name: {{soldier.soldierName}}<br>
+Rank: {{soldier.rank}}<br>
+Joined: {{soldier.addedDate}}<br>
+Last Promoted: <br>
 
+<p>Certifications</p>
+<table border="1">
+   <tr>
+       <th><img src="img/rifle.png" height="105" width="110"/>Rifle</th>
+       <th><img src="img/ncopd1.png" height="105" width="110"/>NCOPD1</th>
+       <th><img src="img/ncopd2.png" height="105" width="110"/>NCOPD2</th>
+       <th><img src="img/ncopd3.png" height="105" width="110"/>NCOPD3</th>
+       <th><img src="img/airassult.png" height="105" width="110"/>Air Assult</th>
+       <th><img src="img/sapper.png" height="105" width="110"/>Sapper</th>
+       <th><img src="img/ranger.png" height="105" width="110"/>Ranger</th>
+       <th><img src="img/pathfinder.png" height="105" width="110"/>Pathfinder</th>
+       <th><img src="img/fister.png" height="46" width="110"/>FO</th>
+       <th><img src="img/fdc.png" height="105" width="110"/>FDC</th>
+       <th><img src="img/jfo.png" height="105" width="110"/>JFO</th>
+       <th><img src="img/dm.png" height="105" width="110"/>DMR</th>
+       <th><img src="img/rslc.png" height="105" width="110"/>RSLC</th>
+       <th><img src="img/rotor.png" height="105" width="110"/>Rotor</th>
+       <th>Recruiter</th>
+   </tr>
+   <tr>
+       <td>{{soldier.certRifle}}</td>
+       <td>{{soldier.certNCOPD1}}</td>
+       <td>{{soldier.certNCOPD2}}</td>
+       <td>{{soldier.certNCOPD3}}</td>
+       <td>{{soldier.certAirAssult}}</td>
+       <td>{{soldier.certSapper}}</td>
+       <td>{{soldier.certRanger}}</td>
+       <td>{{soldier.certPathfinder}}</td>
+       <td>{{soldier.certFO}}</td>
+       <td>{{soldier.certFDC}}</td>
+       <td>{{soldier.certJFO}}</td>
+       <td>{{soldier.certDMR}}</td>
+       <td>{{soldier.certRSLC}}</td>
+       <td>{{soldier.certRotor}}</td>
+       <td>{{soldier.certRecruit}}</td>
+   </tr>
+   </tr>
+ </table>
+
+<p>Ribbons</p>
+<table border="1">
+   <tr>
+       <th>Pistol</th>
+       <th>Staff Officer</th>
+       <th>Command</th>
+       <th>AT</th>
+       <th>Ground Defense</th>
+       <th>Designated Marksman</th>
+       <th>Support</th>
+   </tr>
+   <tr>
+
+       <td>{{soldier.ribPistol}}</td>
+       <td>{{soldier.ribStaff}}</td>
+       <td>{{soldier.ribCommand}}</td>
+       <td>{{soldier.ribAT}}</td>
+       <td>{{soldier.ribGround}}</td>
+       <td>{{soldier.ribDM}}</td>
+       <td>{{soldier.ripSupport}}</td>
+   </tr>
+ </table>
+
+<p></p>
 
 </body>
 </html>
