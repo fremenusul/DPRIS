@@ -3,13 +3,32 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-- url: .*
-  script: main.app
-- url: /img
-  static_dir: img
+
+- url: /img/(.*\.gif)
+  static_files: img/\1
+  upload: img/.*\.gif
+  mime_type: "image/gif"
+
+- url: /img/(.*\.png)
+  static_files: img/\1
+  upload: img/.*\.png
+  mime_type: "image/x-png"
+
+- url: /img/(.*\.jpg)
+  static_files: img/\1
+  upload: img/.*\.jpg
+  mime_type: "image/jpeg"
+
+- url: /css
+  static_dir: css
+  mime_type: "text/css"
+
 - url: /favicon.ico
   static_files: favicon.ico
   upload: favicon.ico
+
+- url: .*
+  script: main.app
 
 libraries:
 - name: jinja2
