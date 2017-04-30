@@ -2,88 +2,149 @@
 <html>
 <head>
 <style>
-	body{
+body{
 		background-repeat: no-repeat;
+		
 	}
-	div.container {
-    width: 100%;
-    
+
+#wrapper {
+    margin: 0 auto;
+    width: 1000px;
 }
 
-header{
+#headerwrap {
+    width: 1000px;
+    float: left;
+    margin: 0 auto;
+}
+
+#header{
 	padding: 1em;
     color: white;
-    background-color: black;
+    background-color: grey;
     clear: left;
     text-align: center;
-
+	border-radius: 10px;
+    border: 5px solid black;
+    margin: 5px;
+	font-family: Courier New, Courier, monospace;
 }
 
-footer{
-    padding: 1em;
-    color: white;
-    background-color: black;
-    clear: left;
-    text-align: center;
-	position: absolute;
-	right: 0;
-	bottom:0;
-	left: 0;
-}
-
-nav {
+#footerwrap {
+    width: 1000px;
     float: left;
-    max-width: 160px;
-    margin: 0;
-    padding: 1em;
-	text-align: center;
-	font-size: 125;
+    margin: 0 auto;
+    clear: both;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-	
-}
-   
-nav ul a {
-    text-decoration: none;
-	background-color: black;
+#footer {
+	padding: 1em;
+    color: white;
+    background-color: grey;
+    clear: left;
+    text-align: center;
+	border-radius: 10px;
+    border: 5px solid black;
+    margin: 5px;
+	font-style: italic;
 }
 
-article {
-    margin-left: 170px;
-    border-left: 1px solid white;
-	color: black;
-	background-color: lightgrey;
-    font-size: 200%;
-    padding: 1em;
-    overflow: hidden;
-	opacity: 0.5;
-	font-weight: 900;
+#navigationwrap {
+    width: 1000px;
+    float: left;
+    margin: 0 auto;
 }
+
+#navigation {	
+	padding: 1em;
+    color: white;
+    background-color: grey;
+    clear: left;
+    text-align: center;
+	border-radius: 10px;
+    border: 5px solid black;
+    margin: 5px;
+}
+
+#contentwrap {
+    width: 700px;
+    float: left;
+    margin: 0 auto;
+}
+
+#content {
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin: 5px;
+	float: center;	
+	font-size: 135%;
+	font-family: Courier New, Courier, monospace;
+	font-weight: bold;
+}
+
+#leftcolumnwrap {
+    width: 150px;
+    float: left;
+    margin: 0 auto;
+}
+
+#leftcolumn {
+    background: #33CCFF;
+    border-radius: 10px;
+    border: 1px solid #1fb8eb;
+    margin: 5px;
+	opacity: 0.0;
+}
+
+#rightcolumnwrap {
+    width: 150px;
+    float: left;
+    margin: 0 auto;
+}
+
+#rightcolumn {
+    background: #CC33FF;
+    border-radius: 10px;
+    border: 1px solid #b81feb;
+    margin: 5px;
+	opacity: 0.0;
+}
+
 h2 {
 	font-size: 150%;
+}
+
+p {
+	padding: 10px;
 }
 
 </style>
 </head>
 <body background="img/image.jpg">
 	
-	<div class="container">
-
-<header>	
+<div id="wrapper">
+	<div id="headerwrap">
+			<div id="header">	
 <h2 style="text-align: center;">Welcome to the 21st United States Army Ranger Regiment's Defense Personnel Records Imaging System.</h2>
 <h2 style="text-align: center;">This system keeps accurate records of all members currently assigned to elements in the 21st.</h2>
-</header>
-<nav style="text-align: center;">
-	<ul>
-		<li><a href="/soldier">Add Soldier</a></li>
-	</ul>
-</nav>
-<article style="text-align: left;">
+			</div>
+	</div> <!-- ending headerwrap -->
 
-<br>
+
+	<div id="navigationwrap">
+		<div id="navigation">
+<a href="/soldier">Soldier Listing</a>
+		</div>
+	</div> <!-- ending navigation wrap -->
+ 
+	<div id="leftcolumnwrap">
+		<div id="leftcolumn">
+		</div>
+	</div> <!-- ending left column -->
+	
+	<div id="contentwrap">
+		<div id="content">
 <p>Elements in the 21st USARR:</p>
 <ul style="text-align: left;">
 	<li style="tect-align: left;">Tactical Operations Command</li>
@@ -92,7 +153,7 @@ h2 {
 	<li style="tect-align: left;">3rd Platoon "Guardian"</li>
 	<li style="tect-align: left;">Air Team "Whiskey"</li>
 </ul>
-<p>This system will keep track of the following records:</p>
+<p>This system will keep track of the following:</p>
 <ul style="text-align: left;">
 	<li>Rank</li>
 	<li>Name</li>
@@ -101,13 +162,19 @@ h2 {
 	<li>Awards</li>
 	<li>Certifications</li>
 </ul>
-
-<br>
-	</article>
-<footer>
-	All content within this site is property of the 21st US Army Ranger Regiment Arma 3 Community
-</footer>
-</div>
+		</div>
+	</div> <!-- ending content -->
+	
+	<div id="rightcolumnwrap">
+		<div id="rightcolumn">
+		</div>
+	</div> <!-- ending right column -->
+	
+	<div id="footerwrap">
+		<div id="footer">
+<p>All content within this site is property of the 21st US Army Ranger Regiment Arma 3 Community</p>
+		</div>
+	</div> <!-- ending footer -->
+</div> <!-- ending page -->
 </body>
 </html>
-
