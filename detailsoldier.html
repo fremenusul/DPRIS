@@ -6,18 +6,43 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+table{
+    box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.8);
+    background: rgb(240,183,161);
+    background: linear-gradient(135deg,  rgba(240,183,161,1) 0%,rgba(140,51,16,1) 50%,rgba(117,34,1,1) 51%,rgba(191,110,78,1) 100%);
+    
+    border: 1px solid black;
+}
+p{
+    text-decoration: underline;
+    font-size: 150%;
+    font-family: Courier New, Courier, monospace;
+    font-weight: 900;
+}
+#soldiertable{
+    background: rgb(240,183,161);
+    max-width: 250px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.8);
+    font-family: Courier New, Courier, monospace;
+}
+td{
+    text-align: center;
+}
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
 </head>
 <body background="img/smoke.jpg">
-Soldier Name: {{soldier.soldierName}}<br>
+<div id="soldiertable">
+<tr>Soldier Name: {{soldier.soldierName}}<br>
 Rank: {{soldier.rank}}<br>
 Joined: {{soldier.addedDate}}<br>
 Platoon: {{soldier.platoon}} <br>
 Last Promoted: <br>
-
-<p><b>Certifications</b></p>
+</tr>
+</div>
+<p>Certifications</p>
 
 <table border="1">
     <tr>
@@ -31,7 +56,7 @@ Last Promoted: <br>
         <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
         <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
         <th><img src="img/pathfinder.png" height="105" width="110"/><br>Pathfinder</th>
-        <th><img src="img/fister.png" height="46" width="110"/><br>FO</th>
+        <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
         <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
         <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
         <th><img src="img/dm.png" height="105" width="110"/><br>DMR</th>
@@ -159,7 +184,7 @@ Last Promoted: <br>
 </table>
 
 
-<p><b>Ribbons</b></p>
+<p>Ribbons</p>
 <table border="1">
     <tr>
         <th><img src="img/pistol.png" height="105" width="110"/><br>Pistol</th>
@@ -167,7 +192,7 @@ Last Promoted: <br>
         <th><img src="img/command.png" height="105" width="110"/><br>Command</th>
         <th><img src="img/AT.png" height="105" width="110"/><br>AT</th>
         <th><img src="img/ground.png" height="105" width="110"/><br>Ground Defense</th>
-        <th><img src="img/dm.png" height="105" width="110"/><br>Designated Marksman</th>
+        <th><img src="img/dm.png" height="105" width="110"/><br>Designated <br>Marksman</th>
         <th><img src="img/support.png" height="105" width="110"/><br>Support</th>
     </tr>
     <tr>
@@ -224,7 +249,7 @@ Last Promoted: <br>
     </tr>
 </table>
 
-<p><b>Badges</b></p>
+<p>Badges</p>
 <table border="1">
     <tr>
         <th><br><img src="img/jump.png" height="105" width="110"/><br>Jump</th>
@@ -313,7 +338,7 @@ Last Promoted: <br>
     </tr>
 </table>
 
-<p><b>Medals</b></p>
+<p>Medals</p>
 <table border="1">
     <tr>
         <th><br><img src="img/afs.png" height="105" width="110"/><br>Armed Forces Service</th>
