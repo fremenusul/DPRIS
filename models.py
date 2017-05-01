@@ -62,6 +62,13 @@ def get_entity_from_url_safe_key(url_string):
     soldier = soldier_key.get()
     return soldier
 
+def update_entity_from_url_safe_key(url_string, record, thedata):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier_key.record = thedata
+
+
+
+
 
 
 

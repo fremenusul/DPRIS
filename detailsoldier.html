@@ -11,30 +11,31 @@ Joined: {{soldier.addedDate}}<br>
 Last Promoted: <br>
 
 <p><b>Certifications</b></p>
-<form name="soliderupdate" action="/detailsoldier?action=updatecerts">
-    <table border="1">
-        <tr>
-            <th><img src="img/rifle.png" height="105" width="110"/><br>Rifle<br>
 
-            </th>
-            <th><img src="img/ncopd1.png" height="105" width="110"/><br>NCOPD1</th>
-            <th><img src="img/ncopd2.png" height="105" width="110"/><br>NCOPD2</th>
-            <th><img src="img/ncopd3.png" height="105" width="110"/><br>NCOPD3</th>
-            <th><img src="img/airassult.png" height="105" width="110"/><br>Air Assult</th>
-            <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
-            <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
-            <th><img src="img/pathfinder.png" height="105" width="110"/><br>Pathfinder</th>
-            <th><img src="img/fister.png" height="46" width="110"/><br>FO</th>
-            <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
-            <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
-            <th><img src="img/dm.png" height="105" width="110"/><br>DMR</th>
-            <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
-            <th><img src="img/rotor.png" height="105" width="110"/><br>Rotor</th>
-            <th>Recruiter</th>
-        </tr>
+<table border="1">
+    <tr>
+        <th><img src="img/rifle.png" height="105" width="110"/><br>Rifle<br>
 
-        <tr>
-            <td>
+        </th>
+        <th><img src="img/ncopd1.png" height="105" width="110"/><br>NCOPD1</th>
+        <th><img src="img/ncopd2.png" height="105" width="110"/><br>NCOPD2</th>
+        <th><img src="img/ncopd3.png" height="105" width="110"/><br>NCOPD3</th>
+        <th><img src="img/airassult.png" height="105" width="110"/><br>Air Assult</th>
+        <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
+        <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
+        <th><img src="img/pathfinder.png" height="105" width="110"/><br>Pathfinder</th>
+        <th><img src="img/fister.png" height="46" width="110"/><br>FO</th>
+        <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
+        <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
+        <th><img src="img/dm.png" height="105" width="110"/><br>DMR</th>
+        <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
+        <th><img src="img/rotor.png" height="105" width="110"/><br>Rotor</th>
+        <th>Recruiter</th>
+    </tr>
+
+    <tr>
+        <td>
+            <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle">
                 <select>
                     <option value="Expert" {% if soldier.certRifle==
                     "Expert" %} selected{% endif %}>Expert</option>
@@ -44,109 +45,112 @@ Last Promoted: <br>
                     "Marksman" %} selected{% endif %}>Marksman</option>
                     <option value="None" {% if soldier.certRifle==
                     "None" %} selected{% endif %}>None</option>
-                </select></td>
-            <!-- TODO(Shangpo) Fix this via a for loop -->
-            <td>
-                {% if soldier.certNCOPD1 == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certNCOPD1}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certNCOPD2 == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certNCOPD2}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certNCOPD3 == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certNCOPD3}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certAirAssult == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certAirAssult}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certSapper == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certSapper}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certRanger == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certRanger}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certPathfinder == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certPathfinder}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certFO == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certFO}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certFDC == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certFDC}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certJFO == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certJFO}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certDMR == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certDMR}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certRSLC == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certRSLC}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certRotor == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certRotor}}
-                {% endif %}
-            </td>
-            <td>
-                {% if soldier.certRecruit == 0 %}
-                No
-                {% else %}
-                Yes - {{soldier.certRecruit}}
-                {% endif %}
-            </td>
-        </tr>
-    </table>
-</form>
+                </select>
+                <!--<input type="submit"> -->
+            </form>
+        </td>
+        <!-- TODO(Shangpo) Fix this via a for loop -->
+        <td>
+            {% if soldier.certNCOPD1 == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certNCOPD1}}
+            {% endif %} [Add]
+        </td>
+        <td>
+            {% if soldier.certNCOPD2 == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certNCOPD2}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certNCOPD3 == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certNCOPD3}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certAirAssult == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certAirAssult}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certSapper == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certSapper}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certRanger == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certRanger}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certPathfinder == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certPathfinder}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certFO == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certFO}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certFDC == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certFDC}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certJFO == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certJFO}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certDMR == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certDMR}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certRSLC == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certRSLC}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certRotor == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certRotor}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.certRecruit == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.certRecruit}}
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
 
 <p><b>Ribbons</b></p>
 <table border="1">

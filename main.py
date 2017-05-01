@@ -71,6 +71,7 @@ class SoldierPage(webapp2.RequestHandler):
             badgeMedic=0,
             badgeExposive=0,
             badgeCAB=0,
+            badgeAirDefense=0,
             badgeArmor=0,
             badgeTransport=0,
             badgeCombatMedic=0,
@@ -106,18 +107,21 @@ class DetailSoldier(webapp2.RequestHandler):
 
         template_values = {
             'soldier': soldier_data,
-
+            'soldier_id' : soldier_id,
         }
 
         template = jinja_environment.get_template('detailsoldier.html')
         self.response.out.write(template.render(template_values))
 
 
+
+
+
 class Attendance(webapp2.RequestHandler):
     def get(self):
         cal = calendar.Calendar()
-
-        monthdates = [x for x in cal.itermonthdays(2017, 4) if x != 0]
+        #TODO(Shangpo): Make auto month
+        monthdates = [x for x in cal.itermonthdays(2017, 5) if x != 0]
 
         # logging.info(monthdates)
 
