@@ -11,140 +11,440 @@ Joined: {{soldier.addedDate}}<br>
 Last Promoted: <br>
 
 <p><b>Certifications</b></p>
-<table border="1">
-   <tr>
-       <th><img src="img/rifle.png" height="105" width="110"/><br>Rifle</th>
-       <th><img src="img/ncopd1.png" height="105" width="110"/><br>NCOPD1</th>
-       <th><img src="img/ncopd2.png" height="105" width="110"/><br>NCOPD2</th>
-       <th><img src="img/ncopd3.png" height="105" width="110"/><br>NCOPD3</th>
-       <th><img src="img/airassult.png" height="105" width="110"/><br>Air Assult</th>
-       <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
-       <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
-       <th><img src="img/pathfinder.png" height="105" width="110"/><br>Pathfinder</th>
-       <th><img src="img/fister.png" height="46" width="110"/><br>FO</th>
-       <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
-       <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
-       <th><img src="img/dm.png" height="105" width="110"/><br>DMR</th>
-       <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
-       <th><img src="img/rotor.png" height="105" width="110"/><br>Rotor</th>
-       <th>Recruiter</th>
-   </tr>
-   <tr>
-       <td>{{soldier.certRifle}}</td>
-       <td>{{soldier.certNCOPD1}}</td>
-       <td>{{soldier.certNCOPD2}}</td>
-       <td>{{soldier.certNCOPD3}}</td>
-       <td>{{soldier.certAirAssult}}</td>
-       <td>{{soldier.certSapper}}</td>
-       <td>{{soldier.certRanger}}</td>
-       <td>{{soldier.certPathfinder}}</td>
-       <td>{{soldier.certFO}}</td>
-       <td>{{soldier.certFDC}}</td>
-       <td>{{soldier.certJFO}}</td>
-       <td>{{soldier.certDMR}}</td>
-       <td>{{soldier.certRSLC}}</td>
-       <td>{{soldier.certRotor}}</td>
-       <td>{{soldier.certRecruit}}</td>
-   </tr>
-   </tr>
- </table>
+<form name="soliderupdate" action="/detailsoldier?action=updatecerts">
+    <table border="1">
+        <tr>
+            <th><img src="img/rifle.png" height="105" width="110"/><br>Rifle<br>
+
+            </th>
+            <th><img src="img/ncopd1.png" height="105" width="110"/><br>NCOPD1</th>
+            <th><img src="img/ncopd2.png" height="105" width="110"/><br>NCOPD2</th>
+            <th><img src="img/ncopd3.png" height="105" width="110"/><br>NCOPD3</th>
+            <th><img src="img/airassult.png" height="105" width="110"/><br>Air Assult</th>
+            <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
+            <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
+            <th><img src="img/pathfinder.png" height="105" width="110"/><br>Pathfinder</th>
+            <th><img src="img/fister.png" height="46" width="110"/><br>FO</th>
+            <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
+            <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
+            <th><img src="img/dm.png" height="105" width="110"/><br>DMR</th>
+            <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
+            <th><img src="img/rotor.png" height="105" width="110"/><br>Rotor</th>
+            <th>Recruiter</th>
+        </tr>
+
+        <tr>
+            <td>
+                <select>
+                    <option value="Expert" {% if soldier.certRifle==
+                    "Expert" %} selected{% endif %}>Expert</option>
+                    <option value="Sharpshooter" {% if soldier.certRifle==
+                    "Sharpshooter" %} selected{% endif %}>Sharpshooter</option>
+                    <option value="Marksman" {% if soldier.certRifle==
+                    "Marksman" %} selected{% endif %}>Marksman</option>
+                    <option value="None" {% if soldier.certRifle==
+                    "None" %} selected{% endif %}>None</option>
+                </select></td>
+            <!-- TODO(Shangpo) Fix this via a for loop -->
+            <td>
+                {% if soldier.certNCOPD1 == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certNCOPD1}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certNCOPD2 == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certNCOPD2}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certNCOPD3 == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certNCOPD3}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certAirAssult == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certAirAssult}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certSapper == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certSapper}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certRanger == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certRanger}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certPathfinder == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certPathfinder}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certFO == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certFO}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certFDC == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certFDC}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certJFO == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certJFO}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certDMR == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certDMR}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certRSLC == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certRSLC}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certRotor == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certRotor}}
+                {% endif %}
+            </td>
+            <td>
+                {% if soldier.certRecruit == 0 %}
+                No
+                {% else %}
+                Yes - {{soldier.certRecruit}}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</form>
 
 <p><b>Ribbons</b></p>
 <table border="1">
-   <tr>
-       <th><img src="img/pistol.png" height="105" width="110"/><br>Pistol</th>
-       <th><img src="img/staff.png" height="105" width="110"/><br>Staff Officer</th>
-       <th><img src="img/command.png" height="105" width="110"/><br>Command</th>
-       <th><img src="img/AT.png" height="105" width="110"/><br>AT</th>
-       <th><img src="img/ground.png" height="105" width="110"/><br>Ground Defense</th>
-       <th><img src="img/dm.png" height="105" width="110"/><br>Designated Marksman</th>
-       <th><img src="img/support.png" height="105" width="110"/><br>Support</th>
-   </tr>
-   <tr>
+    <tr>
+        <th><img src="img/pistol.png" height="105" width="110"/><br>Pistol</th>
+        <th><img src="img/staff.png" height="105" width="110"/><br>Staff Officer</th>
+        <th><img src="img/command.png" height="105" width="110"/><br>Command</th>
+        <th><img src="img/AT.png" height="105" width="110"/><br>AT</th>
+        <th><img src="img/ground.png" height="105" width="110"/><br>Ground Defense</th>
+        <th><img src="img/dm.png" height="105" width="110"/><br>Designated Marksman</th>
+        <th><img src="img/support.png" height="105" width="110"/><br>Support</th>
+    </tr>
+    <tr>
 
-       <td>{{soldier.ribPistol}}</td>
-       <td>{{soldier.ribStaff}}</td>
-       <td>{{soldier.ribCommand}}</td>
-       <td>{{soldier.ribAT}}</td>
-       <td>{{soldier.ribGround}}</td>
-       <td>{{soldier.ribDM}}</td>
-       <td>{{soldier.ripSupport}}</td>
-   </tr>
- </table>
+        <td>
+            {% if soldier.ribPistol == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ribPistol}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.ribStaff == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ribStaff}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.ribCommand == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ribCommand}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.ribAT == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ribAT}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.ribGround == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ribGround}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.ribDM == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ribDM}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.ripSupport == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.ripSupport}}
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p><b>Badges</b></p>
 <table border="1">
-   <tr>
-       <th><br><img src="img/jump.png" height="105" width="110"/><br>Jump</th>
-       <th><br><img src="img/cib.png" height="105" width="110"/><br>Combat Infrantry</th>
-       <th><br><img src="img/infantry.png" height="105" width="110"/><br>Infantry</th>
-       <th><br><img src="img/medic.png" height="105" width="110"/><br>Medic</th>
-       <th><br><img src="img/explosives.png" height="105" width="110"/><br>Explosives</th>
-       <th><br><img src="img/cab.png" height="105" width="110"/><br>Combat Action</th>
-       <th><br><img src="img/airdefense.png" height="105" width="110"/><br>Air Defense</th>
-       <th><br><img src="img/armor.png" height="105" width="110"/><br>Armor</th>
-       <th><br><img src="img/transport.png" height="105" width="110"/><br>Transportation</th>
-       <th><br><img src="img/combatmedic.png" height="105" width="110"/><br>Combat Medic</th>
-   </tr>
-   <tr>
+    <tr>
+        <th><br><img src="img/jump.png" height="105" width="110"/><br>Jump</th>
+        <th><br><img src="img/cib.png" height="105" width="110"/><br>Combat Infrantry</th>
+        <th><br><img src="img/infantry.png" height="105" width="110"/><br>Infantry</th>
+        <th><br><img src="img/medic.png" height="105" width="110"/><br>Medic</th>
+        <th><br><img src="img/explosives.png" height="105" width="110"/><br>Explosives</th>
+        <th><br><img src="img/cab.png" height="105" width="110"/><br>Combat Action</th>
+        <th><br><img src="img/airdefense.png" height="105" width="110"/><br>Air Defense</th>
+        <th><br><img src="img/armor.png" height="105" width="110"/><br>Armor</th>
+        <th><br><img src="img/transport.png" height="105" width="110"/><br>Transportation</th>
+        <th><br><img src="img/combatmedic.png" height="105" width="110"/><br>Combat Medic</th>
+    </tr>
+    <tr>
 
-       <td>{{soldier.badgeJump}}</td>
-       <td>{{soldier.badgeCIB}}</td>
-       <td>{{soldier.badgeIB}}</td>
-       <td>{{soldier.badgeMedic}}</td>
-       <td>{{soldier.badgeExposive}}</td>
-       <td>{{soldier.badgeCAB}}</td>
-       <td>{{soldier.badgeAirDefense}}</td>
-       <td>{{soldier.badgeArmor}}</td>
-       <td>{{soldier.badgeTransport}}</td>
-       <td>{{soldier.badgeCombatMedic}}</td>
-   </tr>
- </table>
+        <td>
+            {% if soldier.badgeJump == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeJump}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeCIB == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeCIB}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeIB == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeIB}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeMedic == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeMedic}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeExposive == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeExposive}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeCAB == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeCAB}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeAirDefense == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeAirDefense}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeArmor == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeArmor}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeTransport == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeTransport}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.badgeCombatMedic == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.badgeCombatMedic}}
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p><b>Medals</b></p>
 <table border="1">
-   <tr>
-       <th><br><img src="img/afs.png" height="105" width="110"/><br>Armed Forces Service</th>
-       <th><br><img src="img/nd.png" height="105" width="110"/><br>Nation Defense</th>
-       <th><br><img src="img/dsm.png" height="105" width="110"/><br>Distinguished Service</th>
-       <th><br><img src="img/mov.png" height="105" width="110"/><br>Medal of Valor</th>
-       <th><br><img src="img/acm.png" height="105" width="110"/><br>Army Commendation</th>
-       <th><br><img src="img/aam.png" height="105" width="110"/><br>Army Acheievement</th>
-       <th><br><img src="img/dsync.png" height="105" width="110"/><br>Dsync</th>
-       <th><br><img src="img/gcm.png" height="105" width="110"/><br>Good Conduct</th>
-       <th><br><img src="img/ph.png" height="105" width="110"/><br>Purple Heart</th>
-       <th><br><img src="img/vsm.png" height="105" width="110"/><br>Volunteer Service</th>
-       <th><br><img src="img/dsc.png" height="105" width="110"/><br>Distinguished Service Cross</th>
-       <th><br><img src="img/msm.png" height="105" width="110"/><br>Meritorious Service</th>
-       <th><br><img src="img/bs.png" height="105" width="110"/><br>Bronze Star</th>
-       <th><br><img src="img/ss.png" height="105" width="110"/><br>Silver Star</th>
-       <th><br>Air</th>
-       <th><br>Air Force Combat Action</th>
-       <th><br>Combat Helo</th>
-   </tr>
-   <tr>
-       <td>{{soldier.medArmedForces}}</td>
-       <td>{{soldier.medNationalDefense}}</td>
-       <td>{{soldier.medDSM}}</td>
-       <td>{{soldier.medMOV}}</td>
-       <td>{{soldier.medCommendation}}</td>
-       <td>{{soldier.medAchievement}}</td>
-       <td>{{soldier.medDsync}}</td>
-       <td>{{soldier.medConduct}}</td>
-       <td>{{soldier.medPH}}</td>
-       <td>{{soldier.medVolunteer}}</td>
-       <td>{{soldier.medDSC}}</td>
-       <td>{{soldier.medMerit}}</td>
-       <td>{{soldier.medBronze}}</td>
-       <td>{{soldier.medSilver}}</td>
-       <td>{{soldier.medAir}}</td>
-       <td>{{soldier.medAFCombatAction}}</td>
-       <td>{{soldier.medCombatHelo}}</td>
-   </tr>
-   </tr>
- </table>
-
-
+    <tr>
+        <th><br><img src="img/afs.png" height="105" width="110"/><br>Armed Forces Service</th>
+        <th><br><img src="img/nd.png" height="105" width="110"/><br>Nation Defense</th>
+        <th><br><img src="img/dsm.png" height="105" width="110"/><br>Distinguished Service</th>
+        <th><br><img src="img/mov.png" height="105" width="110"/><br>Medal of Valor</th>
+        <th><br><img src="img/acm.png" height="105" width="110"/><br>Army Commendation</th>
+        <th><br><img src="img/aam.png" height="105" width="110"/><br>Army Acheievement</th>
+        <th><br><img src="img/dsync.png" height="105" width="110"/><br>Dsync</th>
+        <th><br><img src="img/gcm.png" height="105" width="110"/><br>Good Conduct</th>
+        <th><br><img src="img/ph.png" height="105" width="110"/><br>Purple Heart</th>
+        <th><br><img src="img/vsm.png" height="105" width="110"/><br>Volunteer Service</th>
+        <th><br><img src="img/dsc.png" height="105" width="110"/><br>Distinguished Service Cross</th>
+        <th><br><img src="img/msm.png" height="105" width="110"/><br>Meritorious Service</th>
+        <th><br><img src="img/bs.png" height="105" width="110"/><br>Bronze Star</th>
+        <th><br><img src="img/ss.png" height="105" width="110"/><br>Silver Star</th>
+        <th><br>Air</th>
+        <th><br>Air Force Combat Action</th>
+        <th><br>Combat Helo</th>
+    </tr>
+    <tr>
+        <td>
+            {% if soldier.medArmedForces == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medArmedForces}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medNationalDefense == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medNationalDefense}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medDSM == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medDSM}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medMOV == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medMOV}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medCommendation == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medCommendation}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medAchievement == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medAchievement}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medDsync == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medDsync}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medConduct == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medConduct}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medPH == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medPH}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medVolunteer == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medVolunteer}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medDSC == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medDSC}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medMerit == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medMerit}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medBronze == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medBronze}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medSilver == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medSilver}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medAir == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medAir}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medAFCombatAction == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medAFCombatAction}}
+            {% endif %}
+        </td>
+        <td>
+            {% if soldier.medCombatHelo == 0 %}
+            No
+            {% else %}
+            Yes - {{soldier.medCombatHelo}}
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 
 </body>
