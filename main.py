@@ -113,8 +113,12 @@ class DetailSoldier(webapp2.RequestHandler):
         template = jinja_environment.get_template('detailsoldier.html')
         self.response.out.write(template.render(template_values))
 
-
-
+    def post(self):
+        soldier_id = self.request.get('soldier')
+        action = self.request.get('action')
+        logging.info(soldier_id)
+        logging.info(action)
+        models.update_entity_from_url_safe_key(soldier_id, action)
 
 
 class Attendance(webapp2.RequestHandler):
@@ -122,11 +126,14 @@ class Attendance(webapp2.RequestHandler):
         cal = calendar.Calendar()
         #TODO(Shangpo): Make auto month
         monthdates = [x for x in cal.itermonthdays(2017, 5) if x != 0]
+        s_query = models.SoldierData.query()
+        soldier_data = s_query.fetch()
 
         # logging.info(monthdates)
 
         template_values = {
-            'monthdays': monthdates
+            'monthdays': monthdates,
+            'soldiers': soldier_data,
         }
 
         template = jinja_environment.get_template('attendance.html')

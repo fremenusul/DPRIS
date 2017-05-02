@@ -2,45 +2,49 @@
 <html lang="en">
 <head>
     <style>
-body{
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-table{
-    box-shadow: 0px 0px 0px 5px rgba(0,0,0,0.8);
-    background: rgb(240,183,161);
-    background: linear-gradient(135deg,  rgba(240,183,161,1) 0%,rgba(140,51,16,1) 50%,rgba(117,34,1,1) 51%,rgba(191,110,78,1) 100%);
-    
-    border: 1px solid black;
-}
-p{
-    text-decoration: underline;
-    font-size: 150%;
-    font-family: Courier New, Courier, monospace;
-    font-weight: 900;
-}
-#soldiertable{
-    background: rgb(240,183,161);
-    max-width: 250px;
-    border: 1px solid black;
-    box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.8);
-    font-family: Courier New, Courier, monospace;
-}
-td{
-    text-align: center;
-}
+        body {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        table {
+            box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.8);
+            background: rgb(240, 183, 161);
+            background: linear-gradient(135deg, rgba(240, 183, 161, 1) 0%, rgba(140, 51, 16, 1) 50%, rgba(117, 34, 1, 1) 51%, rgba(191, 110, 78, 1) 100%);
+
+            border: 1px solid black;
+        }
+
+        p {
+            text-decoration: underline;
+            font-size: 150%;
+            font-family: Courier New, Courier, monospace;
+            font-weight: 900;
+        }
+
+        #soldiertable {
+            background: rgb(240, 183, 161);
+            max-width: 250px;
+            border: 1px solid black;
+            box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.8);
+            font-family: Courier New, Courier, monospace;
+        }
+
+        td {
+            text-align: center;
+        }
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
 </head>
 <body background="img/smoke.jpg">
 <div id="soldiertable">
-<tr>Soldier Name: {{soldier.soldierName}}<br>
-Rank: {{soldier.rank}}<br>
-Joined: {{soldier.addedDate}}<br>
-Platoon: {{soldier.platoon}} <br>
-Last Promoted: <br>
-</tr>
+    <tr>Soldier Name: {{soldier.soldierName}}<br>
+        Rank: {{soldier.rank}}<br>
+        Joined: {{soldier.addedDate}}<br>
+        Platoon: {{soldier.platoon}} <br>
+        Last Promoted: <br>
+    </tr>
 </div>
 <p>Certifications</p>
 
@@ -67,7 +71,7 @@ Last Promoted: <br>
 
     <tr>
         <td>
-            <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle">
+            <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle" method="post">
                 <select>
                     <option value="Expert" {% if soldier.certRifle==
                     "Expert" %} selected{% endif %}>Expert</option>
@@ -78,7 +82,7 @@ Last Promoted: <br>
                     <option value="None" {% if soldier.certRifle==
                     "None" %} selected{% endif %}>None</option>
                 </select>
-                <!--<input type="submit"> -->
+                <input type="submit">
             </form>
         </td>
         <!-- TODO(Shangpo) Fix this via a for loop -->
@@ -86,8 +90,12 @@ Last Promoted: <br>
             {% if soldier.certNCOPD1 == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certNCOPD1}}
-            {% endif %} [Add]
+            Yes
+            {% endif %}
+            <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post"><input class="NCOPD1"
+                                                                                                         type="submit"
+                                                                                                         value="Add">
+            </form>
         </td>
         <td>
             {% if soldier.certNCOPD2 == 0 %}

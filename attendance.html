@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-body{
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-table{
-    border: 1px solid black;
-    width: 96%;
-    margin-left:2%;
-    margin-right:2%;
-    background-color: darkslategrey;
-    box-shadow: 0px 0px 0px 5px rgba(246, 44, 44, 0.8)
-}
-th{
-    border: 2px solid black;
-}
-td{
-    border: 2px solid black;
-}
-.first{
-    background-color: grey;
-}
-.notfirst:hover{
-    background-color: lightgrey;
-}
-.notfirst{
-    background-color: white;
-    text-align: center;
-}
-h1{
-      color: black;
-      text-align: center;
-      text-decoration: underline;
-}
-</style>
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        table {
+            border: 1px solid black;
+            width: 96%;
+            margin-left: 2%;
+            margin-right: 2%;
+            background-color: darkslategrey;
+            box-shadow: 0px 0px 0px 5px rgba(246, 44, 44, 0.8)
+        }
+
+        th {
+            border: 2px solid black;
+        }
+
+        td {
+            border: 2px solid black;
+        }
+
+        .first {
+            background-color: grey;
+        }
+
+        .notfirst:hover {
+            background-color: lightgrey;
+        }
+
+        .notfirst {
+            background-color: white;
+            text-align: center;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Attendance</title>
 </head>
 <body background="img/attendance.jpg">
 <h1>Attendance</h1>
-    <br>
+<br>
 <table>
-   <tr class="first">
-       <th>Name</th>
+    <tr class="first">
+        <th>Name</th>
         {% for i in monthdays %}
-       <th><br>{{i}}</th>
-       {% endfor %}
-       
-   </tr>
-   <tr class="notfirst">
-       <th>placeholder</th> <!--Shangpo add in grab function for name -->
-       {% for i in monthdays %}
-       <td>N/A</td>
-       {% endfor %}
-   </tr>
-   
- </table>
+        <th><br>{{i}}</th>
+        {% endfor %}
+
+    </tr>
+    {% for x in soldiers %}
+    <tr class="notfirst">
+
+        <th>{{x.soldierName}}</th> <!--Shangpo add in grab function for name -->
+        {% for i in monthdays %}
+        <td>N/A</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
 
 </body>
 </html>
