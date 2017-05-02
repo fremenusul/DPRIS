@@ -18,6 +18,7 @@
 
         th {
             border: 2px solid black;
+            text-align: center;
         }
 
         td {
@@ -60,7 +61,7 @@
     </tr>
     {% for x in soldiers %}
     <tr class="notfirst">
-        <th>Place</th>
+        <th>{{x.rank}}</th>
         <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
         {% for i in monthdays %}
         <td>N/A</td>
