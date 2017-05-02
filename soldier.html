@@ -2,15 +2,24 @@
 <html lang="en">
 <head>
 <style>
-    table {
+   table {
       border-collapse: collapse;
+      border: 1px solid black;
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 10px;
+      
     }
     th {
       text-align: center;
       height: 50px;
+      border: 1px solid black;
+     
     }
     td {
     text-align: center;
+    border: 1px solid black;
+    
 }
     
     h1 {
@@ -18,15 +27,34 @@
 }
     .first{
       background-color: grey;
+      border: 1px solid black;
     }
     .notfirst:hover {
       background-color: lightgrey;
+      
+    }
+    #navbar{
+     border-collapse: collapse;
+      border: 5px solid black;
+      background-color: #ffffff;
+      width: 100%;
+    }
+    
+    #navth{
+      height: 10px;
+      background-color: grey;
     }
 </style>
     <meta charset="UTF-8">
     <title>Soldier Management</title>
 </head>
 <body background="img/background.jpg">
+<table class="navbar">
+  <tr>
+  <td>test</td>
+  <td><a href="/attendance">Attendance</a></td>
+  </tr>
+</table>
 <form action="/soldier" method="post">
 Add New Soldier: <input type="text" name="name"><br>
     <select name="platoon">
@@ -51,7 +79,7 @@ Add New Soldier: <input type="text" name="name"><br>
     </select>
     </form>
 
-    <table align="center" style="border-color: #000000; background-color: #ffffff;" border="2" width= 100%>
+    <table>
   <tr class="first">
       <th>Rank</th>
       <th>Soldier Name</th>
