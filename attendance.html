@@ -51,19 +51,21 @@
 <br>
 <table>
     <tr class="first">
+        <th>Rank</th>
         <th>Name</th>
         {% for i in monthdays %}
         <th><br>{{i}}</th>
         {% endfor %}
-
+        <th>Percent</th>
     </tr>
     {% for x in soldiers %}
     <tr class="notfirst">
-
-        <th>{{x.soldierName}}</th> <!--Shangpo add in grab function for name -->
+        <th>Place</th>
+        <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
         {% for i in monthdays %}
         <td>N/A</td>
         {% endfor %}
+        <td>Blank</td>
     </tr>
     {% endfor %}
 
