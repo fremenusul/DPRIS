@@ -1,4 +1,5 @@
 from google.appengine.ext import ndb
+import datetime
 
 
 class SoldierData(ndb.Model):
@@ -65,7 +66,16 @@ def get_entity_from_url_safe_key(url_string):
 def update_entity_from_url_safe_key(url_string, record):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
-    soldier._properties[record] += soldier_key._properties[record]
+    soldier._properties[record] += soldier._properties[record]
+    soldier.put()
+
+def update_soldier_from_rct(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.rank = "PV2"
+    soldier.badgeJump = 1
+    soldier.medArmedForces = 1
+    soldier.lastPromoted = datetime.datetime.now().date()
     soldier.put()
 
 

@@ -43,7 +43,14 @@
         Rank: {{soldier.rank}}<br>
         Joined: {{soldier.addedDate}}<br>
         Platoon: {{soldier.platoon}} <br>
-        Last Promoted: <br>
+        Last Promoted: {{soldier.lastPromoted}}<br>
+        {%if soldier.rank == "RCT" %}
+        <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post"><input
+                class="pv2"
+                type="submit"
+                value="Promote to PV2">
+        </form>
+        {% endif %}
     </tr>
 </div>
 <p>Certifications</p>
@@ -92,100 +99,101 @@
             {% else %}
             Yes
             {% endif %}
-            <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post"><input class="NCOPD1"
-                                                                                                         type="submit"
-                                                                                                         value="Add">
+            <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post">
+                <input class="NCOPD1"
+                       type="submit"
+                       value="Add">
             </form>
         </td>
         <td>
             {% if soldier.certNCOPD2 == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certNCOPD2}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certNCOPD3 == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certNCOPD3}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certAirAssult == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certAirAssult}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certSapper == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certSapper}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certRanger == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certRanger}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certPathfinder == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certPathfinder}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certFO == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certFO}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certFDC == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certFDC}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certJFO == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certJFO}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certDMR == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certDMR}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certRSLC == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certRSLC}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certRotor == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certRotor}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.certRecruit == 0 %}
             No
             {% else %}
-            Yes - {{soldier.certRecruit}}
+            Yes
             {% endif %}
         </td>
     </tr>
@@ -209,49 +217,49 @@
             {% if soldier.ribPistol == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ribPistol}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.ribStaff == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ribStaff}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.ribCommand == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ribCommand}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.ribAT == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ribAT}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.ribGround == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ribGround}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.ribDM == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ribDM}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.ripSupport == 0 %}
             No
             {% else %}
-            Yes - {{soldier.ripSupport}}
+            Yes
             {% endif %}
         </td>
     </tr>
@@ -277,70 +285,70 @@
             {% if soldier.badgeJump == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeJump}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeCIB == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeCIB}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeIB == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeIB}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeMedic == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeMedic}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeExposive == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeExposive}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeCAB == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeCAB}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeAirDefense == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeAirDefense}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeArmor == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeArmor}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeTransport == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeTransport}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeCombatMedic == 0 %}
             No
             {% else %}
-            Yes - {{soldier.badgeCombatMedic}}
+            Yes
             {% endif %}
         </td>
     </tr>
@@ -372,119 +380,119 @@
             {% if soldier.medArmedForces == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medArmedForces}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medNationalDefense == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medNationalDefense}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medDSM == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medDSM}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medMOV == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medMOV}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medCommendation == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medCommendation}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medAchievement == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medAchievement}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medDsync == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medDsync}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medConduct == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medConduct}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medPH == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medPH}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medVolunteer == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medVolunteer}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medDSC == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medDSC}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medMerit == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medMerit}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medBronze == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medBronze}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medSilver == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medSilver}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medAir == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medAir}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medAFCombatAction == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medAFCombatAction}}
+            Yes
             {% endif %}
         </td>
         <td>
             {% if soldier.medCombatHelo == 0 %}
             No
             {% else %}
-            Yes - {{soldier.medCombatHelo}}
+            Yes
             {% endif %}
         </td>
     </tr>

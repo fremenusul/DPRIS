@@ -114,11 +114,14 @@ class DetailSoldier(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
+        #soldier_id = self.request.get('soldier')
+        #action = self.request.get('action')
+        #logging.info(soldier_id)
+        #logging.info(action)
+        #models.update_entity_from_url_safe_key(soldier_id, action)
         soldier_id = self.request.get('soldier')
-        action = self.request.get('action')
-        logging.info(soldier_id)
-        logging.info(action)
-        models.update_entity_from_url_safe_key(soldier_id, action)
+        models.update_soldier_from_rct(soldier_id)
+        return self.redirect('/soldier')
 
 
 class Attendance(webapp2.RequestHandler):
