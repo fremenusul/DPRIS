@@ -3,6 +3,7 @@ import jinja2
 import os
 import logging
 import calendar
+import ranks
 
 import models
 import datetime
@@ -103,11 +104,13 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_id = self.request.get('soldier')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
+        nextRank = ranks.rankBuilder(soldier_data.rank)
         # logging.info(soldier_data)
 
         template_values = {
             'soldier': soldier_data,
             'soldier_id' : soldier_id,
+            'nextRank' : nextRank
         }
 
         template = jinja_environment.get_template('detailsoldier.html')
@@ -315,6 +318,12 @@ class DetailSoldier(webapp2.RequestHandler):
             soldier_id = self.request.get('soldier')
             models.update_soldier_from_rct(soldier_id)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'promote':
+            soldier_id = self.request.get('soldier')
+            nextRank = self.request.get('rank')
+            models.promote_soldier(soldier_id, nextRank)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+
 
 class Attendance(webapp2.RequestHandler):
     def get(self):
