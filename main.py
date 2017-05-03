@@ -69,7 +69,7 @@ class SoldierPage(webapp2.RequestHandler):
             badgeCIB=0,
             badgeIB=0,
             badgeMedic=0,
-            badgeExposive=0,
+            badgeExplosive=0,
             badgeCAB=0,
             badgeAirDefense=0,
             badgeArmor=0,
@@ -114,15 +114,207 @@ class DetailSoldier(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
-        #soldier_id = self.request.get('soldier')
-        #action = self.request.get('action')
-        #logging.info(soldier_id)
-        #logging.info(action)
-        #models.update_entity_from_url_safe_key(soldier_id, action)
-        soldier_id = self.request.get('soldier')
-        models.update_soldier_from_rct(soldier_id)
-        return self.redirect('/soldier')
-
+        if self.request.get('action') == 'certRifle':
+            soldier_id = self.request.get('soldier')
+            form = self.request.get('certRifle')
+            models.update_rifle(soldier_id,form)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certNCOPD1':
+            soldier_id = self.request.get('soldier')
+            models.update_ncopd1(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certNCOPD2':
+            soldier_id = self.request.get('soldier')
+            models.update_ncopd2(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certNCOPD3':
+            soldier_id = self.request.get('soldier')
+            models.update_ncopd3(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certAirAssult':
+            soldier_id = self.request.get('soldier')
+            models.update_certAirAssult(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certSapper':
+            soldier_id = self.request.get('soldier')
+            models.update_certSapper(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certRanger':
+            soldier_id = self.request.get('soldier')
+            models.update_certRanger(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certPathfinder':
+            soldier_id = self.request.get('soldier')
+            models.update_certPathfinder(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certFO':
+            soldier_id = self.request.get('soldier')
+            models.update_certFO(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certFDC':
+            soldier_id = self.request.get('soldier')
+            models.update_certFDC(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certJFO':
+            soldier_id = self.request.get('soldier')
+            models.update_certJFO(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certDMR':
+            soldier_id = self.request.get('soldier')
+            models.update_certDMR(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certRSLC':
+            soldier_id = self.request.get('soldier')
+            models.update_certRSLC(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certRotor':
+            soldier_id = self.request.get('soldier')
+            models.update_certRotor(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certRecruit':
+            soldier_id = self.request.get('soldier')
+            models.update_certRecruit(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ribPistol':
+            soldier_id = self.request.get('soldier')
+            models.update_ribPistol(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ribStaff':
+            soldier_id = self.request.get('soldier')
+            models.update_ribStaff(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ribCommand':
+            soldier_id = self.request.get('soldier')
+            models.update_ribCommand(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ribAT':
+            soldier_id = self.request.get('soldier')
+            models.update_ribAT(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ribGround':
+            soldier_id = self.request.get('soldier')
+            models.update_ribGround(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ribDM':
+            soldier_id = self.request.get('soldier')
+            models.update_ribDM(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'ripSupport':
+            soldier_id = self.request.get('soldier')
+            models.update_ripSupport(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeJump':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeJump(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeCIB':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeCIB(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeIB':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeIB(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeMedic':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeMedic(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeExplosive':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeExplosive(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeCAB':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeCAB(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeAirDefense':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeAirDefense(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeArmor':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeArmor(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeTransport':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeTransport(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeCombatMedic':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeCombatMedic(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medArmedForces':
+            soldier_id = self.request.get('soldier')
+            models.update_medArmedForces(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medNationalDefense':
+            soldier_id = self.request.get('soldier')
+            models.update_medNationalDefense(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medDSM':
+            soldier_id = self.request.get('soldier')
+            models.update_medDSM(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medMOV':
+            soldier_id = self.request.get('soldier')
+            models.update_medMOV(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medCommendation':
+            soldier_id = self.request.get('soldier')
+            models.update_medCommendation(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medAchievement':
+            soldier_id = self.request.get('soldier')
+            models.update_medAchievement(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medDsync':
+            soldier_id = self.request.get('soldier')
+            models.update_medDsync(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medConduct':
+            soldier_id = self.request.get('soldier')
+            models.update_medConduct(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medPH':
+            soldier_id = self.request.get('soldier')
+            models.update_medPH(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medVolunteer':
+            soldier_id = self.request.get('soldier')
+            models.update_medVolunteer(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medDSC':
+            soldier_id = self.request.get('soldier')
+            models.update_medDSC(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medMerit':
+            soldier_id = self.request.get('soldier')
+            models.update_medMerit(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medBronze':
+            soldier_id = self.request.get('soldier')
+            models.update_medBronze(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medSilver':
+            soldier_id = self.request.get('soldier')
+            models.update_medSilver(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medAir':
+            soldier_id = self.request.get('soldier')
+            models.update_medAir(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medAFCombatAction':
+            soldier_id = self.request.get('soldier')
+            models.update_medAFCombatAction(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medCombatHelo':
+            soldier_id = self.request.get('soldier')
+            models.update_medCombatHelo(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'promotepv2':
+            soldier_id = self.request.get('soldier')
+            models.update_soldier_from_rct(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
 class Attendance(webapp2.RequestHandler):
     def get(self):

@@ -34,7 +34,7 @@
         td {
             text-align: center;
         }
-        
+
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
@@ -81,7 +81,7 @@
     <tr>
         <td>
             <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle" method="post">
-                <select>
+                <select name="certRifle">
                     <option value="Expert" {% if soldier.certRifle==
                     "Expert" %} selected{% endif %}>Expert</option>
                     <option value="Sharpshooter" {% if soldier.certRifle==
@@ -98,104 +98,133 @@
         <td>
             {% if soldier.certNCOPD1 == 0 %}
             No
-            {% else %}
-            Yes
-            {% endif %}
             <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post">
                 <input class="NCOPD1"
                        type="submit"
                        value="Add">
             </form>
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+
         </td>
         <td>
             {% if soldier.certNCOPD2 == 0 %}
             No
+            <form name="certNCOPD2" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD2" method="post">
+                <input type="submit" value="Add">
+            </form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certNCOPD3 == 0 %}
             No
-            {% else %}
-            Yes
-            {% endif %}
+            <form name="certNCOPD3" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD3" method="post">
+                <input type="submit" value="Add"></form>
+                {% else %}
+                <b>Yes</b>
+                {% endif %}
         </td>
         <td>
             {% if soldier.certAirAssult == 0 %}
             No
-            {% else %}
-            Yes
-            {% endif %}
+            <form name="certAirAssult" action="/detailsoldier?soldier={{soldier_id}}&action=certAirAssult"
+                  method="post">
+                <input type="submit" value="Add"></form>
+                {% else %}
+                <b>Yes</b>
+                {% endif %}
         </td>
         <td>
             {% if soldier.certSapper == 0 %}
             No
-            {% else %}
-            Yes
-            {% endif %}
+            <form name="certSapper" action="/detailsoldier?soldier={{soldier_id}}&action=certSapper" method="post">
+                <input type="submit" value="Add"></form>
+                {% else %}
+                <b>Yes</b>
+                {% endif %}
         </td>
         <td>
             {% if soldier.certRanger == 0 %}
             No
+             <form name="certRanger" action="/detailsoldier?soldier={{soldier_id}}&action=certRanger" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certPathfinder == 0 %}
             No
+             <form name="certPathfinder" action="/detailsoldier?soldier={{soldier_id}}&action=certPathfinder" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certFO == 0 %}
             No
+            <form name="certFO" action="/detailsoldier?soldier={{soldier_id}}&action=certFO" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certFDC == 0 %}
             No
+            <form name="certFDC" action="/detailsoldier?soldier={{soldier_id}}&action=certFDC" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certJFO == 0 %}
             No
+            <form name="certJFO" action="/detailsoldier?soldier={{soldier_id}}&action=certJFO" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certDMR == 0 %}
             No
+             <form name="certDMR" action="/detailsoldier?soldier={{soldier_id}}&action=certDMR" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certRSLC == 0 %}
             No
+            <form name="certRSLC" action="/detailsoldier?soldier={{soldier_id}}&action=certRSLC" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certRotor == 0 %}
             No
+            <form name="certRotor" action="/detailsoldier?soldier={{soldier_id}}&action=certRotor" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.certRecruit == 0 %}
             No
+            <form name="certRecruit" action="/detailsoldier?soldier={{soldier_id}}&action=certRecruit" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
     </tr>
@@ -218,50 +247,64 @@
         <td>
             {% if soldier.ribPistol == 0 %}
             No
+            <form name="ribPistol" action="/detailsoldier?soldier={{soldier_id}}&action=ribPistol" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.ribStaff == 0 %}
             No
+            <form name="ribStaff" action="/detailsoldier?soldier={{soldier_id}}&action=ribStaff" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.ribCommand == 0 %}
             No
+            <form name="ribCommand" action="/detailsoldier?soldier={{soldier_id}}&action=ribCommand" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.ribAT == 0 %}
             No
+            <form name="ribAT" action="/detailsoldier?soldier={{soldier_id}}&action=ribAT" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.ribGround == 0 %}
             No
+            <form name="ribGround" action="/detailsoldier?soldier={{soldier_id}}&action=ribGround" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.ribDM == 0 %}
             No
+            <form name="ribDM" action="/detailsoldier?soldier={{soldier_id}}&action=ribDM" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.ripSupport == 0 %}
             No
+            <form name="ripSupport" action="/detailsoldier?soldier={{soldier_id}}&action=ripSupport" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
     </tr>
@@ -286,71 +329,91 @@
         <td>
             {% if soldier.badgeJump == 0 %}
             No
+            <form name="badgeJump" action="/detailsoldier?soldier={{soldier_id}}&action=badgeJump" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeCIB == 0 %}
             No
+            <form name="badgeCIB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCIB" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeIB == 0 %}
             No
+            <form name="badgeIB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeIB" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeMedic == 0 %}
             No
+            <form name="badgeMedic" action="/detailsoldier?soldier={{soldier_id}}&action=badgeMedic" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
-            {% if soldier.badgeExposive == 0 %}
+            {% if soldier.badgeExplosive == 0 %}
             No
+            <form name="badgeExplosive" action="/detailsoldier?soldier={{soldier_id}}&action=badgeExplosive" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeCAB == 0 %}
             No
+            <form name="badgeCAB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCAB" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeAirDefense == 0 %}
             No
+            <form name="badgeAirDefense" action="/detailsoldier?soldier={{soldier_id}}&action=badgeAirDefense" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeArmor == 0 %}
             No
+            <form name="badgeArmor" action="/detailsoldier?soldier={{soldier_id}}&action=badgeArmor" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeTransport == 0 %}
             No
+            <form name="badgeTransport" action="/detailsoldier?soldier={{soldier_id}}&action=badgeTransport" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.badgeCombatMedic == 0 %}
             No
+            <form name="badgeCombatMedic" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCombatMedic" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
     </tr>
@@ -381,120 +444,154 @@
         <td>
             {% if soldier.medArmedForces == 0 %}
             No
+            <form name="medArmedForces" action="/detailsoldier?soldier={{soldier_id}}&action=medArmedForces" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medNationalDefense == 0 %}
             No
+            <form name="medNationalDefense" action="/detailsoldier?soldier={{soldier_id}}&action=medNationalDefense" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medDSM == 0 %}
             No
+            <form name="medDSM" action="/detailsoldier?soldier={{soldier_id}}&action=medDSM" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medMOV == 0 %}
             No
+            <form name="medMOV" action="/detailsoldier?soldier={{soldier_id}}&action=medMOV" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medCommendation == 0 %}
             No
+            <form name="medCommendation" action="/detailsoldier?soldier={{soldier_id}}&action=medCommendation" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medAchievement == 0 %}
             No
+            <form name="medAchievement" action="/detailsoldier?soldier={{soldier_id}}&action=medAchievement" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medDsync == 0 %}
             No
+            <form name="medDsync" action="/detailsoldier?soldier={{soldier_id}}&action=medDsync" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medConduct == 0 %}
             No
+            <form name="medConduct" action="/detailsoldier?soldier={{soldier_id}}&action=medConduct" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medPH == 0 %}
             No
+            <form name="medPH" action="/detailsoldier?soldier={{soldier_id}}&action=medPH" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medVolunteer == 0 %}
             No
+            <form name="medVolunteer" action="/detailsoldier?soldier={{soldier_id}}&action=medVolunteer" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medDSC == 0 %}
             No
+            <form name="medDSC" action="/detailsoldier?soldier={{soldier_id}}&action=medDSC" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medMerit == 0 %}
             No
+            <form name="medMerit" action="/detailsoldier?soldier={{soldier_id}}&action=medMerit" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medBronze == 0 %}
             No
+            <form name="medBronze" action="/detailsoldier?soldier={{soldier_id}}&action=medBronze" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medSilver == 0 %}
             No
+            <form name="medSilver" action="/detailsoldier?soldier={{soldier_id}}&action=medSilver" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medAir == 0 %}
             No
+            <form name="medAir" action="/detailsoldier?soldier={{soldier_id}}&action=medAir" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medAFCombatAction == 0 %}
             No
+            <form name="medAFCombatAction" action="/detailsoldier?soldier={{soldier_id}}&action=medAFCombatAction" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
         <td>
             {% if soldier.medCombatHelo == 0 %}
             No
+            <form name="medCombatHelo" action="/detailsoldier?soldier={{soldier_id}}&action=medCombatHelo" method="post">
+                <input type="submit" value="Add"></form>
             {% else %}
-            Yes
+            <b>Yes</b>
             {% endif %}
         </td>
     </tr>
