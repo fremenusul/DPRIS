@@ -109,8 +109,8 @@ class DetailSoldier(webapp2.RequestHandler):
 
         template_values = {
             'soldier': soldier_data,
-            'soldier_id' : soldier_id,
-            'nextRank' : nextRank
+            'soldier_id': soldier_id,
+            'nextRank': nextRank
         }
 
         template = jinja_environment.get_template('detailsoldier.html')
@@ -120,7 +120,7 @@ class DetailSoldier(webapp2.RequestHandler):
         if self.request.get('action') == 'certRifle':
             soldier_id = self.request.get('soldier')
             form = self.request.get('certRifle')
-            models.update_rifle(soldier_id,form)
+            models.update_rifle(soldier_id, form)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'certNCOPD1':
             soldier_id = self.request.get('soldier')
@@ -328,7 +328,7 @@ class DetailSoldier(webapp2.RequestHandler):
 class Attendance(webapp2.RequestHandler):
     def get(self):
         cal = calendar.Calendar()
-        #TODO(Shangpo): Make auto month
+        # TODO(Shangpo): Make auto month
         monthdates = [x for x in cal.itermonthdays(2017, 5) if x != 0]
         s_query = models.SoldierData.query()
         soldier_data = s_query.fetch()

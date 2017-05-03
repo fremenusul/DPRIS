@@ -85,7 +85,7 @@ Add New Soldier: <input type="text" name="name"><br>
       <th>Soldier Name</th>
       <th>Platoon</th>
       <!-- Need to update this when doing select dropdown -->
-      <th>Squad View</th>
+      <th>Pre-Op View</th>
       <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
       <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
       <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
@@ -99,12 +99,48 @@ Add New Soldier: <input type="text" name="name"><br>
       <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
       <td>{{i.platoon}}</td>
       <td> - </td>
-      <td>{{i.certSapper}}</td>
-      <td>{{i.certRanger}}</td>
-      <td>{{i.certFO}}</td>
-      <td>{{i.certFDC}}</td>
-      <td>{{i.certJFO}}</td>
-      <td>{{i.certRSLC}}</td>
+      <td>
+          {% if i.certSapper == 0 %}
+          NO
+          {% else %}
+          <b>Yes</b>
+          {% endif %}
+      </td>
+      <td>
+          {% if i.certRanger == 0 %}
+          NO
+          {% else %}
+          <b>Yes</b>
+          {% endif %}
+      </td>
+      <td>
+          {% if i.certFO == 0 %}
+          NO
+          {% else %}
+          <b>Yes</b>
+          {% endif %}
+      </td>
+      <td>
+          {% if i.certFDC == 0 %}
+          NO
+          {% else %}
+          <b>Yes</b>
+          {% endif %}
+      </td>
+      <td>
+          {% if i.certJFO == 0 %}
+          NO
+          {% else %}
+          <b>Yes</b>
+          {% endif %}
+      </td>
+      <td>
+          {% if i.certRSLC == 0 %}
+          NO
+          {% else %}
+          <b>Yes</b>
+          {% endif %}
+      </td>
 
   </tr>
     {% endfor %}
