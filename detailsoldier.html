@@ -52,16 +52,19 @@
                 type="submit"
                 value="Promote to PV2">
         </form>
-        {% endif %}
+        {% else %}
         Promote to:
         <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}" method="post">
             <input type="submit" value="Promote to {{nextRank}}">
+        {% endif %}
+
     </tr>
 </div>
 <p>Certifications</p>
 
 <table border="1">
     <tr>
+        <th>Number of Certifications</th>
         <th><img src="img/rifle.png" height="105" width="110"/><br>Rifle<br>
 
         </th>
@@ -82,6 +85,7 @@
     </tr>
 
     <tr>
+        <td>{{certstotal}}</td>
         <td>
             <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle" method="post">
                 <select name="certRifle">
@@ -238,6 +242,7 @@
 <p>Ribbons</p>
 <table border="1">
     <tr>
+        <th>Number of Ribbons</th>
         <th><img src="img/pistol.png" height="105" width="110"/><br>Pistol</th>
         <th><img src="img/staff.png" height="105" width="110"/><br>Staff Officer</th>
         <th><img src="img/command.png" height="105" width="110"/><br>Command</th>
@@ -247,7 +252,7 @@
         <th><img src="img/support.png" height="105" width="110"/><br>Support</th>
     </tr>
     <tr>
-
+        <td>{{ribbontotal}}</td>
         <td>
             {% if soldier.ribPistol == 0 %}
             No
@@ -317,6 +322,7 @@
 <p>Badges</p>
 <table border="1">
     <tr>
+        <th>Number of Badges</th>
         <th><br><img src="img/jump.png" height="105" width="110"/><br>Jump</th>
         <th><br><img src="img/cib.png" height="105" width="110"/><br>Combat Infrantry</th>
         <th><br><img src="img/infantry.png" height="105" width="110"/><br>Infantry</th>
@@ -329,7 +335,7 @@
         <th><br><img src="img/combatmedic.png" height="105" width="110"/><br>Combat Medic</th>
     </tr>
     <tr>
-
+        <td>{{badgestotal}}</td>
         <td>
             {% if soldier.badgeJump == 0 %}
             No
@@ -430,6 +436,7 @@
 <p>Medals</p>
 <table border="1">
     <tr>
+        <th>Number of Medals</th>
         <th><br><img src="img/afs.png" height="105" width="110"/><br>Armed Forces Service</th>
         <th><br><img src="img/nd.png" height="105" width="110"/><br>Nation Defense</th>
         <th><br><img src="img/dsm.png" height="105" width="110"/><br>Distinguished Service</th>
@@ -449,6 +456,7 @@
         <th><br>Combat Helo</th>
     </tr>
     <tr>
+        <td>{{medalstotal}}</td>
         <td>
             {% if soldier.medArmedForces == 0 %}
             No
