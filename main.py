@@ -23,7 +23,8 @@ class MainPage(webapp2.RequestHandler):
 
 class SoldierPage(webapp2.RequestHandler):
     def get(self):
-        s_query = models.SoldierData.query()
+        platoon = self.request.get('platoon')
+        s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
         soldier_data = s_query.fetch()
 
         template_values = {
@@ -41,7 +42,7 @@ class SoldierPage(webapp2.RequestHandler):
             soldierName=self.request.get('name'),
             addedDate=datetime.datetime.now().date(),
             lastPromoted=datetime.datetime.now().date(),
-            platoon=self.request.get('platoon'),
+            platoon='none',
             rank='RCT',
             certRifle='None',
             certNCOPD1=0,
@@ -180,8 +181,9 @@ class DetailSoldier(webapp2.RequestHandler):
     def post(self):
         if self.request.get('action') == 'certRifle':
             soldier_id = self.request.get('soldier')
-            form = self.request.get('certRifle')
-            models.update_rifle(soldier_id, form)
+            rifle = self.request.get('certRifle')
+            models.update_rifle(soldier_id, rifle)
+            logging.info(rifle)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'certNCOPD1':
             soldier_id = self.request.get('soldier')
@@ -383,6 +385,14 @@ class DetailSoldier(webapp2.RequestHandler):
             soldier_id = self.request.get('soldier')
             nextRank = self.request.get('rank')
             models.promote_soldier(soldier_id, nextRank)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'editsoldier':
+            soldier_id = self.request.get('soldier')
+            soldiername = self.request.get('name')
+            joined = self.request.get('joined')
+            platoon = self.request.get('platoon')
+            joined_date = datetime.datetime.strptime(joined, '%Y-%m-%d')
+            models.update_soldier(soldier_id, soldiername, joined_date, platoon)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
 

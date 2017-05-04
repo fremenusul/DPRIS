@@ -41,22 +41,42 @@
 </head>
 <body background="img/smoke.jpg">
 <div id="soldiertable">
-    <tr>Soldier Name: {{soldier.soldierName}}<br>
-        Rank: {{soldier.rank}}<br>
-        Joined: {{soldier.addedDate}}<br>
-        Platoon: {{soldier.platoon}} <br>
-        Last Promoted: {{soldier.lastPromoted}}<br>
+    <tr>
+        <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
+
+            <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br><br>
+            <b>Rank:</b> {{soldier.rank}}<br><br>
+        <b>Joined:</b> <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
+            <i>Make sure to use YYYY-MM-DD</i><br><br>
+            <b>Platoon:</b> <select name="platoon">
+        <option value="nightmare" {% if soldier.platoon==
+                    "nightmare" %} selected{% endif %}>Nightmare</option>
+        <option value="viking"{% if soldier.platoon==
+                    "viking" %} selected{% endif %}>Viking</option>
+        <option value="guardian"{% if soldier.platoon==
+                    "guardian" %} selected{% endif %}>Guardian</option>
+        <option value="whiskey"{% if soldier.platoon==
+                    "whiskey" %} selected{% endif %}>Whiskey</option>
+        <option value="toc"{% if soldier.platoon==
+                    "toc" %} selected{% endif %}>TOC</option>
+            <option value="none"{% if soldier.platoon==
+                    "none" %} selected{% endif %}>None</option>
+    </select> <br><br>
+            <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
+        <input
+                type="submit"
+                value="Edit Soldier">
+        </form>
+        <p>
         {%if soldier.rank == "RCT" %}
         <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post"><input
-                class="pv2"
                 type="submit"
                 value="Promote to PV2">
         </form>
         {% else %}
-        Promote to:
         <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}" method="post">
-            <input type="submit" value="Promote to {{nextRank}}">
-        {% endif %}
+            <input type="submit" value="Promote to {{nextRank}}"></form>
+        {% endif %}</p>
 
     </tr>
 </div>
