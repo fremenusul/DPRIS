@@ -49,7 +49,6 @@ class SoldierPage(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
-        # TODO(Shangpo): Need to fix this to ensure each platoon can work.
         # TODO(Pull off into a different function to OOP this. Also add a dict to loop
         e = models.SoldierData(
             soldierName=self.request.get('name'),
@@ -427,10 +426,12 @@ class DetailSoldier(webapp2.RequestHandler):
 
 class Attendance(webapp2.RequestHandler):
     def get(self):
+        platoon = self.request.get('platoon')
         cal = calendar.Calendar()
-        # TODO(Shangpo): Make auto month
-        monthdates = [x for x in cal.itermonthdays(2017, 5) if x != 0]
-        s_query = models.SoldierData.query()
+        current_month = datetime.datetime.now().date()
+        long_month = current_month.strftime("%B")
+        monthdates = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
+        s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
         soldier_data = s_query.fetch()
 
         # logging.info(monthdates)
@@ -438,6 +439,8 @@ class Attendance(webapp2.RequestHandler):
         template_values = {
             'monthdays': monthdates,
             'soldiers': soldier_data,
+            'monthname' : long_month,
+            'platoon' : platoon
         }
 
         template = jinja_environment.get_template('attendance.html')

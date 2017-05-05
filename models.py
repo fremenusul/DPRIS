@@ -61,6 +61,11 @@ class SoldierData(ndb.Model):
     medDFC = ndb.IntegerProperty(indexed=False)
     lastPromoted = ndb.DateProperty(indexed=False)
 
+class Attendance(ndb.Model):
+    attended = ndb.DateProperty(indexed=False)
+    soldier_id = ndb.StringProperty(indexed=False)
+    value = ndb.StringProperty(indexed=False)
+
 
 def get_entity_from_url_safe_key(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)

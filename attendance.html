@@ -43,8 +43,8 @@
             text-align: center;
             text-decoration: underline;
         }
-        
-        .navbar{
+
+        .navbar {
             border-collapse: collapse;
             border: 1px solid black;
             background-color: #ffffff;
@@ -53,31 +53,38 @@
             margin-right: 25%;
         }
 
-       .navtd{
+        .navtd {
             height: 10px;
         }
-        
-       .navtr{
-           
-       }
-       
+
+        .navtr {
+
+        }
+
     </style>
     <meta charset="UTF-8">
     <title>Attendance</title>
 </head>
 <body background="img/attendance.jpg">
 <table border="1" class="navbar">
-  <tr>
-  <td class="navtd"><a href="/">Home Page</a></td>
-  <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
-  <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a></td>
-  <td class="navtd"><a href="/soldier?platoon=viking">Viking</a></td>
-  <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a></td>
-  <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a></td>
-  <td class="navtd"><a href="/soldier?platoon=none">Recruits</a></td>
-  </tr>
+    <tr>
+        <td class="navtd"><a href="/">Home Page</a></td>
+        <!--<td class="navtd"><a href="/attendance">Attendance</a></td>-->
+        <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
+        <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a><br>- <a
+                href="/attendance?platoon=nightmare"> Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=viking">Viking</a><br>- <a href="/attendance?platoon=viking">
+            Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a><br>- <a href="/attendance?platoon=guardian">
+            Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a><br>- <a href="/attendance?platoon=whiskey">
+            Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=none">Recruits</a><br>- <a href="/attendance?platoon=none">
+            Attendance</a></td>
+    </tr>
 </table>
-<h1>Attendance</h1>
+</table>
+<h1>{{monthname}} Attendance for {{platoon}}</h1>
 <br>
 <table>
     <tr class="first">
@@ -93,7 +100,22 @@
         <th>{{x.rank}}</th>
         <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
         {% for i in monthdays %}
-        <td>N/A</td>
+        <td>
+            <form action="/attendance?action=update" method="post">
+                <select name="selection">
+                    <option value="None">None</option>
+                    <option value="training">Training</option>
+                    <option value="play1">Offical Op</option>
+                    <option value="play2">Open Play</option>
+                    <option value="rasp">RASP</option>
+                    <option value="holiday">Holiday</option>
+                    <option value="loa">LOA</option>
+                    <option value="pre">Pre-Op Training</option>
+                    <option value="preandop">Training and Play</option>
+                </select>
+            </form>
+
+        </td>
         {% endfor %}
         <td>Blank</td>
     </tr>
