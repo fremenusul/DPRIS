@@ -47,6 +47,7 @@
        .navtd{
             height: 10px;
         }
+        
        .navtr{
            
        }
@@ -60,6 +61,7 @@
   <tr>
   <td class="navtd"><a href="/">Home Page</a></td>
   <td class="navtd"><a href="/attendance">Attendance</a></td>
+  <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
   <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a></td>
   <td class="navtd"><a href="/soldier?platoon=viking">Viking</a></td>
   <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a></td>
@@ -93,7 +95,7 @@
         <input
                 type="submit"
                 value="Edit Soldier">
-        </form><hr/>
+        </form>
         <p>
         {%if soldier.rank == "RCT" %}
         <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post"><input
@@ -125,10 +127,9 @@
         <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
         <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
         <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
-        <th><img src="img/dm.png" height="105" width="110"/><br>DMR</th>
+        <th><img src="img/dmr.png" height="105" width="110"/><br>DMR</th>
         <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
-        <th><img src="img/rotor.png" height="105" width="110"/><br>Rotor</th>
-        <th>Recruiter</th>
+        <th><img src="img/recruiter.png" height="109" width="110"/><br>Recruiter</th>
     </tr>
 
     <tr>
@@ -270,15 +271,6 @@
             {% endif %}
         </td>
         <td>
-            {% if soldier.certRotor == 0 %}
-            No
-            <form name="certRotor" action="/detailsoldier?soldier={{soldier_id}}&action=certRotor" method="post">
-                <input type="submit" value="Add"></form>
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
-        <td>
             {% if soldier.certRecruit == 0 %}
             No
             <form name="certRecruit" action="/detailsoldier?soldier={{soldier_id}}&action=certRecruit" method="post">
@@ -295,13 +287,13 @@
 <table border="1" class="bling">
     <tr>
         <th>Number of Ribbons</th>
-        <th><img src="img/pistol.png" height="105" width="110"/><br>Pistol</th>
-        <th><img src="img/staff.png" height="105" width="110"/><br>Staff Officer</th>
-        <th><img src="img/command.png" height="105" width="110"/><br>Command</th>
-        <th><img src="img/AT.png" height="105" width="110"/><br>AT</th>
-        <th><img src="img/ground.png" height="105" width="110"/><br>Ground Defense</th>
-        <th><img src="img/dm.png" height="105" width="110"/><br>Marksman</th>
-        <th><img src="img/support.png" height="105" width="110"/><br>Support</th>
+        <th><img src="img/pistol2.png" height="105" width="110"/><br>Pistol</th>
+        <th><img src="img/staff2.png" height="105" width="110"/><br>Staff Officer</th>
+        <th><img src="img/command2.png" height="105" width="110"/><br>Command</th>
+        <th><img src="img/AT2.png" height="105" width="110"/><br>AT</th>
+        <th><img src="img/ground2.png" height="105" width="110"/><br>Ground Defense</th>
+        <th><img src="img/dmr.png" height="105" width="110"/><br>Marksman</th>
+        <th><img src="img/support2.png" height="105" width="110"/><br>Support</th>
     </tr>
     <tr>
         <td>{{ribbontotal}}</td>
@@ -376,8 +368,8 @@
     <tr>
         <th>Number of Badges</th>
         <th><br><img src="img/jump.png" height="105" width="110"/><br>Jump</th>
-        <th><br><img src="img/cib.png" height="105" width="110"/><br>Combat Infrantry</th>
-        <th><br><img src="img/infantry.png" height="105" width="110"/><br>Infantry</th>
+        <th><br><img src="img/cib.png" height="105" width="110"/><br>Combat Infantry</th>
+        <th><br><img src="img/infantry2.png" height="105" width="110"/><br>Infantry</th>
         <th><br><img src="img/medic.png" height="105" width="110"/><br>Medic</th>
         <th><br><img src="img/explosives.png" height="105" width="110"/><br>Explosives</th>
         <th><br><img src="img/cab.png" height="105" width="110"/><br>Combat Action</th>
@@ -494,8 +486,8 @@
         <th><br><img src="img/dsm.png" height="105" width="110"/><br>Distinguished Service</th>
         <th><br><img src="img/mov.png" height="105" width="110"/><br>Medal of Valor</th>
         <th><br><img src="img/acm.png" height="105" width="110"/><br>Army Commendation</th>
-        <th><br><img src="img/aam.png" height="105" width="110"/><br>Army Acheievement</th>
-        <th><br><img src="img/dsync.png" height="105" width="110"/><br>Dsync</th>
+        <th><br><img src="img/aam2.png" height="105" width="110"/><br>Army Acheievement</th>
+        <th><br><img src="img/dsync2.png" height="105" width="110"/><br>Dsync</th>
         <th><br><img src="img/gcm.png" height="105" width="110"/><br>Good Conduct</th>
         <th><br><img src="img/ph.png" height="105" width="110"/><br>Purple Heart</th>
         <th><br><img src="img/vsm.png" height="105" width="110"/><br>Volunteer Service</th>
@@ -503,9 +495,6 @@
         <th><br><img src="img/msm.png" height="105" width="110"/><br>Meritorious Service</th>
         <th><br><img src="img/bs.png" height="105" width="110"/><br>Bronze Star</th>
         <th><br><img src="img/ss.png" height="105" width="110"/><br>Silver Star</th>
-        <th><br>Air</th>
-        <th><br>Air Force Combat Action</th>
-        <th><br>Combat Helo</th>
     </tr>
     <tr>
         <td>{{medalstotal}}</td>
@@ -639,6 +628,32 @@
             <b>Yes</b>
             {% endif %}
         </td>
+    </tr>
+</table>
+
+<p>Aviation</p>
+<table border="1" class="bling">
+    <tr>
+        <th>Number ofAwards</th>
+        <th><img src="img/rotor.png" height="105" width="110"/><br>Rotor</th>
+        <th><img src="img/wings.png" height="105" width="110"/><br>Wings</th>
+        <th><img src="img/airmedal.png" height="105" width="110"/><br>Air</th>
+        <th><img src="img/afcam.png" height="105" width="110"/><br>Air Force Combat Action</th>
+        <th><img src="img/chm.png" height="105" width="110"/><br>Combat Helo</th>
+        <th><img src="img/dfc.png" height="105" width="110"/><br>Distinguished Flying Cross</th>
+    </tr>
+    <tr>
+        <td><!-- add function for this --> Number </td>
+        <td>
+            {% if soldier.certRotor == 0 %}
+            No
+            <form name="certRotor" action="/detailsoldier?soldier={{soldier_id}}&action=certRotor" method="post">
+                <input type="submit" value="Add"></form>
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+        <td>add</td>
         <td>
             {% if soldier.medAir == 0 %}
             No
@@ -668,8 +683,8 @@
             <b>Yes</b>
             {% endif %}
         </td>
+        <td>add</td>
     </tr>
 </table>
-
 </body>
 </html>
