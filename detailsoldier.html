@@ -50,6 +50,7 @@
        .navtr{
            
        }
+       
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
@@ -70,10 +71,10 @@
     <tr>
         <td><form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
 
-            <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br><br>
-            <b>Rank:</b> {{soldier.rank}}<br><br>
+           <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br><hr/>
+            <b>Rank:</b> {{soldier.rank}}<br><hr/>
         <b>Joined:</b> <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
-            <i>Use YYYY-MM-DD</i><br><br>
+          <i>Use YYYY-MM-DD</i><br><hr/>
             <b>Platoon:</b> <select name="platoon">
         <option value="nightmare" {% if soldier.platoon==
                     "nightmare" %} selected{% endif %}>Nightmare</option>
@@ -87,12 +88,12 @@
                     "toc" %} selected{% endif %}>TOC</option>
             <option value="none"{% if soldier.platoon==
                     "none" %} selected{% endif %}>None</option>
-    </select> <br><br>
-            <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
+    </select> <br><hr/>
+           <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
         <input
                 type="submit"
                 value="Edit Soldier">
-        </form>
+        </form><hr/>
         <p>
         {%if soldier.rank == "RCT" %}
         <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post"><input
