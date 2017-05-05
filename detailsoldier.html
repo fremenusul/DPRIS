@@ -643,7 +643,7 @@
         <th><img src="img/dfc.png" height="105" width="110"/><br>Distinguished Flying Cross</th>
     </tr>
     <tr>
-        <td><!-- add function for this --> Number </td>
+        <td>{{avtotal}} </td>
         <td>
             {% if soldier.certRotor == 0 %}
             No
@@ -653,11 +653,20 @@
             <b>Yes</b>
             {% endif %}
         </td>
-        <td>add</td>
+        <td>
+            {% if soldier.certWings == 0 %}
+            No
+            <form name="certWings" action="/detailsoldier?soldier={{soldier_id}}&action=certWings" method="post">
+                <input type="submit" value="Add"></form>
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
         <td>
             {% if soldier.medAir == 0 %}
             No
-            <form name="medAir" action="/detailsoldier?soldier={{soldier_id}}&action=medAir" method="post">
+            <form name="medAir" action="/detailsoldier?soldier={{soldier_id}}&action=medAir"
+                  method="post">
                 <input type="submit" value="Add"></form>
             {% else %}
             <b>Yes</b>
@@ -683,7 +692,17 @@
             <b>Yes</b>
             {% endif %}
         </td>
-        <td>add</td>
+        <td>
+            {% if soldier.medDFC == 0 %}
+            No
+            <form name="medDFC" action="/detailsoldier?soldier={{soldier_id}}&action=medDFC"
+                  method="post">
+                <input type="submit" value="Add"></form>
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+
     </tr>
 </table>
 </body>

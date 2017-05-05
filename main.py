@@ -67,6 +67,7 @@ class SoldierPage(webapp2.RequestHandler):
             certDMR=0,
             certRSLC=0,
             certRotor=0,
+            certWings=0,
             certRecruit=0,
             ribPistol=0,
             ribStaff=0,
@@ -101,11 +102,12 @@ class SoldierPage(webapp2.RequestHandler):
             medSilver=0,
             medAir=0,
             medAFCombatAction=0,
-            medCombatHelo=0
+            medCombatHelo=0,
+            medDFC=0
         )
         e.put()
 
-        return self.redirect('/soldier')
+        return self.redirect('/soldier?platoon=none')
 
 
 class DetailSoldier(webapp2.RequestHandler):
@@ -115,6 +117,8 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
         certs = []
+        if soldier_data.certRifle is not 'None':
+            certs.append(1)
         certs.append(soldier_data.certNCOPD1)
         certs.append(soldier_data.certNCOPD2)
         certs.append(soldier_data.certNCOPD3)
@@ -127,7 +131,6 @@ class DetailSoldier(webapp2.RequestHandler):
         certs.append(soldier_data.certJFO)
         certs.append(soldier_data.certDMR)
         certs.append(soldier_data.certRSLC)
-        certs.append(soldier_data.certRotor)
         certs.append(soldier_data.certRecruit)
         certstotal = sum(certs)
         ribbons = []
@@ -166,10 +169,15 @@ class DetailSoldier(webapp2.RequestHandler):
         medals.append(soldier_data.medMerit)
         medals.append(soldier_data.medBronze)
         medals.append(soldier_data.medSilver)
-        medals.append(soldier_data.medAir)
-        medals.append(soldier_data.medAFCombatAction)
-        medals.append(soldier_data.medCombatHelo)
         medalstotal = sum(medals)
+        av = []
+        av.append(soldier_data.certRotor)
+        av.append(soldier_data.certWings)
+        av.append(soldier_data.medAir)
+        av.append(soldier_data.medAFCombatAction)
+        av.append(soldier_data.medCombatHelo)
+        av.append(soldier_data.medDFC)
+        avtotal = sum(av)
 
         # logging.info(soldier_data)
 
@@ -181,7 +189,9 @@ class DetailSoldier(webapp2.RequestHandler):
             'certstotal': certstotal,
             'ribbontotal' : ribbontotal,
             'badgestotal' : badgestotal,
-            'medalstotal' : medalstotal
+            'medalstotal' : medalstotal,
+            'avtotal' : avtotal
+
         }
 
         template = jinja_environment.get_template('detailsoldier.html')
@@ -385,6 +395,14 @@ class DetailSoldier(webapp2.RequestHandler):
         elif self.request.get('action') == 'medCombatHelo':
             soldier_id = self.request.get('soldier')
             models.update_medCombatHelo(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'certWings':
+            soldier_id = self.request.get('soldier')
+            models.update_certWings(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'medDFC':
+            soldier_id = self.request.get('soldier')
+            models.update_medDFC(soldier_id)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'promotepv2':
             soldier_id = self.request.get('soldier')

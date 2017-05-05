@@ -22,6 +22,7 @@ class SoldierData(ndb.Model):
     certDMR = ndb.IntegerProperty(indexed=False)
     certRSLC = ndb.IntegerProperty(indexed=False)
     certRotor = ndb.IntegerProperty(indexed=False)
+    certWings = ndb.IntegerProperty(indexed=False)
     certRecruit = ndb.IntegerProperty(indexed=False)
     ribPistol = ndb.IntegerProperty(indexed=False)
     ribStaff = ndb.IntegerProperty(indexed=False)
@@ -57,6 +58,7 @@ class SoldierData(ndb.Model):
     medAir = ndb.IntegerProperty(indexed=False)
     medAFCombatAction = ndb.IntegerProperty(indexed=False)
     medCombatHelo = ndb.IntegerProperty(indexed=False)
+    medDFC = ndb.IntegerProperty(indexed=False)
     lastPromoted = ndb.DateProperty(indexed=False)
 
 
@@ -235,6 +237,11 @@ def update_ribAT(url_string):
     soldier.ribAT = 1
     soldier.put()
 
+def update_ribGround(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.ribGround = 1
+    soldier.put()
 
 def update_ribDM(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
@@ -436,4 +443,16 @@ def update_medCombatHelo(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.medCombatHelo = 1
+    soldier.put()
+
+def update_certWings(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.certWings = 1
+    soldier.put()
+
+def update_medDFC(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.medDFC = 1
     soldier.put()
