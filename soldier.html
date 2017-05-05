@@ -8,41 +8,43 @@
       background-color: #ffffff;
       width: 100%;
       border-radius: 10px;
-      
     }
     th {
       text-align: center;
       height: 50px;
       border: 1px solid black;
-     
     }
+    
     td {
     text-align: center;
     border: 1px solid black;
-    
-}
+    }
     
     h1 {
       color: black;
-}
+    }
+    
     .first{
       background-color: grey;
       border: 1px solid black;
     }
+    
     .notfirst:hover {
       background-color: lightgrey;
       
     }
-    #navbar{
+   
+    .navbar{
      border-collapse: collapse;
-      border: 5px solid black;
+      border: 2px solid black;
       background-color: #ffffff;
-      width: 100%;
+      width: 50%;
+      margin-left: 25%;
+      margin-right: 25%;
     }
-    
-    #navth{
+
+    .navtd{
       height: 10px;
-      background-color: grey;
     }
 </style>
     <meta charset="UTF-8">
@@ -51,8 +53,13 @@
 <body background="img/background.jpg">
 <table class="navbar">
   <tr>
-  <td>test</td>
-  <td><a href="/attendance">Attendance</a></td>
+  <td class="navtd"><a href="/">Home Page</a></td>
+  <td class="navtd"><a href="/attendance">Attendance</a></td>
+  <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a></td>
+  <td class="navtd"><a href="/soldier?platoon=viking">Viking</a></td>
+  <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a></td>
+  <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a></td>
+  <td class="navtd"><a href="/soldier?platoon=none">Recruits</a></td>
   </tr>
 </table>
 <form action="/soldier" method="post">
