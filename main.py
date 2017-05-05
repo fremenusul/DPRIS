@@ -1,11 +1,15 @@
-import webapp2
-import jinja2
-import os
 import calendar
-import ranks
-import logging
-import models
 import datetime
+import logging
+import os
+
+import jinja2
+import webapp2
+
+import models
+import ranks
+
+from google.appengine.api import memcache
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -24,8 +28,13 @@ class MainPage(webapp2.RequestHandler):
 class SoldierPage(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
-        s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
-        soldier_data = s_query.fetch()
+        results = memcache.get(platoon)
+        soldier_data = results
+        if not results:
+            s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
+            soldier_data = s_query.fetch()
+            memcache.set(platoon, soldier_data, 30)
+            logging.info('No Cache')
 
         template_values = {
             'soldiers': soldier_data,

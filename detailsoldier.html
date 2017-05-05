@@ -73,7 +73,7 @@
             <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br><br>
             <b>Rank:</b> {{soldier.rank}}<br><br>
         <b>Joined:</b> <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
-            <i>Make sure to use YYYY-MM-DD</i><br><br>
+            <i>Use YYYY-MM-DD</i><br><br>
             <b>Platoon:</b> <select name="platoon">
         <option value="nightmare" {% if soldier.platoon==
                     "nightmare" %} selected{% endif %}>Nightmare</option>
@@ -133,7 +133,11 @@
     <tr>
         <td>{{certstotal}}</td>
         <td>
+            {% if soldier.certRifle == "Expert" %}
+            <b>{{soldier.certRifle}}</b>
+                {% else %}
             <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle" method="post">
+
                 <select name="certRifle">
                     <option value="Expert" {% if soldier.certRifle==
                     "Expert" %} selected{% endif %}>Expert</option>
@@ -145,6 +149,7 @@
                     "None" %} selected{% endif %}>None</option>
                 </select>
                 <input type="submit">
+                {% endif %}
             </form>
         </td>
         <!-- TODO(Shangpo) Fix this via a for loop -->
