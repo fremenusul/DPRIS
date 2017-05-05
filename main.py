@@ -28,13 +28,17 @@ class MainPage(webapp2.RequestHandler):
 class SoldierPage(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
-        results = memcache.get(platoon)
-        soldier_data = results
-        if not results:
+        if platoon == 'none':
             s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
             soldier_data = s_query.fetch()
-            memcache.set(platoon, soldier_data, 30)
-            logging.info('No Cache')
+        else:
+            results = memcache.get(platoon)
+            soldier_data = results
+            if not results:
+                s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
+                soldier_data = s_query.fetch()
+                memcache.set(platoon, soldier_data, 30)
+                logging.info('No Cache')
 
         template_values = {
             'soldiers': soldier_data,
@@ -117,7 +121,7 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
         certs = []
-        if soldier_data.certRifle is not 'None':
+        if soldier_data.certRifle != 'None':
             certs.append(1)
         certs.append(soldier_data.certNCOPD1)
         certs.append(soldier_data.certNCOPD2)
@@ -133,6 +137,7 @@ class DetailSoldier(webapp2.RequestHandler):
         certs.append(soldier_data.certRSLC)
         certs.append(soldier_data.certRecruit)
         certstotal = sum(certs)
+
         ribbons = []
         ribbons.append(soldier_data.ribPistol)
         ribbons.append(soldier_data.ribStaff)
@@ -179,18 +184,15 @@ class DetailSoldier(webapp2.RequestHandler):
         av.append(soldier_data.medDFC)
         avtotal = sum(av)
 
-        # logging.info(soldier_data)
-
-
         template_values = {
             'soldier': soldier_data,
             'soldier_id': soldier_id,
             'nextRank': nextRank,
             'certstotal': certstotal,
-            'ribbontotal' : ribbontotal,
-            'badgestotal' : badgestotal,
-            'medalstotal' : medalstotal,
-            'avtotal' : avtotal
+            'ribbontotal': ribbontotal,
+            'badgestotal': badgestotal,
+            'medalstotal': medalstotal,
+            'avtotal': avtotal
 
         }
 
