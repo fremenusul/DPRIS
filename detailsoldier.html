@@ -7,7 +7,7 @@
             background-attachment: fixed;
         }
 
-        table {
+        .bling {
             box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.8);
             background: rgb(240, 183, 161);
             background: linear-gradient(135deg, rgba(240, 183, 161, 1) 0%, rgba(140, 51, 16, 1) 50%, rgba(117, 34, 1, 1) 51%, rgba(191, 110, 78, 1) 100%);
@@ -22,7 +22,7 @@
             font-weight: 900;
         }
 
-        #soldiertable {
+        .soldiertable {
             background: rgb(240, 183, 161);
             border-radius: 10px;
             max-width: 260px;
@@ -35,14 +35,40 @@
             text-align: center;
         }
 
+        .navbar{
+            border-collapse: collapse;
+            border: 1px solid black;
+            background-color: #ffffff;
+            width: 50%;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+       .navtd{
+            height: 10px;
+        }
+       .navtr{
+           
+       }
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
 </head>
 <body background="img/smoke.jpg">
-<div id="soldiertable">
+<table border="1" class="navbar">
+  <tr>
+  <td class="navtd"><a href="/">Home Page</a></td>
+  <td class="navtd"><a href="/attendance">Attendance</a></td>
+  <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a></td>
+  <td class="navtd"><a href="/soldier?platoon=viking">Viking</a></td>
+  <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a></td>
+  <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a></td>
+  <td class="navtd"><a href="/soldier?platoon=none">Recruits</a></td>
+  </tr>
+</table>
+<table class="soldiertable">
     <tr>
-        <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
+        <td><form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
 
             <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br><br>
             <b>Rank:</b> {{soldier.rank}}<br><br>
@@ -77,12 +103,12 @@
         <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}" method="post">
             <input type="submit" value="Promote to {{nextRank}}"></form>
         {% endif %}</p>
-
+</td>
     </tr>
-</div>
+</table>
 <p>Certifications</p>
 
-<table border="1">
+<table border="1" class="bling">
     <tr>
         <th>Number of Certifications</th>
         <th><img src="img/rifle.png" height="105" width="110"/><br>Rifle<br>
@@ -260,7 +286,7 @@
 
 
 <p>Ribbons</p>
-<table border="1">
+<table border="1" class="bling">
     <tr>
         <th>Number of Ribbons</th>
         <th><img src="img/pistol.png" height="105" width="110"/><br>Pistol</th>
@@ -340,7 +366,7 @@
 </table>
 
 <p>Badges</p>
-<table border="1">
+<table border="1" class="bling">
     <tr>
         <th>Number of Badges</th>
         <th><br><img src="img/jump.png" height="105" width="110"/><br>Jump</th>
@@ -454,7 +480,7 @@
 </table>
 
 <p>Medals</p>
-<table border="1">
+<table border="1" class="bling">
     <tr>
         <th>Number of Medals</th>
         <th><br><img src="img/afs.png" height="105" width="110"/><br>Armed Forces Service</th>
