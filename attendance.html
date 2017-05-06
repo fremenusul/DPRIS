@@ -13,7 +13,8 @@
             margin-left: 2%;
             margin-right: 2%;
             background-color: darkslategrey;
-            box-shadow: 0px 0px 0px 5px rgba(246, 44, 44, 0.8)
+            box-shadow: 0px 0px 0px 5px rgba(104, 94, 94, 0.6);
+            border-radius: 5px;
         }
 
         th {
@@ -39,10 +40,20 @@
         }
 
         h1 {
-            padding-top: 10px;
-            color: black;
+            margin: auto;
+            color: white;
             text-align: center;
-            text-decoration: underline;
+            text-decoration: none;
+            text-shadow: 2px 2px black;
+            background-color: grey;
+            clear: both;
+            width: 500px;
+            height: 60px;
+            line-height: 60px;
+            margin-top: 30px;
+            border-radius: 5px;
+            border: 2px solid black;
+            box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
         }
 
         
@@ -52,6 +63,7 @@ ul {
     list-style: none;
     margin: 0 auto;
     padding: 0;
+    
 }
 
 li {
@@ -60,11 +72,13 @@ li {
     line-height: 35px;
     padding: 10px;
     display:inline-block;
-    
     border-radius: 6px;
     background: grey;
     margin: 4px 6px;
-    box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8)
+    box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    transition: background-color .5s
 }
 
 a{
@@ -98,7 +112,6 @@ li a{
     margin: 0 auto;
     padding: 0;
     display: table;
-    
 }
 
 
@@ -110,21 +123,21 @@ li a{
     left: -999em;
     height: auto;
     width: 150px;
-    
-    padding: 0;
-    text-align: left;
+
+    text-align: center;
 }
 
 
-#dprisnav li:hover ul, #dprisnav li li:hover ul, #dprisnav li li li:hover ul, #dprisnav li.sfhover ul, #dprisnav li li.sfhover ul, #dprisnav li li li.sfhover ul {
+#dprisnav li:hover ul{
     left: auto;
 }
 
+#dprisnav li:hover{
+    background-color: red;
+}
 
 #dprisnav li li a:hover, #dprisnavli li a:active {
-    
     display: block;
-    
     padding: 0px 0px 6px 6px;
     text-decoration: none;
 }
@@ -138,62 +151,42 @@ li a{
 
 <div id='dprisnavbar'>
     <ul id='dprisnav'>
-        <li>Home</a>
-            <ul>
-                <li><a href="/">Home</a>
-                </li>
-            </ul>
+        <li><a href="/">Home</a>
         </li>
             
         </li>
-        <li>TOC
-            <ul>
-                <li><a href="/soldier?platoon=TOC">Command Roster</a>
-                </li>
-            </ul>
+        <li><a href="/soldier?platoon=TOC">TOC</a>
         </li>
-        <li>Nightmare
+        <li><a href="/soldier?platoon=nightmare">Nightmare</a>
             <ul>
-                <li><a href="/soldier?platoon=nightmare">Platoon Roster</a>
-                </li>
                 <li><a href="/attendance?platoon=nightmare">Platoon Attendance</a>
                 </li>
             </ul>
         </li>
-        <li>Viking
+        <li><a href="/soldier?platoon=viking">Viking</a>
             <ul>
-                <li><a href="/soldier?platoon=viking">Platoon Roster</a>
-                </li>
                 <li><a href="/attendance?platoon=viking">Platoon Attendance</a>
                 </li>
             </ul>
         </li>
-        <li>Guardian
+        <li><a href="/soldier?platoon=guardian">Guardian</a>
             <ul>
-                <li><a href="/soldier?platoon=guardian">Platoon Roster</a>
-                </li>
                 <li><a href="/attendance?platoon=guardian">Platoon Attendance</a>
                 </li>
             </ul>
         </li>
-        <li>Whiskey
+        <li><a href="/soldier?platoon=whiskey">Whiskey</a>
             <ul>
-                <li><a href="/soldier?platoon=whiskey">Airteam Roster</a>
-                </li>
                 <li><a href="/attendance?platoon=whiskey">Airteam Attendance</a>
                 </li>
             </ul>
         </li>
-        <li>Recruits
-            <ul>
-                <li><a href="/soldier?platoon=nightmare">Recruit Roster</a>
-                </li>
-            </ul>
+        <li><a href="/soldier?platoon=nightmare">Recruits</a>
         </li>
     </ul>
 </div>
 
-
+<br>
 <h1>{{monthname}} Attendance for {{platoon}}</h1>
 
 <br>
