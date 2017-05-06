@@ -283,7 +283,7 @@ Add New Soldier: <input type="text" name="name"><br>
 </form>
 
     <h1 align="center"><u><i>ELEMENT ROSTER</i></u></h1>
-    <form action="/soldier" method="post">
+    <!--<form action="/soldier" method="post">
     <select name="selection">
         <option value="op">Pre-Op View</option>
         <option value="certifications">Certification View</option>
@@ -291,7 +291,7 @@ Add New Soldier: <input type="text" name="name"><br>
         <option value="badges">Badges View</option>
         <option value="medals">Medals View</option>
     </select>
-    </form>
+    </form> -->
 
     <table>
   <tr class="first">
@@ -299,7 +299,6 @@ Add New Soldier: <input type="text" name="name"><br>
       <th>Soldier Name</th>
       <th>Platoon</th>
       <!-- Need to update this when doing select dropdown -->
-      <th>Pre-Op View</th>
       <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
       <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
       <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
@@ -312,7 +311,6 @@ Add New Soldier: <input type="text" name="name"><br>
       <td>{{i.rank}}</td>
       <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
       <td>{{i.platoon}}</td>
-      <td> - </td>
       <td>
           {% if i.certSapper == 0 %}
           NO
