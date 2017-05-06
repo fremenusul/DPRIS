@@ -1,4 +1,5 @@
 import calendar
+import cgi
 import datetime
 import logging
 import os
@@ -11,6 +12,7 @@ import ranks
 import newsoldier
 
 from google.appengine.api import memcache
+from jinja2 import utils
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -51,7 +53,7 @@ class SoldierPage(webapp2.RequestHandler):
 
     def post(self):
         soldiername = self.request.get('name')
-        newsoldier.addnewsoldier(soldiername)
+        newsoldier.addnewsoldier(cgi.escape(soldiername))
         return self.redirect('/soldier?platoon=none')
 
 
@@ -365,7 +367,7 @@ class DetailSoldier(webapp2.RequestHandler):
             joined = self.request.get('joined')
             platoon = self.request.get('platoon')
             joined_date = datetime.datetime.strptime(joined, '%Y-%m-%d')
-            models.update_soldier(soldier_id, soldiername, joined_date, platoon)
+            models.update_soldier(soldier_id, cgi.escape(soldiername), joined_date, platoon)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'deletesoldier':
             soldier_id = self.request.get('soldier')
