@@ -35,7 +35,7 @@
             text-align: center;
         }
 
-        .navbar{
+        .navbar {
             border-collapse: collapse;
             border: 1px solid black;
             background-color: #ffffff;
@@ -44,69 +44,76 @@
             margin-right: 25%;
         }
 
-       .navtd{
+        .navtd {
             height: 10px;
         }
-        
-       .navtr{
-           
-       }
-       
+
+        .navtr {
+
+        }
+
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
 </head>
 <body background="img/smoke.jpg">
 <table border="1" class="navbar">
-  <tr>
-  <td class="navtd"><a href="/">Home Page</a></td>
-  <td class="navtd"><a href="/attendance">Attendance</a></td>
-  <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
-  <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a></td>
-  <td class="navtd"><a href="/soldier?platoon=viking">Viking</a></td>
-  <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a></td>
-  <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a></td>
-  <td class="navtd"><a href="/soldier?platoon=none">Recruits</a></td>
-  </tr>
+    <tr>
+        <td class="navtd"><a href="/">Home Page</a></td>
+        <td class="navtd"><a href="/attendance">Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
+        <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a></td>
+        <td class="navtd"><a href="/soldier?platoon=viking">Viking</a></td>
+        <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a></td>
+        <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a></td>
+        <td class="navtd"><a href="/soldier?platoon=none">Recruits</a></td>
+    </tr>
 </table>
 <table class="soldiertable">
     <tr>
-        <td><form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
+        <td>
+            <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
 
-           <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br><hr/>
-            <b>Rank:</b> {{soldier.rank}}<br><hr/>
-        <b>Joined:</b> <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
-          <i>Use YYYY-MM-DD</i><br><hr/>
-            <b>Platoon:</b> <select name="platoon">
-        <option value="nightmare" {% if soldier.platoon==
-                    "nightmare" %} selected{% endif %}>Nightmare</option>
-        <option value="viking"{% if soldier.platoon==
-                    "viking" %} selected{% endif %}>Viking</option>
-        <option value="guardian"{% if soldier.platoon==
-                    "guardian" %} selected{% endif %}>Guardian</option>
-        <option value="whiskey"{% if soldier.platoon==
-                    "whiskey" %} selected{% endif %}>Whiskey</option>
-        <option value="toc"{% if soldier.platoon==
-                    "toc" %} selected{% endif %}>TOC</option>
-            <option value="none"{% if soldier.platoon==
-                    "none" %} selected{% endif %}>None</option>
-    </select> <br><hr/>
-           <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
-        <input
-                type="submit"
-                value="Edit Soldier">
-        </form>
-        <p>
-        {%if soldier.rank == "RCT" %}
-        <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post"><input
-                type="submit"
-                value="Promote to PV2">
-        </form>
-        {% else %}
-        <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}" method="post">
-            <input type="submit" value="Promote to {{nextRank}}"></form>
-        {% endif %}</p>
-</td>
+                <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br>
+                <hr/>
+                <b>Rank:</b> {{soldier.rank}}<br>
+                <hr/>
+                <b>Joined:</b> <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
+                <i>Use YYYY-MM-DD</i><br>
+                <hr/>
+                <b>Platoon:</b> <select name="platoon">
+                <option value="nightmare" {% if soldier.platoon==
+                "nightmare" %} selected{% endif %}>Nightmare</option>
+                <option value="viking" {% if soldier.platoon==
+                "viking" %} selected{% endif %}>Viking</option>
+                <option value="guardian" {% if soldier.platoon==
+                "guardian" %} selected{% endif %}>Guardian</option>
+                <option value="whiskey" {% if soldier.platoon==
+                "whiskey" %} selected{% endif %}>Whiskey</option>
+                <option value="toc" {% if soldier.platoon==
+                "toc" %} selected{% endif %}>TOC</option>
+                <option value="none" {% if soldier.platoon==
+                "none" %} selected{% endif %}>None</option>
+            </select> <br>
+                <hr/>
+                <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
+                <input
+                        type="submit"
+                        value="Edit Soldier">
+            </form>
+            <p>
+                {%if soldier.rank == "RCT" %}
+            <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post">
+                <input
+                        type="submit"
+                        value="Promote to PV2">
+            </form>
+            {% else %}
+            <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}"
+                  method="post">
+                <input type="submit" value="Promote to {{nextRank}}"></form>
+            {% endif %}</p>
+        </td>
     </tr>
 </table>
 <p>Certifications</p>
@@ -137,7 +144,7 @@
         <td>
             {% if soldier.certRifle == "Expert" %}
             <b>{{soldier.certRifle}}</b>
-                {% else %}
+            {% else %}
             <form name="rifleupdate" action="/detailsoldier?soldier={{soldier_id}}&action=certRifle" method="post">
 
                 <select name="certRifle">
@@ -705,5 +712,11 @@
 
     </tr>
 </table>
+<p>
+<form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
+      method="post">
+    <input type="hidden" name="platoon" value="{{soldier.platoon}}">
+    <input type="submit" value="Delete Soldier"></form>
+</p>
 </body>
 </html>

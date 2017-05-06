@@ -93,6 +93,10 @@ def update_soldier_from_rct(url_string):
     soldier.lastPromoted = datetime.datetime.now().date()
     soldier.put()
 
+def delete_soldier(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier_key.delete()
+
 def update_soldier(url_string, name, joined, platoon):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
