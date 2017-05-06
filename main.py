@@ -45,6 +45,7 @@ class SoldierPage(webapp2.RequestHandler):
 
         template_values = {
             'soldiers': soldier_data,
+            'platoon' : platoon
 
         }
 
@@ -53,8 +54,11 @@ class SoldierPage(webapp2.RequestHandler):
 
     def post(self):
         soldiername = self.request.get('name')
-        newsoldier.addnewsoldier(cgi.escape(soldiername))
-        return self.redirect('/soldier?platoon=none')
+        if soldiername == "":
+            return self.redirect('/soldier?platoon=none')
+        else:
+            newsoldier.addnewsoldier(cgi.escape(soldiername))
+            return self.redirect('/soldier?platoon=none')
 
 
 class DetailSoldier(webapp2.RequestHandler):
@@ -382,7 +386,8 @@ class Attendance(webapp2.RequestHandler):
         cal = calendar.Calendar()
         current_month = datetime.datetime.now().date()
         long_month = current_month.strftime("%B")
-        monthdates = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
+        monthdates2 = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
+        monthdates = [1, 2, 3, 4, 5, 6, 7]
         s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
         soldier_data = s_query.fetch()
 
@@ -392,7 +397,8 @@ class Attendance(webapp2.RequestHandler):
             'monthdays': monthdates,
             'soldiers': soldier_data,
             'monthname' : long_month,
-            'platoon' : platoon
+            'platoon' : platoon,
+            'monthdays2': monthdates2,
         }
 
         template = jinja_environment.get_template('attendance.html')

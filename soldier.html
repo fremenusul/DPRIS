@@ -282,7 +282,7 @@ Add New Soldier: <input type="text" name="name"><br>
 
 </form>
 
-    <h1 align="center"><u><i>ELEMENT ROSTER</i></u></h1>
+    <h1 align="center"><u><i>{% filter upper %}{{platoon}}{% endfilter %} ELEMENT ROSTER</i></u></h1>
     <!--<form action="/soldier" method="post">
     <select name="selection">
         <option value="op">Pre-Op View</option>

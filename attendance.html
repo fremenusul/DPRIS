@@ -84,7 +84,7 @@
     </tr>
 </table>
 </table>
-<h1>{{monthname}} Attendance for {{platoon}}</h1>
+<h1>{{monthname}} Attendance for {{platoon|title }}</h1>
 <br>
 <table>
     <tr class="first">
@@ -122,6 +122,30 @@
     {% endfor %}
 
 </table>
+<br><br>
+<table>
+    <tr class="first">
+        <th>Rank</th>
+        <th>Name</th>
+        {% for i in monthdays2 %}
+        <th><br>{{i}}</th>
+        {% endfor %}
+        <th>Percent</th>
+    </tr>
+    {% for x in soldiers %}
+    <tr class="notfirst">
+        <th>{{x.rank}}</th>
+        <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
+        {% for i in monthdays2 %}
+        <td>
 
+
+        </td>
+        {% endfor %}
+        <td>Blank</td>
+    </tr>
+    {% endfor %}
+
+</table>
 </body>
 </html>
