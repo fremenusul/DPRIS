@@ -195,6 +195,25 @@ li a{
 
 
 <h1>{{monthname}} Attendance for {{platoon}}</h1>
+<table border="1" class="navbar">
+    <tr>
+        <td class="navtd"><a href="/">Home Page</a></td>
+        <!--<td class="navtd"><a href="/attendance">Attendance</a></td>-->
+        <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
+        <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a><br>- <a
+                href="/attendance?platoon=nightmare"> Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=viking">Viking</a><br>- <a href="/attendance?platoon=viking">
+            Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a><br>- <a href="/attendance?platoon=guardian">
+            Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a><br>- <a href="/attendance?platoon=whiskey">
+            Attendance</a></td>
+        <td class="navtd"><a href="/soldier?platoon=none">Recruits</a><br>- <a href="/attendance?platoon=none">
+            Attendance</a></td>
+    </tr>
+</table>
+</table>
+<h1>{{monthname}} Attendance for {{platoon|title }}</h1>
 <br>
 <table>
     <tr class="first">
@@ -232,6 +251,29 @@ li a{
     {% endfor %}
 
 </table>
+<br><br>
+<table>
+    <tr class="first">
+        <th>Rank</th>
+        <th>Name</th>
+        {% for i in monthdays2 %}
+        <th><br>{{i}}</th>
+        {% endfor %}
+        <th>Percent</th>
+    </tr>
+    {% for x in soldiers %}
+    <tr class="notfirst">
+        <th>{{x.rank}}</th>
+        <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
+        {% for i in monthdays2 %}
+        <td>
+
+
+        </td>
+        {% endfor %}
+        <td>Blank</td>
+    </tr>
+    {% endfor %}
 
 <!--
     
@@ -306,5 +348,6 @@ li a{
 </table>-->
 
 
+</table>
 </body>
 </html>
