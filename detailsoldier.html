@@ -74,7 +74,12 @@
         <td>
             <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
 
-                <b>Soldier Name:</b> <input type="text" name="name" value="{{soldier.soldierName}}"><br>
+                <b>Soldier Name:</b>
+                {% if auth_ic == True %}
+                <input type="text" name="name" value="{{soldier.soldierName}}"><br>
+                {% else %}
+                {{soldier.soldierName}}
+                {% endif %}
                 <hr/>
                 <b>Rank:</b> {{soldier.rank}}<br>
                 <hr/>

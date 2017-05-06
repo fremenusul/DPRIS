@@ -3,6 +3,7 @@ import cgi
 import datetime
 import logging
 import os
+import urllib
 
 import jinja2
 import webapp2
@@ -10,9 +11,11 @@ import webapp2
 import models
 import ranks
 import newsoldier
+import checker
+
 
 from google.appengine.api import memcache
-from jinja2 import utils
+from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -20,13 +23,22 @@ jinja_environment = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info(user)
+        if user:
+            url = users.create_logout_url(self.request.uri)
+            url_linktext = 'Logout'
+        else:
+            url = users.create_login_url(self.request.uri)
+            url_linktext = 'Login'
         template_values = {
-
+            'user' : user,
+            'url' : url,
+            'url_linktext' : url_linktext
         }
 
         template = jinja_environment.get_template('index.html')
         self.response.out.write(template.render(template_values))
-
 
 class SoldierPage(webapp2.RequestHandler):
     def get(self):
@@ -63,6 +75,19 @@ class SoldierPage(webapp2.RequestHandler):
 
 class DetailSoldier(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info(user.email())
+        auth = checker.isIC(str(user.email))
+        logging.info(auth[0])
+        if auth[0] is True:
+            auth_ic = True
+            auth_platoon = auth[1]
+            logging.info('Its True')
+        else:
+            auth_ic = False
+            auth_platoon = 'N/A'
+            logging.info('Its False')
+        logging.info(auth_ic)
         soldier_id = self.request.get('soldier')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
@@ -142,7 +167,9 @@ class DetailSoldier(webapp2.RequestHandler):
             'ribbontotal': ribbontotal,
             'badgestotal': badgestotal,
             'medalstotal': medalstotal,
-            'avtotal': avtotal
+            'avtotal': avtotal,
+            'auth_ic' : auth_ic,
+            'auth_platoon': auth_platoon
 
         }
 
