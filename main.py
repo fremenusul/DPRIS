@@ -367,6 +367,11 @@ class DetailSoldier(webapp2.RequestHandler):
             joined_date = datetime.datetime.strptime(joined, '%Y-%m-%d')
             models.update_soldier(soldier_id, soldiername, joined_date, platoon)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'deletesoldier':
+            soldier_id = self.request.get('soldier')
+            platoon = self.request.get('platoon')
+            models.delete_soldier(soldier_id)
+            return self.redirect('/soldier?platoon=' + platoon)
 
 
 class Attendance(webapp2.RequestHandler):
