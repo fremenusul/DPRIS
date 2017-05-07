@@ -61,7 +61,8 @@ class SoldierPage(webapp2.RequestHandler):
             results = memcache.get(platoon)
             soldier_data = results
             if not results:
-                s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
+                s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
+                -models.SoldierData.rankorder)
                 soldier_data = s_query.fetch()
                 memcache.set(platoon, soldier_data, 30)
                 logging.info('No Cache')
