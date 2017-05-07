@@ -43,6 +43,16 @@ class MainPage(webapp2.RequestHandler):
 class SoldierPage(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
+        user = users.get_current_user()
+        if user:
+            user_email = user.email()
+            auth = checker.isIC(user_email)
+        else:
+            auth = False, 'N/A'
+        if auth[0] is True:
+            auth_ic = True
+        else:
+            auth_ic = False
         if platoon == 'none':
             s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
                 -models.SoldierData.rankorder)
@@ -58,7 +68,8 @@ class SoldierPage(webapp2.RequestHandler):
 
         template_values = {
             'soldiers': soldier_data,
-            'platoon': platoon
+            'platoon': platoon,
+            'auth_ic': auth_ic,
 
         }
 
@@ -79,21 +90,15 @@ class DetailSoldier(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             user_email = user.email()
-            logging.info(user_email)
             auth = checker.isIC(user_email)
-            logging.info(auth[0])
         else:
             auth = False, 'N/A'
         if auth[0] is True:
             auth_ic = True
             auth_platoon = auth[1]
-            logging.info(auth_platoon)
-            logging.info('Its True')
         else:
             auth_ic = False
             auth_platoon = 'N/A'
-            logging.info('Its False')
-        logging.info(auth_ic)
         soldier_id = self.request.get('soldier')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key

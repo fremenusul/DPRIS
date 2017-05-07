@@ -274,12 +274,12 @@ window.onclick = function(e) {
   </tr>
 </table>-->
 <br>
+{% if auth_ic == True %}
 <form action="/soldier" method="post">
 Add New Soldier: <input type="text" name="name"><br>
     <input type="submit" value="Submit">
-
 </form>
-
+{% endif %}
     <h1 align="center"><u><i>{% filter upper %}{{platoon}}{% endfilter %} ELEMENT ROSTER</i></u></h1>
     <!--<form action="/soldier" method="post">
     <select name="selection">
