@@ -428,7 +428,8 @@ class Attendance(webapp2.RequestHandler):
         long_month = current_month.strftime("%B")
         monthdates2 = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
         monthdates = [1, 2, 3, 4, 5, 6, 7]
-        s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
+        s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
+                -models.SoldierData.rankorder)
         soldier_data = s_query.fetch()
 
         # logging.info(monthdates)
