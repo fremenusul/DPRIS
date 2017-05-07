@@ -72,23 +72,28 @@
 <table class="soldiertable">
     <tr>
         <td>
-
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
-
+                {% endif %}
                 <b>Soldier Name:</b>
-
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
                 <input type="text" name="name" value="{{soldier.soldierName}}"><br>
+                {% else %}
+                {{soldier.soldierName}}
+                {% endif %}
 
                 <hr/>
                 <b>Rank:</b> {{soldier.rank}}<br>
                 <hr/>
                 <b>Joined:</b>
-
-                <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
-                <i>Use YYYY-MM-DD</i><br>
-
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
+                <input type="text" name="joined" value="{{soldier.addedDate}}"><br><i>Use YYYY-MM-DD</i><br>
+                {% else %}
+                {{soldier.addedDate}}
+                {% endif %}
                 <hr/>
                 <b>Platoon:</b>
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
                 <select name="platoon">
                     <option value="nightmare" {% if soldier.platoon==
                     "nightmare" %} selected{% endif %}>Nightmare</option>
@@ -103,10 +108,12 @@
                     <option value="none" {% if soldier.platoon==
                     "none" %} selected{% endif %}>None</option>
                 </select>
-
+                {% else %}
+                {{soldier.platoon}}
+                {% endif %}
                 <hr/>
                 <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
-
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
                 <input
                         type="submit"
                         value="Edit Soldier">
@@ -124,7 +131,7 @@
                   method="post">
                 <input type="submit" value="Promote to {{nextRank}}"></form>
             {% endif %}</p>
-
+            {% endif %}
         </td>
     </tr>
 </table>
@@ -154,7 +161,7 @@
     <tr>
         <td>{{certstotal}}</td>
         <td>
-            {% if auth_ic == True and auth_platoon == soldier.platoon %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRifle == "Expert" %}
             <b>{{soldier.certRifle}}</b>
             {% else %}
@@ -177,9 +184,8 @@
             <b>{{soldier.certRifle}}</b>
             {% endif %}
         </td>
-        <!-- TODO(Shangpo) Fix this via a for loop -->
         <td>
-            {% if auth_ic == True and auth_platoon == soldier.platoon %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certNCOPD1 == 0 %}
             No
             <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post">
@@ -191,15 +197,15 @@
             <b>Yes</b>
             {% endif %}
             {% else %}
-                {% if soldier.certNCOPD1 == 0 %}
-                No
-                {% else %}
-                <b>Yes</b>
+            {% if soldier.certNCOPD1 == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
             {% endif %}
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and auth_platoon == soldier.platoon %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certNCOPD2 == 0 %}
             No
             <form name="certNCOPD2" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD2" method="post">
@@ -209,14 +215,15 @@
             <b>Yes</b>
             {% endif %}
             {% else %}
-                {% if soldier.certNCOPD2 == 0 %}
-             No
-                {% else %}
-                <b>Yes</b>
+            {% if soldier.certNCOPD2 == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
             {% endif %}
             {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certNCOPD3 == 0 %}
             No
             <form name="certNCOPD3" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD3" method="post">
@@ -224,8 +231,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certNCOPD3 == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certAirAssult == 0 %}
             No
             <form name="certAirAssult" action="/detailsoldier?soldier={{soldier_id}}&action=certAirAssult"
@@ -234,8 +249,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certAirAssult == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certSapper == 0 %}
             No
             <form name="certSapper" action="/detailsoldier?soldier={{soldier_id}}&action=certSapper" method="post">
@@ -243,8 +266,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certSapper == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRanger == 0 %}
             No
             <form name="certRanger" action="/detailsoldier?soldier={{soldier_id}}&action=certRanger" method="post">
@@ -252,8 +283,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certRanger == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certPathfinder == 0 %}
             No
             <form name="certPathfinder" action="/detailsoldier?soldier={{soldier_id}}&action=certPathfinder"
@@ -262,8 +301,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certPathfinder == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certFO == 0 %}
             No
             <form name="certFO" action="/detailsoldier?soldier={{soldier_id}}&action=certFO" method="post">
@@ -271,8 +318,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certFO == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certFDC == 0 %}
             No
             <form name="certFDC" action="/detailsoldier?soldier={{soldier_id}}&action=certFDC" method="post">
@@ -280,8 +335,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certFDC == 0 %}
+             No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certJFO == 0 %}
             No
             <form name="certJFO" action="/detailsoldier?soldier={{soldier_id}}&action=certJFO" method="post">
@@ -289,8 +352,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certJFO == 0 %}
+             No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certDMR == 0 %}
             No
             <form name="certDMR" action="/detailsoldier?soldier={{soldier_id}}&action=certDMR" method="post">
@@ -298,8 +369,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certDMR == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRSLC == 0 %}
             No
             <form name="certRSLC" action="/detailsoldier?soldier={{soldier_id}}&action=certRSLC" method="post">
@@ -307,14 +386,29 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certRSLC == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRecruit == 0 %}
             No
             <form name="certRecruit" action="/detailsoldier?soldier={{soldier_id}}&action=certRecruit" method="post">
                 <input type="submit" value="Add"></form>
             {% else %}
             <b>Yes</b>
+            {% endif %}
+            {% else %}
+            {% if soldier.certRecruit == 0 %}
+             No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
             {% endif %}
         </td>
     </tr>
@@ -336,6 +430,7 @@
     <tr>
         <td>{{ribbontotal}}</td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribPistol == 0 %}
             No
             <form name="ribPistol" action="/detailsoldier?soldier={{soldier_id}}&action=ribPistol" method="post">
@@ -343,8 +438,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.ribPistol == 0 %}
+             No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribStaff == 0 %}
             No
             <form name="ribStaff" action="/detailsoldier?soldier={{soldier_id}}&action=ribStaff" method="post">
@@ -352,8 +455,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.ribStaff == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribCommand == 0 %}
             No
             <form name="ribCommand" action="/detailsoldier?soldier={{soldier_id}}&action=ribCommand" method="post">
@@ -361,8 +472,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.ribCommand == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribAT == 0 %}
             No
             <form name="ribAT" action="/detailsoldier?soldier={{soldier_id}}&action=ribAT" method="post">
@@ -370,8 +489,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.ribAT == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribGround == 0 %}
             No
             <form name="ribGround" action="/detailsoldier?soldier={{soldier_id}}&action=ribGround" method="post">
@@ -379,8 +506,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.ribGround == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribDM == 0 %}
             No
             <form name="ribDM" action="/detailsoldier?soldier={{soldier_id}}&action=ribDM" method="post">
@@ -388,14 +523,29 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.ribDM == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ripSupport == 0 %}
             No
             <form name="ripSupport" action="/detailsoldier?soldier={{soldier_id}}&action=ripSupport" method="post">
                 <input type="submit" value="Add"></form>
             {% else %}
             <b>Yes</b>
+            {% endif %}
+            {% else %}
+            {% if soldier.ripSupport == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
             {% endif %}
         </td>
     </tr>
@@ -419,6 +569,7 @@
     <tr>
         <td>{{badgestotal}}</td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeJump == 0 %}
             No
             <form name="badgeJump" action="/detailsoldier?soldier={{soldier_id}}&action=badgeJump" method="post">
@@ -426,8 +577,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeJump == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeCIB == 0 %}
             No
             <form name="badgeCIB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCIB" method="post">
@@ -435,8 +594,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeCIB == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeIB == 0 %}
             No
             <form name="badgeIB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeIB" method="post">
@@ -444,8 +611,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeIB == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeMedic == 0 %}
             No
             <form name="badgeMedic" action="/detailsoldier?soldier={{soldier_id}}&action=badgeMedic" method="post">
@@ -453,8 +628,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeMedic == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeExplosive == 0 %}
             No
             <form name="badgeExplosive" action="/detailsoldier?soldier={{soldier_id}}&action=badgeExplosive"
@@ -463,8 +646,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeExplosive == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeCAB == 0 %}
             No
             <form name="badgeCAB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCAB" method="post">
@@ -472,8 +663,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeCAB == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeAirDefense == 0 %}
             No
             <form name="badgeAirDefense" action="/detailsoldier?soldier={{soldier_id}}&action=badgeAirDefense"
@@ -482,8 +681,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeAirDefense == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeArmor == 0 %}
             No
             <form name="badgeArmor" action="/detailsoldier?soldier={{soldier_id}}&action=badgeArmor" method="post">
@@ -491,8 +698,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeArmor == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeTransport == 0 %}
             No
             <form name="badgeTransport" action="/detailsoldier?soldier={{soldier_id}}&action=badgeTransport"
@@ -501,8 +716,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.badgeTransport == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeCombatMedic == 0 %}
             No
             <form name="badgeCombatMedic" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCombatMedic"
@@ -510,6 +733,13 @@
                 <input type="submit" value="Add"></form>
             {% else %}
             <b>Yes</b>
+            {% endif %}
+            {% else %}
+            {% if soldier.badgeCombatMedic == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
             {% endif %}
         </td>
     </tr>
@@ -537,6 +767,7 @@
     <tr>
         <td>{{medalstotal}}</td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medArmedForces == 0 %}
             No
             <form name="medArmedForces" action="/detailsoldier?soldier={{soldier_id}}&action=medArmedForces"
@@ -545,8 +776,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medArmedForces == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medNationalDefense == 0 %}
             No
             <form name="medNationalDefense" action="/detailsoldier?soldier={{soldier_id}}&action=medNationalDefense"
@@ -555,8 +794,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medNationalDefense == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medDSM == 0 %}
             No
             <form name="medDSM" action="/detailsoldier?soldier={{soldier_id}}&action=medDSM" method="post">
@@ -564,8 +811,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medDSM == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medMOV == 0 %}
             No
             <form name="medMOV" action="/detailsoldier?soldier={{soldier_id}}&action=medMOV" method="post">
@@ -573,8 +828,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medMOV == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medCommendation == 0 %}
             No
             <form name="medCommendation" action="/detailsoldier?soldier={{soldier_id}}&action=medCommendation"
@@ -583,8 +846,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medCommendation == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medAchievement == 0 %}
             No
             <form name="medAchievement" action="/detailsoldier?soldier={{soldier_id}}&action=medAchievement"
@@ -593,8 +864,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medAchievement == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medDsync == 0 %}
             No
             <form name="medDsync" action="/detailsoldier?soldier={{soldier_id}}&action=medDsync" method="post">
@@ -602,8 +881,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medDsync == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medConduct == 0 %}
             No
             <form name="medConduct" action="/detailsoldier?soldier={{soldier_id}}&action=medConduct" method="post">
@@ -611,8 +898,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medConduct == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medPH == 0 %}
             No
             <form name="medPH" action="/detailsoldier?soldier={{soldier_id}}&action=medPH" method="post">
@@ -620,8 +915,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medPH == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medVolunteer == 0 %}
             No
             <form name="medVolunteer" action="/detailsoldier?soldier={{soldier_id}}&action=medVolunteer" method="post">
@@ -629,8 +932,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medVolunteer == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medDSC == 0 %}
             No
             <form name="medDSC" action="/detailsoldier?soldier={{soldier_id}}&action=medDSC" method="post">
@@ -638,8 +949,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medDSC == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medMerit == 0 %}
             No
             <form name="medMerit" action="/detailsoldier?soldier={{soldier_id}}&action=medMerit" method="post">
@@ -647,8 +966,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medMerit == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medBronze == 0 %}
             No
             <form name="medBronze" action="/detailsoldier?soldier={{soldier_id}}&action=medBronze" method="post">
@@ -656,14 +983,29 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medBronze == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medSilver == 0 %}
             No
             <form name="medSilver" action="/detailsoldier?soldier={{soldier_id}}&action=medSilver" method="post">
                 <input type="submit" value="Add"></form>
             {% else %}
             <b>Yes</b>
+            {% endif %}
+            {% else %}
+            {% if soldier.medSilver == 0 %}
+             No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
             {% endif %}
         </td>
     </tr>
@@ -683,6 +1025,7 @@
     <tr>
         <td>{{avtotal}}</td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRotor == 0 %}
             No
             <form name="certRotor" action="/detailsoldier?soldier={{soldier_id}}&action=certRotor" method="post">
@@ -690,8 +1033,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certRotor == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certWings == 0 %}
             No
             <form name="certWings" action="/detailsoldier?soldier={{soldier_id}}&action=certWings" method="post">
@@ -699,8 +1050,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.certWings == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medAir == 0 %}
             No
             <form name="medAir" action="/detailsoldier?soldier={{soldier_id}}&action=medAir"
@@ -709,8 +1068,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medAir == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medAFCombatAction == 0 %}
             No
             <form name="medAFCombatAction" action="/detailsoldier?soldier={{soldier_id}}&action=medAFCombatAction"
@@ -719,8 +1086,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medAFCombatAction == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medCombatHelo == 0 %}
             No
             <form name="medCombatHelo" action="/detailsoldier?soldier={{soldier_id}}&action=medCombatHelo"
@@ -729,8 +1104,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medCombatHelo == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medDFC == 0 %}
             No
             <form name="medDFC" action="/detailsoldier?soldier={{soldier_id}}&action=medDFC"
@@ -739,10 +1122,19 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
+            {% else %}
+            {% if soldier.medDFC == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
+
         </td>
 
     </tr>
 </table>
+{% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
 <p>
 <form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
       method="post">
@@ -751,3 +1143,4 @@
 </p>
 </body>
 </html>
+{% endif %}

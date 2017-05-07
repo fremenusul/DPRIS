@@ -13,7 +13,6 @@ import ranks
 import newsoldier
 import checker
 
-
 from google.appengine.api import memcache
 from google.appengine.api import users
 
@@ -32,13 +31,14 @@ class MainPage(webapp2.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
         template_values = {
-            'user' : user,
-            'url' : url,
-            'url_linktext' : url_linktext
+            'user': user,
+            'url': url,
+            'url_linktext': url_linktext
         }
 
         template = jinja_environment.get_template('index.html')
         self.response.out.write(template.render(template_values))
+
 
 class SoldierPage(webapp2.RequestHandler):
     def get(self):
@@ -57,7 +57,7 @@ class SoldierPage(webapp2.RequestHandler):
 
         template_values = {
             'soldiers': soldier_data,
-            'platoon' : platoon
+            'platoon': platoon
 
         }
 
@@ -97,6 +97,7 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
+
         certs = []
         if soldier_data.certRifle != 'None':
             certs.append(1)
@@ -173,7 +174,7 @@ class DetailSoldier(webapp2.RequestHandler):
             'badgestotal': badgestotal,
             'medalstotal': medalstotal,
             'avtotal': avtotal,
-            'auth_ic' : auth_ic,
+            'auth_ic': auth_ic,
             'auth_platoon': auth_platoon
 
         }
@@ -428,8 +429,8 @@ class Attendance(webapp2.RequestHandler):
         template_values = {
             'monthdays': monthdates,
             'soldiers': soldier_data,
-            'monthname' : long_month,
-            'platoon' : platoon,
+            'monthname': long_month,
+            'platoon': platoon,
             'monthdays2': monthdates2,
         }
 
