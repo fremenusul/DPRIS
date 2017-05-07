@@ -295,7 +295,7 @@ Add New Soldier: <input type="text" name="name"><br>
   <tr class="first">
       <th>Rank</th>
       <th>Soldier Name</th>
-      <th>Platoon</th>
+      <th>Last Promoted</th>
       <!-- Need to update this when doing select dropdown -->
       <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
       <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
@@ -308,7 +308,7 @@ Add New Soldier: <input type="text" name="name"><br>
   <tr class="notfirst">
       <td>{{i.rank}}</td>
       <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
-      <td>{{i.platoon}}</td>
+      <td>{{i.lastPromoted}}</td>
       <td>
           {% if i.certSapper == 0 %}
           NO
