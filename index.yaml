@@ -1,0 +1,7 @@
+indexes:
+
+- kind: SoldierData
+  properties:
+  - name: platoon
+  - name: rankorder
+    direction: desc
