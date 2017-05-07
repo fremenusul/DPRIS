@@ -8,6 +8,7 @@ class SoldierData(ndb.Model):
     soldierName = ndb.StringProperty(indexed=False)
     platoon = ndb.StringProperty()
     rank = ndb.StringProperty()
+    rankorder = ndb.IntegerProperty()
     certRifle = ndb.StringProperty(indexed=False)
     certNCOPD1 = ndb.IntegerProperty(indexed=False)
     certNCOPD2 = ndb.IntegerProperty(indexed=False)
@@ -92,6 +93,7 @@ def update_soldier_from_rct(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.rank = "PV2"
+    soldier.rankorder = 2
     soldier.badgeJump = 1
     soldier.medArmedForces = 1
     soldier.lastPromoted = datetime.datetime.now().date()
@@ -114,6 +116,7 @@ def promote_soldier(url_string, rank):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.rank = rank
+    soldier.rankorder += 1
     soldier.lastPromoted = datetime.datetime.now().date()
     soldier.put()
 

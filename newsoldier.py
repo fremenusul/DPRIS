@@ -9,6 +9,7 @@ def addnewsoldier(soldiername):
         lastPromoted=datetime.datetime.now().date(),
         platoon='none',
         rank='RCT',
+        rankorder = 1,
         certRifle='None',
         certNCOPD1=0,
         certNCOPD2=0,

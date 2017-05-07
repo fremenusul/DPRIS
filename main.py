@@ -44,7 +44,8 @@ class SoldierPage(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
         if platoon == 'none':
-            s_query = models.SoldierData.query(models.SoldierData.platoon == platoon)
+            s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
+                -models.SoldierData.rankorder)
             soldier_data = s_query.fetch()
         else:
             results = memcache.get(platoon)
@@ -438,9 +439,26 @@ class Attendance(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
 
+# REMOVE BEFORE LIVE
+class TestSoldier(webapp2.RequestHandler):
+    def get(self):
+        testsoldiers = ['Frank', 'Mike', 'Jessie', 'Sam', 'Cranky', 'Noveske', 'Ringo', 'Boltz', 'Larry', 'Albert',
+                        'Lanky Pete', 'Keyser Soze', 'Poopy McPooperson', 'Joe Schmuckatelli']
+
+        for i in testsoldiers:
+            newsoldier.addnewsoldier(i)
+
+        template_values = {
+
+        }
+
+        return self.redirect('/soldier?platoon=none')
+
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/soldier', SoldierPage),
     ('/detailsoldier', DetailSoldier),
     ('/attendance', Attendance),
+    ('/test', TestSoldier),
 ], debug=True)
