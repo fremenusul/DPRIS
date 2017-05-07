@@ -51,12 +51,136 @@
         .navtr {
 
         }
+        
+        ul {
+    
+    float: none;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    
+}
+
+li {
+    width: 160;
+    height: 35px;
+    line-height: 35px;
+    padding: 10px;
+    display:inline-block;
+    border-radius: 6px;
+    background: grey;
+    margin: 4px 6px;
+    box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    transition: background-color .5s
+}
+
+a{
+    display: block;
+    width: 160px;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    text-align: center;
+}
+li a{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    
+    text-decoration: none;
+}
+        
+        #dprisnavbar {
+    
+    color: white;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    border-top: 0px solid #transparent;
+    height:35px;
+    
+}
+#dprisnav {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+    display: table;
+}
+
+
+
+
+#dprisnav li ul {
+    z-index: 9999;
+    position: absolute;
+    left: -999em;
+    height: auto;
+    width: 150px;
+
+    text-align: center;
+}
+
+
+#dprisnav li:hover ul{
+    left: auto;
+}
+
+#dprisnav li:hover{
+    background-color: red;
+}
+
+#dprisnav li li a:hover, #dprisnavli li a:active {
+    display: block;
+    padding: 0px 0px 6px 6px;
+    text-decoration: none;
+}
 
     </style>
     <meta charset="UTF-8">
     <title>Soldier Detail</title>
 </head>
 <body background="img/smoke.jpg">
+
+<div id='dprisnavbar'>
+    <ul id='dprisnav'>
+        <li><a href="/">Home</a>
+        </li>
+            
+        </li>
+        <li><a href="/soldier?platoon=TOC">TOC</a>
+        </li>
+        <li><a href="/soldier?platoon=nightmare">Nightmare</a>
+            <ul>
+                <li><a href="/attendance?platoon=nightmare">Platoon Attendance</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="/soldier?platoon=viking">Viking</a>
+            <ul>
+                <li><a href="/attendance?platoon=viking">Platoon Attendance</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="/soldier?platoon=guardian">Guardian</a>
+            <ul>
+                <li><a href="/attendance?platoon=guardian">Platoon Attendance</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="/soldier?platoon=whiskey">Whiskey</a>
+            <ul>
+                <li><a href="/attendance?platoon=whiskey">Airteam Attendance</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="/soldier?platoon=nightmare">Recruits</a>
+        </li>
+    </ul>
+</div>
+
+<!--
 <table border="1" class="navbar">
     <tr>
         <td class="navtd"><a href="/">Home Page</a></td>
@@ -68,7 +192,7 @@
         <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a></td>
         <td class="navtd"><a href="/soldier?platoon=none">Recruits</a></td>
     </tr>
-</table>
+</table> -->
 <table class="soldiertable">
     <tr>
         <td>

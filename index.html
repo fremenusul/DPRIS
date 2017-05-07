@@ -4,39 +4,33 @@
     <style>
         body {
             background-repeat: no-repeat;
-
         }
-
         #wrapper {
             margin: 0 auto;
             width: 1000px;
         }
-
         #headerwrap {
             width: 1000px;
             float: left;
             margin: 0 auto;
         }
-
         #header {
             padding: 1em;
             color: white;
             background-color: #808080;
-            clear: left;
+            clear: both;
             text-align: center;
             border-radius: 10px;
             box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.8);
             margin: 5px;
             font-family: Courier New, Courier, monospace;
         }
-
         #footerwrap {
             width: 1000px;
             float: left;
             margin: 0 auto;
             clear: both;
         }
-
         #footer {
             padding: 1em;
             color: white;
@@ -44,35 +38,30 @@
             clear: left;
             text-align: center;
             border-radius: 10px;
-
             margin: 5px;
             font-style: italic;
             box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.8);
         }
-
         #navigationwrap {
             width: 1000px;
             float: left;
             margin: 0 auto;
         }
-
         #navigation {
             padding: 1em;
             color: white;
             background-color: grey;
-            clear: left;
+            clear: both;
             text-align: center;
             border-radius: 10px;
             box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.8);
             margin: 5px;
         }
-
         #contentwrap {
             width: 700px;
             float: left;
             margin: 0 auto;
         }
-
         #content {
             background: #FFFFFF;
             border-radius: 10px;
@@ -83,13 +72,11 @@
             font-family: Courier New, Courier, monospace;
             font-weight: bold;
         }
-
         #leftcolumnwrap {
             width: 150px;
             float: left;
             margin: 0 auto;
         }
-
         #leftcolumn {
             background: #33CCFF;
             border-radius: 10px;
@@ -97,13 +84,11 @@
             margin: 5px;
             opacity: 0.0;
         }
-
         #rightcolumnwrap {
             width: 150px;
             float: left;
             margin: 0 auto;
         }
-
         #rightcolumn {
             background: #CC33FF;
             border-radius: 10px;
@@ -111,20 +96,39 @@
             margin: 5px;
             opacity: 0.0;
         }
-
         h2 {
             font-size: 150%;
         }
-
         p {
             padding: 10px;
         }
-
+        a{
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            font-size: 125%;
+        }
+        
+        
     </style>
 </head>
 <body background="img/image.jpg">
-
 <div id="wrapper">
+<div id="navigationwrap">
+        <div id="navigation">
+            <a href="/soldier?platoon=TOC">TOC</a>  <a href="/soldier?platoon=nightmare">Nightmare</a>  <a
+                href="/soldier?platoon=viking">Viking</a>  <a
+                href="/soldier?platoon=guardian">Guardian</a>  <a href="/soldier?platoon=whiskey">Whiskey</a>  <a
+                href="/soldier?platoon=none">RCT</a>
+            <!--<p>Platoon Login:
+            <form action="/" method="post">
+            <input type="text" name="login">
+            <input type="submit" value="Submit"></form>
+            </p> -->
+             <a href="{{ url|safe }}" class="btn">{{ url_linktext }}</a>
+        </div>
+    </div> <!-- ending navigation wrap -->
+
+
     <div id="headerwrap">
         <div id="header">
             <h2 style="text-align: center;">Welcome to the 21st United States Army Ranger Regiment's Defense Personnel
@@ -134,20 +138,7 @@
         </div>
     </div> <!-- ending headerwrap -->
 
-    <div id="navigationwrap">
-        <div id="navigation">
-            [<a href="/soldier?platoon=TOC">TOC</a>] [<a href="/soldier?platoon=nightmare">Nightmare</a>] [<a
-                href="/soldier?platoon=viking">Viking</a>] [<a
-                href="/soldier?platoon=guardian">Guardian</a>] [<a href="/soldier?platoon=whiskey">Whiskey</a>] [<a
-                href="/soldier?platoon=none">RCT</a>]
-            <!--<p>Platoon Login:
-            <form action="/" method="post">
-            <input type="text" name="login">
-            <input type="submit" value="Submit"></form>
-            </p> -->
-             <a href="{{ url|safe }}" class="btn">{{ url_linktext }}</a>
-        </div>
-    </div> <!-- ending navigation wrap -->
+    
 
     <div id="leftcolumnwrap">
         <div id="leftcolumn">
