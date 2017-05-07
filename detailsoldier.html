@@ -109,7 +109,7 @@
                     "none" %} selected{% endif %}>None</option>
                 </select>
                 {% else %}
-                {{soldier.platoon}}
+                {{soldier.platoon | title}}
                 {% endif %}
                 <hr/>
                 <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
