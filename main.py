@@ -76,12 +76,14 @@ class SoldierPage(webapp2.RequestHandler):
 class DetailSoldier(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        logging.info(user.email())
-        auth = checker.isIC(str(user.email))
+        user_email = user.email()
+        logging.info(user_email)
+        auth = checker.isIC(user_email)
         logging.info(auth[0])
         if auth[0] is True:
             auth_ic = True
             auth_platoon = auth[1]
+            logging.info(auth_platoon)
             logging.info('Its True')
         else:
             auth_ic = False

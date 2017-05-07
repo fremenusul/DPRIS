@@ -72,41 +72,47 @@
 <table class="soldiertable">
     <tr>
         <td>
+
             <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
 
                 <b>Soldier Name:</b>
-                {% if auth_ic == True %}
+
                 <input type="text" name="name" value="{{soldier.soldierName}}"><br>
-                {% else %}
-                {{soldier.soldierName}}
-                {% endif %}
+
                 <hr/>
                 <b>Rank:</b> {{soldier.rank}}<br>
                 <hr/>
-                <b>Joined:</b> <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
+                <b>Joined:</b>
+
+                <input type="text" name="joined" value="{{soldier.addedDate}}"><br>
                 <i>Use YYYY-MM-DD</i><br>
+
                 <hr/>
-                <b>Platoon:</b> <select name="platoon">
-                <option value="nightmare" {% if soldier.platoon==
-                "nightmare" %} selected{% endif %}>Nightmare</option>
-                <option value="viking" {% if soldier.platoon==
-                "viking" %} selected{% endif %}>Viking</option>
-                <option value="guardian" {% if soldier.platoon==
-                "guardian" %} selected{% endif %}>Guardian</option>
-                <option value="whiskey" {% if soldier.platoon==
-                "whiskey" %} selected{% endif %}>Whiskey</option>
-                <option value="toc" {% if soldier.platoon==
-                "toc" %} selected{% endif %}>TOC</option>
-                <option value="none" {% if soldier.platoon==
-                "none" %} selected{% endif %}>None</option>
-            </select> <br>
+                <b>Platoon:</b>
+                <select name="platoon">
+                    <option value="nightmare" {% if soldier.platoon==
+                    "nightmare" %} selected{% endif %}>Nightmare</option>
+                    <option value="viking" {% if soldier.platoon==
+                    "viking" %} selected{% endif %}>Viking</option>
+                    <option value="guardian" {% if soldier.platoon==
+                    "guardian" %} selected{% endif %}>Guardian</option>
+                    <option value="whiskey" {% if soldier.platoon==
+                    "whiskey" %} selected{% endif %}>Whiskey</option>
+                    <option value="toc" {% if soldier.platoon==
+                    "toc" %} selected{% endif %}>TOC</option>
+                    <option value="none" {% if soldier.platoon==
+                    "none" %} selected{% endif %}>None</option>
+                </select>
+
                 <hr/>
                 <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
+
                 <input
                         type="submit"
                         value="Edit Soldier">
             </form>
             <p>
+
                 {%if soldier.rank == "RCT" %}
             <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post">
                 <input
@@ -118,6 +124,7 @@
                   method="post">
                 <input type="submit" value="Promote to {{nextRank}}"></form>
             {% endif %}</p>
+
         </td>
     </tr>
 </table>
@@ -147,6 +154,7 @@
     <tr>
         <td>{{certstotal}}</td>
         <td>
+            {% if auth_ic == True and auth_platoon == soldier.platoon %}
             {% if soldier.certRifle == "Expert" %}
             <b>{{soldier.certRifle}}</b>
             {% else %}
@@ -165,9 +173,13 @@
                 <input type="submit">
                 {% endif %}
             </form>
+            {% else %}
+            <b>{{soldier.certRifle}}</b>
+            {% endif %}
         </td>
         <!-- TODO(Shangpo) Fix this via a for loop -->
         <td>
+            {% if auth_ic == True and auth_platoon == soldier.platoon %}
             {% if soldier.certNCOPD1 == 0 %}
             No
             <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post">
@@ -178,9 +190,16 @@
             {% else %}
             <b>Yes</b>
             {% endif %}
-
+            {% else %}
+                {% if soldier.certNCOPD1 == 0 %}
+                No
+                {% else %}
+                <b>Yes</b>
+            {% endif %}
+            {% endif %}
         </td>
         <td>
+            {% if auth_ic == True and auth_platoon == soldier.platoon %}
             {% if soldier.certNCOPD2 == 0 %}
             No
             <form name="certNCOPD2" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD2" method="post">
@@ -188,6 +207,13 @@
             </form>
             {% else %}
             <b>Yes</b>
+            {% endif %}
+            {% else %}
+                {% if soldier.certNCOPD2 == 0 %}
+             No
+                {% else %}
+                <b>Yes</b>
+            {% endif %}
             {% endif %}
         </td>
         <td>
