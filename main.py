@@ -12,6 +12,7 @@ import models
 import ranks
 import newsoldier
 import checker
+import tz2ntz
 
 from google.appengine.api import memcache
 from google.appengine.api import users
@@ -24,6 +25,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info(user)
+        user_email = user.email()
         if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
@@ -32,6 +34,7 @@ class MainPage(webapp2.RequestHandler):
             url_linktext = 'Login'
         template_values = {
             'user': user,
+            'user_email' : user_email,
             'url': url,
             'url_linktext': url_linktext
         }
@@ -424,10 +427,11 @@ class Attendance(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
         cal = calendar.Calendar()
-        current_month = datetime.datetime.now().date()
+        current_month = datetime.datetime.today()
         long_month = current_month.strftime("%B")
-        monthdates2 = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
-        monthdates = [1, 2, 3, 4, 5, 6, 7]
+        monthdates = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
+        today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+        todaydate = datetime.datetime.strftime(today, '%B %d')
         s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
                 -models.SoldierData.rankorder)
         soldier_data = s_query.fetch()
@@ -435,11 +439,11 @@ class Attendance(webapp2.RequestHandler):
         # logging.info(monthdates)
 
         template_values = {
-            'monthdays': monthdates,
+            'todaydate': todaydate,
             'soldiers': soldier_data,
             'monthname': long_month,
             'platoon': platoon,
-            'monthdays2': monthdates2,
+            'monthdays': monthdates,
         }
 
         template = jinja_environment.get_template('attendance.html')
