@@ -25,13 +25,15 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info(user)
-        user_email = user.email()
+        
         if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
+            user_email = user.email()
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
+            user_email = 'none@none.com'
         template_values = {
             'user': user,
             'user_email' : user_email,
