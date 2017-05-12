@@ -427,6 +427,7 @@ class DetailSoldier(webapp2.RequestHandler):
 
 class Attendance(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
         platoon = self.request.get('platoon')
         cal = calendar.Calendar()
         current_month = datetime.datetime.today()
@@ -438,7 +439,17 @@ class Attendance(webapp2.RequestHandler):
                 -models.SoldierData.rankorder)
         soldier_data = s_query.fetch()
 
-        # logging.info(monthdates)
+        if user:
+            user_email = user.email()
+            auth = checker.isIC(user_email)
+        else:
+            auth = False, 'N/A'
+        if auth[0] is True:
+            auth_ic = True
+            auth_platoon = auth[1]
+        else:
+            auth_ic = False
+            auth_platoon = 'N/A'
 
         template_values = {
             'todaydate': todaydate,
@@ -446,6 +457,8 @@ class Attendance(webapp2.RequestHandler):
             'monthname': long_month,
             'platoon': platoon,
             'monthdays': monthdates,
+            'auth_ic': auth_ic,
+            'auth_platoon': auth_platoon
         }
 
         template = jinja_environment.get_template('attendance.html')

@@ -190,6 +190,7 @@ li a{
 <h1>{{monthname}} Attendance for {{platoon | title}}</h1>
 
 <br>
+{% if auth_ic == True and (auth_platoon == platoon) %}
 <table>
     <tr class="first">
         <th>Rank</th>
@@ -226,6 +227,7 @@ li a{
     {% endfor %}
 
 </table>
+{% endif %}
 <br><br>
 <table>
     <tr class="first">
