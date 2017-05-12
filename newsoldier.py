@@ -1,12 +1,13 @@
 import models
 import datetime
+import tz2ntz
 
 
 def addnewsoldier(soldiername):
     e = models.SoldierData(
         soldierName=soldiername,
-        addedDate=datetime.datetime.now().date(),
-        lastPromoted=datetime.datetime.now().date(),
+        addedDate=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
+        lastPromoted=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
         platoon='none',
         rank='RCT',
         rankorder = 1,

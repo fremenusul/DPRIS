@@ -1,6 +1,7 @@
 from google.appengine.ext import ndb
 import datetime
 import logging
+import tz2ntz
 
 
 class SoldierData(ndb.Model):
@@ -88,7 +89,7 @@ def update_soldier_from_rct(url_string):
     soldier.rankorder = 2
     soldier.badgeJump = 1
     soldier.medArmedForces = 1
-    soldier.lastPromoted = datetime.datetime.now().date()
+    soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()
 
 def delete_soldier(url_string):
@@ -109,7 +110,7 @@ def promote_soldier(url_string, rank):
     soldier = soldier_key.get()
     soldier.rank = rank
     soldier.rankorder += 1
-    soldier.lastPromoted = datetime.datetime.now().date()
+    soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()
 
 
