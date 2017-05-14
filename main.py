@@ -464,6 +464,26 @@ class Attendance(webapp2.RequestHandler):
         template = jinja_environment.get_template('attendance.html')
         self.response.out.write(template.render(template_values))
 
+    def post(self):
+        values = []
+        for field in self.request.get_all('attendance'):
+            values.append(field)
+
+        soldiers = []
+        for field in self.request.get_all('soldier_id'):
+            soldiers.append(field)
+
+        num_entities = len(values) -1
+
+        x = 0
+        while x <= num_entities:
+            models.update_attendance(soldiers[x], values[x])
+            x +=1
+
+
+
+
+
 
 # REMOVE BEFORE LIVE
 class TestSoldier(webapp2.RequestHandler):

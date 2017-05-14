@@ -70,17 +70,12 @@ def get_entity_from_url_safe_key(url_string):
     soldier = soldier_key.get()
     return soldier
 
-
-# TODO(Shangpo): I want to get this working but I can't figure it out. Until then, its going to be lots of shitty code.
-# def update_entity_from_url_safe_key(url_string, record):
-# soldier_key = ndb.Key(urlsafe=url_string)
-# soldier = soldier_key.get()
-# logging.info(record)
-# logging.info(soldier._properties[record])
-# x = soldier._properties[record]
-# x += 1
-# x = soldier._properties[record]
-# soldier.put()
+def update_attendance(url_string, attendvalue):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.attendDate = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
+    soldier.attendValue = attendvalue
+    soldier.put()
 
 def update_soldier_from_rct(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)

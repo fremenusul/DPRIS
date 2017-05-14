@@ -56,91 +56,88 @@
             box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
         }
 
-        
-ul {
-    
-    float: none;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    
-}
+        ul {
 
-li {
-    width: 160;
-    height: 35px;
-    line-height: 35px;
-    padding: 10px;
-    display:inline-block;
-    border-radius: 6px;
-    background: grey;
-    margin: 4px 6px;
-    box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
-    font-weight: bold;
-    text-shadow: 2px 2px black;
-    transition: background-color .5s
-}
+            float: none;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
 
-a{
-    display: block;
-    width: 160px;
-    height: 35px;
-    line-height: 35px;
-    text-decoration: none;
-    text-align: center;
-}
-li a{
-    display: inline-block;
-    color: white;
-    text-align: center;
-    
-    text-decoration: none;
-}
+        }
 
-#dprisnavbar {
-    
-    color: white;
-    margin: 0 auto;
-    padding: 0;
-    position: relative;
-    border-top: 0px solid #transparent;
-    height:35px;
-    
-}
-#dprisnav {
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-    display: table;
-}
+        li {
+            width: 160;
+            height: 35px;
+            line-height: 35px;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 6px;
+            background: grey;
+            margin: 4px 6px;
+            box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
+            font-weight: bold;
+            text-shadow: 2px 2px black;
+            transition: background-color .5s
+        }
 
+        a {
+            display: block;
+            width: 160px;
+            height: 35px;
+            line-height: 35px;
+            text-decoration: none;
+            text-align: center;
+        }
 
+        li a {
+            display: inline-block;
+            color: white;
+            text-align: center;
 
+            text-decoration: none;
+        }
 
-#dprisnav li ul {
-    z-index: 9999;
-    position: absolute;
-    left: -999em;
-    height: auto;
-    width: 150px;
+        #dprisnavbar {
 
-    text-align: center;
-}
+            color: white;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            border-top: 0px solid #transparent;
+            height: 35px;
 
+        }
 
-#dprisnav li:hover ul{
-    left: auto;
-}
+        #dprisnav {
+            text-align: center;
+            margin: 0 auto;
+            padding: 0;
+            display: table;
+        }
 
-#dprisnav li:hover{
-    background-color: red;
-}
+        #dprisnav li ul {
+            z-index: 9999;
+            position: absolute;
+            left: -999em;
+            height: auto;
+            width: 150px;
 
-#dprisnav li li a:hover, #dprisnavli li a:active {
-    display: block;
-    padding: 0px 0px 6px 6px;
-    text-decoration: none;
-}
+            text-align: center;
+        }
+
+        #dprisnav li:hover ul {
+            left: auto;
+        }
+
+        #dprisnav li:hover {
+            background-color: red;
+        }
+
+        #dprisnav li li a:hover, #dprisnavli li a:active {
+            display: block;
+            padding: 0px 0px 6px 6px;
+            text-decoration: none;
+        }
 
 
     </style>
@@ -153,7 +150,7 @@ li a{
     <ul id='dprisnav'>
         <li><a href="/">Home</a>
         </li>
-            
+
         </li>
         <li><a href="/soldier?platoon=TOC">TOC</a>
         </li>
@@ -191,23 +188,24 @@ li a{
 
 <br>
 {% if auth_ic == True and (auth_platoon == platoon) %}
-<table>
-    <tr class="first">
-        <th>Rank</th>
-        <th>Name</th>
+<form action="/attendance?platoon={{platoon}}" method="post">
+    <table>
+        <tr class="first">
+            <th>Rank</th>
+            <th>Name</th>
 
-        <th><br>Today's Date {{todaydate}}</th>
+            <th><br>Today's Date {{todaydate}}</th>
 
-        <th>Percent</th>
-    </tr>
-    {% for x in soldiers %}
-    <tr class="notfirst">
-        <th>{{x.rank}}</th>
-        <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
+        </tr>
 
-        <td>
-            <form action="/attendance?action=update" method="post">
-                <select name="selection">
+        {% for x in soldiers %}
+        <tr class="notfirst">
+            <th>{{x.rank}}</th>
+            <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
+
+            <td>
+                <input type="hidden" name="soldier_id" value="{{x.key.urlsafe()}}">
+                <select name="attendance">
                     <option value="None">None</option>
                     <option value="training">Training</option>
                     <option value="play1">Offical Op</option>
@@ -218,15 +216,20 @@ li a{
                     <option value="pre">Pre-Op Training</option>
                     <option value="preandop">Training and Play</option>
                 </select>
-            </form>
 
-        </td>
 
-        <td>Blank</td>
-    </tr>
-    {% endfor %}
+            </td>
 
-</table>
+
+        </tr>
+        {% endfor %}
+
+
+    </table>
+    <p><input
+              type="submit"
+              value="Add Attendance"></p>
+</form>
 {% endif %}
 <br><br>
 <table>
@@ -252,77 +255,77 @@ li a{
     </tr>
     {% endfor %}
 
-<!--
-    
-    .navbar {
-            border-collapse: collapse;
-            border: 1px solid black;
-            background-color: #ffffff;
-            width: 50%;
-            margin-left: 25%;
-            margin-right: 25%;
-        }
+    <!--
 
-        .navtd {
-            height: 10px;
-        }
+        .navbar {
+                border-collapse: collapse;
+                border: 1px solid black;
+                background-color: #ffffff;
+                width: 50%;
+                margin-left: 25%;
+                margin-right: 25%;
+            }
 
-        .navtr {
+            .navtd {
+                height: 10px;
+            }
 
-        }
-    .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
+            .navtr {
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
+            }
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-    <ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#news">News</a></li>
-  <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-    <div class="dropdown-content">
-      <a href="/soldier?platoon=TOC">Command Roster</a>
-      <a href="/soldier?platoon=nightmare">Platoon Roster</a>
-      <a href="/attendance?platoon=nightmare">Platoon Attendance</a>
-    </div>
-  </li>
-</ul>-->
+    .dropdown-content a:hover {background-color: #f1f1f1}
 
-<!--<table border="1" class="navbar">
-    <tr>
-        <td class="navtd"><a href="/">Home Page</a></td>
-        <!--<td class="navtd"><a href="/attendance">Attendance</a></td
-        <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
-        <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a><br>- <a
-                href="/attendance?platoon=nightmare"> Attendance</a></td>
-        <td class="navtd"><a href="/soldier?platoon=viking">Viking</a><br>- <a href="/attendance?platoon=viking">
-            Attendance</a></td>
-        <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a><br>- <a href="/attendance?platoon=guardian">
-            Attendance</a></td>
-        <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a><br>- <a href="/attendance?platoon=whiskey">
-            Attendance</a></td>
-        <td class="navtd"><a href="/soldier?platoon=none">Recruits</a><br>- <a href="/attendance?platoon=none">
-            Attendance</a></td>
-    </tr>
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+        <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+        <div class="dropdown-content">
+          <a href="/soldier?platoon=TOC">Command Roster</a>
+          <a href="/soldier?platoon=nightmare">Platoon Roster</a>
+          <a href="/attendance?platoon=nightmare">Platoon Attendance</a>
+        </div>
+      </li>
+    </ul>-->
 
-</table>-->
+    <!--<table border="1" class="navbar">
+        <tr>
+            <td class="navtd"><a href="/">Home Page</a></td>
+            <!--<td class="navtd"><a href="/attendance">Attendance</a></td
+            <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
+            <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a><br>- <a
+                    href="/attendance?platoon=nightmare"> Attendance</a></td>
+            <td class="navtd"><a href="/soldier?platoon=viking">Viking</a><br>- <a href="/attendance?platoon=viking">
+                Attendance</a></td>
+            <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a><br>- <a href="/attendance?platoon=guardian">
+                Attendance</a></td>
+            <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a><br>- <a href="/attendance?platoon=whiskey">
+                Attendance</a></td>
+            <td class="navtd"><a href="/soldier?platoon=none">Recruits</a><br>- <a href="/attendance?platoon=none">
+                Attendance</a></td>
+        </tr>
+
+    </table>-->
 
 
 </table>
