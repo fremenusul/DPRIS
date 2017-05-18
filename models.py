@@ -62,8 +62,12 @@ class SoldierData(ndb.Model):
     medCombatHelo = ndb.IntegerProperty(indexed=False)
     medDFC = ndb.IntegerProperty(indexed=False)
     lastPromoted = ndb.DateProperty(indexed=False)
+
+class Attendance(ndb.Model):
+    soldier_key = ndb.KeyProperty(kind=SoldierData)
     attendValue = ndb.StringProperty(indexed=False)
     attendDate = ndb.DateProperty(indexed=False)
+
 
 def get_entity_from_url_safe_key(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
@@ -91,12 +95,13 @@ def delete_soldier(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier_key.delete()
 
-def update_soldier(url_string, name, joined, platoon):
+def update_soldier(url_string, name, joined, platoon, lastpromoted):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.soldierName = name
     soldier.addedDate = joined
     soldier.platoon = platoon
+    soldier.lastPromoted = lastpromoted
     soldier.put()
 
 

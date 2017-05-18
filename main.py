@@ -415,8 +415,10 @@ class DetailSoldier(webapp2.RequestHandler):
             soldiername = self.request.get('name')
             joined = self.request.get('joined')
             platoon = self.request.get('platoon')
+            lastpromote = self.request.get('lastpromote')
             joined_date = datetime.datetime.strptime(joined, '%Y-%m-%d')
-            models.update_soldier(soldier_id, cgi.escape(soldiername), joined_date, platoon)
+            promote_date = datetime.datetime.strptime(lastpromote, '%Y-%m-%d')
+            models.update_soldier(soldier_id, cgi.escape(soldiername), joined_date, platoon, promote_date)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'deletesoldier':
             soldier_id = self.request.get('soldier')

@@ -13,9 +13,9 @@ def rankBuilder(rank):
         return 'SFC'
     elif rank == 'SFC':
         return 'MSGT'
-    elif rank == 'MSGT':
+    elif rank == 'MSG':
         return '1SGT'
-    elif rank == '1SGT':
+    elif rank == '1SG':
         return 'SGM'
     elif rank =='SGM':
         return '2LT'

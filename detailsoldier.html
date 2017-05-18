@@ -236,7 +236,12 @@ li a{
                 {{soldier.platoon | title}}
                 {% endif %}
                 <hr/>
-                <b>Last Promoted:</b> {{soldier.lastPromoted}}<br>
+                 <b>Last Promoted:</b>
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
+                <input type="text" name="lastpromote" value="{{soldier.lastPromoted}}"><br>
+                {% else %}
+                {{soldier.lastPromoted}}<br>
+                {% endif %}
                 {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
                 <input
                         type="submit"
