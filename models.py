@@ -64,22 +64,22 @@ class SoldierData(ndb.Model):
     lastPromoted = ndb.DateProperty(indexed=False)
 
 class Attendance(ndb.Model):
-    soldier_key = ndb.KeyProperty(kind=SoldierData)
+    soldier_key = ndb.StringProperty()
     attendValue = ndb.StringProperty(indexed=False)
     attendDate = ndb.DateProperty(indexed=False)
 
+def update_attendance(url_string, attendvalue):
+    e = Attendance(
+        soldier_key = url_string,
+        attendDate = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
+        attendValue = attendvalue
+    )
+    e.put()
 
 def get_entity_from_url_safe_key(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     return soldier
-
-def update_attendance(url_string, attendvalue):
-    soldier_key = ndb.Key(urlsafe=url_string)
-    soldier = soldier_key.get()
-    soldier.attendDate = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
-    soldier.attendValue = attendvalue
-    soldier.put()
 
 def update_soldier_from_rct(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)

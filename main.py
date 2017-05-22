@@ -441,6 +441,14 @@ class Attendance(webapp2.RequestHandler):
                 -models.SoldierData.rankorder)
         soldier_data = s_query.fetch()
 
+        holder = []
+        for x in soldier_data:
+            a_query = models.Attendance.query(models.Attendance.soldier_key == x.key.urlsafe())
+            logging.info(x.key.urlsafe())
+            attendance_data = a_query.fetch()
+            holder.append(attendance_data)
+            logging.info(len(holder))
+
         if user:
             user_email = user.email()
             auth = checker.isIC(user_email)
@@ -460,7 +468,8 @@ class Attendance(webapp2.RequestHandler):
             'platoon': platoon,
             'monthdays': monthdates,
             'auth_ic': auth_ic,
-            'auth_platoon': auth_platoon
+            'auth_platoon': auth_platoon,
+            'attendance_data' : holder
         }
 
         template = jinja_environment.get_template('attendance.html')
@@ -479,7 +488,9 @@ class Attendance(webapp2.RequestHandler):
 
         x = 0
         while x <= num_entities:
-            models.update_attendance(soldiers[x], values[x])
+            logging.info(soldiers[x])
+            logging.info(values[x])
+            models.update_attendance(soldiers[x].encode('utf-8'), values[x])
             x +=1
 
 
