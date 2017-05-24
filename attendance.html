@@ -241,12 +241,17 @@
         {% endfor %}
         <th>Percent</th>
     </tr>
-    {% for x in soldiers %}
+    {% for x in attendance_data %}
     <tr class="notfirst">
-        <th>{{x.rank}}</th>
-        <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
+        <th>{{x[0].rank}}</th>
+        <th><a href="/detailsoldier?soldier={{x[0].key.urlsafe()}}">{{x[0].soldierName}}</a></th>
         {% for i in monthdays %}
         <td>
+            {% for y in x[1] %}
+                {% if y[0] == i %}
+                    {{y[1]}}
+                {% endif %}
+            {% endfor %}
 
 
         </td>
@@ -329,8 +334,8 @@
 
 
 </table>
-{% for x in attendance_data %}
-{{x.attendValue}}
+{% for x in holder %}
+{{x[1]}}
   {% endfor %}
 </body>
 </html>

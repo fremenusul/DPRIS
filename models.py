@@ -6,7 +6,7 @@ import tz2ntz
 
 class SoldierData(ndb.Model):
     addedDate = ndb.DateProperty(indexed=False)
-    soldierName = ndb.StringProperty(indexed=False)
+    soldierName = ndb.StringProperty()
     platoon = ndb.StringProperty()
     rank = ndb.StringProperty()
     rankorder = ndb.IntegerProperty()
@@ -66,7 +66,7 @@ class SoldierData(ndb.Model):
 class Attendance(ndb.Model):
     soldier_key = ndb.StringProperty()
     attendValue = ndb.StringProperty(indexed=False)
-    attendDate = ndb.DateProperty(indexed=False)
+    attendDate = ndb.DateProperty()
 
 def update_attendance(url_string, attendvalue):
     e = Attendance(

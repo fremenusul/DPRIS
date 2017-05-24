@@ -16,6 +16,7 @@ import tz2ntz
 
 from google.appengine.api import memcache
 from google.appengine.api import users
+from google.appengine.ext import ndb
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -25,7 +26,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info(user)
-        
+
         if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
@@ -36,7 +37,7 @@ class MainPage(webapp2.RequestHandler):
             user_email = 'none@none.com'
         template_values = {
             'user': user,
-            'user_email' : user_email,
+            'user_email': user_email,
             'url': url,
             'url_linktext': url_linktext
         }
@@ -67,7 +68,7 @@ class SoldierPage(webapp2.RequestHandler):
             soldier_data = results
             if not results:
                 s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
-                -models.SoldierData.rankorder)
+                    -models.SoldierData.rankorder)
                 soldier_data = s_query.fetch()
                 memcache.set(platoon, soldier_data, 30)
                 logging.info('No Cache')
@@ -438,16 +439,30 @@ class Attendance(webapp2.RequestHandler):
         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
         todaydate = datetime.datetime.strftime(today, '%B %d')
         s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
-                -models.SoldierData.rankorder)
+            -models.SoldierData.rankorder)
         soldier_data = s_query.fetch()
 
+        # TODO(Shangpo) Add filter to grab this current month only. Investigate why filters don't work
+
         holder = []
+        #TODO(Shangpo) Fix this to autofill first day of the month
+        startdate = datetime.date(2017, 5, 1)
         for x in soldier_data:
             a_query = models.Attendance.query(models.Attendance.soldier_key == x.key.urlsafe())
-            logging.info(x.key.urlsafe())
+            #a_query = a_query.filter(models.Attendance.attendDate >= startdate)
+            #thekey = x.key.urlsafe()
+            #a_query = ndb.gql("SELECT * FROM Attendance WHERE soldier_key = '%s' AND attendDate > DATE('2017-05-01')" % thekey)
             attendance_data = a_query.fetch()
-            holder.append(attendance_data)
-            logging.info(len(holder))
+
+
+            datelist = []
+            for y in attendance_data:
+                if y.attendDate < startdate:
+                    continue
+                day_num = int(datetime.datetime.strftime(y.attendDate, '%d'))
+                value = y.attendValue
+                datelist.append((day_num, value))
+            holder.append((x, datelist))
 
         if user:
             user_email = user.email()
@@ -469,13 +484,14 @@ class Attendance(webapp2.RequestHandler):
             'monthdays': monthdates,
             'auth_ic': auth_ic,
             'auth_platoon': auth_platoon,
-            'attendance_data' : holder
+            'attendance_data': holder
         }
 
         template = jinja_environment.get_template('attendance.html')
         self.response.out.write(template.render(template_values))
 
     def post(self):
+        platoon = self.request.get('platoon')
         values = []
         for field in self.request.get_all('attendance'):
             values.append(field)
@@ -484,18 +500,15 @@ class Attendance(webapp2.RequestHandler):
         for field in self.request.get_all('soldier_id'):
             soldiers.append(field)
 
-        num_entities = len(values) -1
+        num_entities = len(values) - 1
 
         x = 0
         while x <= num_entities:
             logging.info(soldiers[x])
             logging.info(values[x])
             models.update_attendance(soldiers[x].encode('utf-8'), values[x])
-            x +=1
-
-
-
-
+            x += 1
+        return self.redirect('/attendance?platoon=' + platoon)
 
 
 # REMOVE BEFORE LIVE
