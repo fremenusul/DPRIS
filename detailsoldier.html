@@ -231,6 +231,8 @@ li a{
                     "toc" %} selected{% endif %}>TOC</option>
                     <option value="none" {% if soldier.platoon==
                     "none" %} selected{% endif %}>None</option>
+                    <option value="loa" {% if soldier.platoon==
+                    "loa" %} selected{% endif %}>LOA</option>
                 </select>
                 {% else %}
                 {{soldier.platoon | title}}
@@ -288,7 +290,7 @@ li a{
     </tr>
 
     <tr>
-        <td>{{certstotal}}</td>
+        <td>{{soldier.num_certs}}</td>
         <td>
             {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRifle == "Expert" %}
@@ -557,7 +559,7 @@ li a{
         <th><img src="img/support2.png" height="105" width="110"/><br>Support</th>
     </tr>
     <tr>
-        <td>{{ribbontotal}}</td>
+        <td>{{soldier.num_ribbons}}</td>
         <td>
             {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.ribPistol == 0 %}
@@ -696,7 +698,7 @@ li a{
         <th><br><img src="img/combatmedic.png" height="105" width="110"/><br>Combat Medic</th>
     </tr>
     <tr>
-        <td>{{badgestotal}}</td>
+        <td>{{soldier.num_badges}}</td>
         <td>
             {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.badgeJump == 0 %}
@@ -894,7 +896,7 @@ li a{
         <th><br><img src="img/ss.png" height="105" width="110"/><br>Silver Star</th>
     </tr>
     <tr>
-        <td>{{medalstotal}}</td>
+        <td>{{soldier.num_medals}}</td>
         <td>
             {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.medArmedForces == 0 %}
@@ -1152,7 +1154,7 @@ li a{
         <th><img src="img/dfc.png" height="105" width="110"/><br>Distinguished Flying Cross</th>
     </tr>
     <tr>
-        <td>{{avtotal}}</td>
+        <td>{{soldier.num_awards}}</td>
         <td>
             {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
             {% if soldier.certRotor == 0 %}

@@ -112,82 +112,10 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
 
-        certs = []
-        if soldier_data.certRifle != 'None':
-            certs.append(1)
-        certs.append(soldier_data.certNCOPD1)
-        certs.append(soldier_data.certNCOPD2)
-        certs.append(soldier_data.certNCOPD3)
-        certs.append(soldier_data.certAirAssult)
-        certs.append(soldier_data.certSapper)
-        certs.append(soldier_data.certRanger)
-        certs.append(soldier_data.certPathfinder)
-        certs.append(soldier_data.certFO)
-        certs.append(soldier_data.certFDC)
-        certs.append(soldier_data.certJFO)
-        certs.append(soldier_data.certDMR)
-        certs.append(soldier_data.certRSLC)
-        certs.append(soldier_data.certRecruit)
-        certstotal = sum(certs)
-
-        ribbons = []
-        ribbons.append(soldier_data.ribPistol)
-        ribbons.append(soldier_data.ribStaff)
-        ribbons.append(soldier_data.ribCommand)
-        ribbons.append(soldier_data.ribAT)
-        ribbons.append(soldier_data.ribGround)
-        ribbons.append(soldier_data.ribDM)
-        ribbons.append(soldier_data.ripSupport)
-        ribbontotal = sum(ribbons)
-
-        badges = []
-        badges.append(soldier_data.badgeJump)
-        badges.append(soldier_data.badgeCIB)
-        badges.append(soldier_data.badgeIB)
-        badges.append(soldier_data.badgeMedic)
-        badges.append(soldier_data.badgeExplosive)
-        badges.append(soldier_data.badgeCAB)
-        badges.append(soldier_data.badgeAirDefense)
-        badges.append(soldier_data.badgeArmor)
-        badges.append(soldier_data.badgeTransport)
-        badges.append(soldier_data.badgeCombatMedic)
-        badgestotal = sum(badges)
-
-        medals = []
-        medals.append(soldier_data.medArmedForces)
-        medals.append(soldier_data.medNationalDefense)
-        medals.append(soldier_data.medDSM)
-        medals.append(soldier_data.medMOV)
-        medals.append(soldier_data.medCommendation)
-        medals.append(soldier_data.medAchievement)
-        medals.append(soldier_data.medDsync)
-        medals.append(soldier_data.medConduct)
-        medals.append(soldier_data.medPH)
-        medals.append(soldier_data.medVolunteer)
-        medals.append(soldier_data.medDSC)
-        medals.append(soldier_data.medMerit)
-        medals.append(soldier_data.medBronze)
-        medals.append(soldier_data.medSilver)
-        medalstotal = sum(medals)
-
-        av = []
-        av.append(soldier_data.certRotor)
-        av.append(soldier_data.certWings)
-        av.append(soldier_data.medAir)
-        av.append(soldier_data.medAFCombatAction)
-        av.append(soldier_data.medCombatHelo)
-        av.append(soldier_data.medDFC)
-        avtotal = sum(av)
-
         template_values = {
             'soldier': soldier_data,
             'soldier_id': soldier_id,
             'nextRank': nextRank,
-            'certstotal': certstotal,
-            'ribbontotal': ribbontotal,
-            'badgestotal': badgestotal,
-            'medalstotal': medalstotal,
-            'avtotal': avtotal,
             'auth_ic': auth_ic,
             'auth_platoon': auth_platoon
 

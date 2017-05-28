@@ -61,7 +61,12 @@ def addnewsoldier(soldiername):
         medAir=0,
         medAFCombatAction=0,
         medCombatHelo=0,
-        medDFC=0
+        medDFC=0,
+        num_certs = 0,
+        num_ribbons = 0,
+        num_badges = 0,
+        num_medals = 0,
+        num_awards = 0
     )
     e.put()
 
@@ -124,7 +129,13 @@ def addnewsoldier_test(soldiername):
         medAir=0,
         medAFCombatAction=0,
         medCombatHelo=0,
-        medDFC=0
+        medDFC=0,
+        num_certs = 0,
+        num_ribbons = 0,
+        num_badges = 0,
+        num_medals = 0,
+        num_awards = 0
+
     )
     e.put()
 
