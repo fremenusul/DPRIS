@@ -13,6 +13,7 @@ import ranks
 import newsoldier
 import checker
 import tz2ntz
+import snippets
 
 from google.appengine.api import memcache
 from google.appengine.api import users
@@ -443,10 +444,10 @@ class Attendance(webapp2.RequestHandler):
         soldier_data = s_query.fetch()
 
         # TODO(Shangpo) Add filter to grab this current month only. Investigate why filters don't work
-
         holder = []
-        #TODO(Shangpo) Fix this to autofill first day of the month
-        startdate = datetime.date(2017, 5, 1)
+        #first_day = snippets.get_first_day(current_month)
+        #startdate = datetime.date(first_day)
+        startdate = snippets.get_first_day(current_month)
         for x in soldier_data:
             a_query = models.Attendance.query(models.Attendance.soldier_key == x.key.urlsafe())
             #a_query = a_query.filter(models.Attendance.attendDate >= startdate)
@@ -518,7 +519,10 @@ class TestSoldier(webapp2.RequestHandler):
                         'Lanky Pete', 'Keyser Soze', 'Poopy McPooperson', 'Joe Schmuckatelli']
 
         for i in testsoldiers:
-            newsoldier.addnewsoldier(i)
+            newsoldier.addnewsoldier_test(i)
+
+
+
 
         template_values = {
 

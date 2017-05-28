@@ -63,23 +63,36 @@ class SoldierData(ndb.Model):
     medDFC = ndb.IntegerProperty(indexed=False)
     lastPromoted = ndb.DateProperty(indexed=False)
 
+
 class Attendance(ndb.Model):
     soldier_key = ndb.StringProperty()
     attendValue = ndb.StringProperty(indexed=False)
     attendDate = ndb.DateProperty()
 
+
 def update_attendance(url_string, attendvalue):
     e = Attendance(
-        soldier_key = url_string,
-        attendDate = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
-        attendValue = attendvalue
+        soldier_key=url_string,
+        attendDate=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
+        attendValue=attendvalue
     )
     e.put()
+
+#TODO Shangpo: REMOVE THIS BEFORE LIVE
+def update_attendance_test(url_string, thedate, attendvalue):
+    e = Attendance(
+        soldier_key=url_string,
+        attendDate=thedate,
+        attendValue=attendvalue
+    )
+    e.put()
+
 
 def get_entity_from_url_safe_key(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     return soldier
+
 
 def update_soldier_from_rct(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
@@ -91,9 +104,11 @@ def update_soldier_from_rct(url_string):
     soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()
 
+
 def delete_soldier(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier_key.delete()
+
 
 def update_soldier(url_string, name, joined, platoon, lastpromoted):
     soldier_key = ndb.Key(urlsafe=url_string)
@@ -103,6 +118,12 @@ def update_soldier(url_string, name, joined, platoon, lastpromoted):
     soldier.platoon = platoon
     soldier.lastPromoted = lastpromoted
     soldier.put()
+
+
+def update_platoon(url_string, platoon):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.platoon = platoon
 
 
 def promote_soldier(url_string, rank):
@@ -246,11 +267,13 @@ def update_ribAT(url_string):
     soldier.ribAT = 1
     soldier.put()
 
+
 def update_ribGround(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.ribGround = 1
     soldier.put()
+
 
 def update_ribDM(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
@@ -454,11 +477,13 @@ def update_medCombatHelo(url_string):
     soldier.medCombatHelo = 1
     soldier.put()
 
+
 def update_certWings(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.certWings = 1
     soldier.put()
+
 
 def update_medDFC(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
