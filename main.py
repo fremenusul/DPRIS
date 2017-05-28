@@ -458,6 +458,18 @@ class TestSoldier(webapp2.RequestHandler):
 
         return self.redirect('/soldier?platoon=none')
 
+# REMOVE BEFORE LIVE
+class UpdateModel(webapp2.RequestHandler):
+    def get(self):
+        snippets.updatemodel()
+
+        template_values = {
+
+        }
+
+        return self.redirect('/soldier?platoon=none')
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -465,4 +477,5 @@ app = webapp2.WSGIApplication([
     ('/detailsoldier', DetailSoldier),
     ('/attendance', Attendance),
     ('/test', TestSoldier),
+    ('/model', UpdateModel),
 ], debug=True)
