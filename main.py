@@ -392,11 +392,6 @@ class Attendance(webapp2.RequestHandler):
             # thekey = x.key.urlsafe()
             # a_query = ndb.gql("SELECT * FROM Attendance WHERE soldier_key = '%s' AND attendDate > DATE('2017-05-01')" % thekey)
             attendance_data = a_query.fetch()
-            if len(attendance_data) > 0:
-                platoon_attendance = True
-            else:
-                platoon_attendance = False
-
 
             datelist = []
             for y in attendance_data:
@@ -410,7 +405,11 @@ class Attendance(webapp2.RequestHandler):
         attend_query = models.AttendanceChecker.query(
             models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
         attend_data = attend_query.fetch()
-        logging.info(attend_data)
+
+        if len(attend_data) > 0:
+            platoon_attendance = True
+        else:
+            platoon_attendance = False
 
         if user:
             user_email = user.email()
@@ -480,7 +479,7 @@ class TestSoldier(webapp2.RequestHandler):
 # REMOVE BEFORE LIVE
 class UpdateModel(webapp2.RequestHandler):
     def get(self):
-        snippets.updatemodel()
+        snippets.updatemodel2()
 
         template_values = {
 

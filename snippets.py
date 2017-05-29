@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 
 from google.appengine.ext import ndb
@@ -25,3 +26,11 @@ def updatemodel():
         soldier.num_medals = 0
         soldier.num_awards = 0
         soldier.put()
+
+def updatemodel2():
+    e =  models.AttendanceChecker(
+        datecheck=datetime.date(2017, 5, 29),
+        platoon='viking',
+        attend=1)
+    e.put()
+
