@@ -5,3 +5,4 @@ indexes:
   - name: platoon
   - name: rankorder
     direction: desc
+  - name: soldierName
