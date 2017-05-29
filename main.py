@@ -3,21 +3,18 @@ import cgi
 import datetime
 import logging
 import os
-import urllib
 
 import jinja2
 import webapp2
-
-import models
-import ranks
-import newsoldier
-import checker
-import tz2ntz
-import snippets
-
 from google.appengine.api import memcache
 from google.appengine.api import users
-from google.appengine.ext import ndb
+
+import checker
+import models
+import newsoldier
+import ranks
+import snippets
+import tz2ntz
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -25,17 +22,19 @@ jinja_environment = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        #Find current user
         user = users.get_current_user()
-        logging.info(user)
-
+        #If user exists, show logout and get user email
         if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
             user_email = user.email()
+        #If user does not exist, create login and create a default to ensure checks work.
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
             user_email = 'none@none.com'
+
         template_values = {
             'user': user,
             'user_email': user_email,
@@ -51,6 +50,7 @@ class SoldierPage(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
         user = users.get_current_user()
+        #Get user email and check to see if the person is authorized to make changes in checker.py
         if user:
             user_email = user.email()
             auth = checker.isIC(user_email)
@@ -60,6 +60,7 @@ class SoldierPage(webapp2.RequestHandler):
             auth_ic = True
         else:
             auth_ic = False
+        #If RCT pull direct, no memecache
         if platoon == 'none':
             s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
                 -models.SoldierData.rankorder, models.SoldierData.soldierName)
@@ -85,9 +86,11 @@ class SoldierPage(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
+        #check to see if someone added nothing, return to page.
         soldiername = self.request.get('name')
         if soldiername == "":
             return self.redirect('/soldier?platoon=none')
+        #cgi escape to ensure no bad things. Add soldier.
         else:
             newsoldier.addnewsoldier(cgi.escape(soldiername))
             return self.redirect('/soldier?platoon=none')
@@ -361,27 +364,38 @@ class Attendance(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         platoon = self.request.get('platoon')
+        #Build Cal object
         cal = calendar.Calendar()
+        #date object
         current_month = datetime.datetime.today()
+        #get current month by name
         long_month = current_month.strftime("%B")
+        #build the number of days in a month
         monthdates = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
+        #get current day fixed
         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+        #Print today
         todaydate = datetime.datetime.strftime(today, '%B %d')
+        #Fetch soldier data
         s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
 
         # TODO(Shangpo) Add filter to grab this current month only. Investigate why filters don't work
         holder = []
-        #first_day = snippets.get_first_day(current_month)
-        #startdate = datetime.date(first_day)
+        # first_day = snippets.get_first_day(current_month)
+        # startdate = datetime.date(first_day)
         startdate = snippets.get_first_day(current_month)
         for x in soldier_data:
             a_query = models.Attendance.query(models.Attendance.soldier_key == x.key.urlsafe())
-            #a_query = a_query.filter(models.Attendance.attendDate >= startdate)
-            #thekey = x.key.urlsafe()
-            #a_query = ndb.gql("SELECT * FROM Attendance WHERE soldier_key = '%s' AND attendDate > DATE('2017-05-01')" % thekey)
+            # a_query = a_query.filter(models.Attendance.attendDate >= startdate)
+            # thekey = x.key.urlsafe()
+            # a_query = ndb.gql("SELECT * FROM Attendance WHERE soldier_key = '%s' AND attendDate > DATE('2017-05-01')" % thekey)
             attendance_data = a_query.fetch()
+            if len(attendance_data) > 0:
+                platoon_attendance = True
+            else:
+                platoon_attendance = False
 
 
             datelist = []
@@ -392,6 +406,11 @@ class Attendance(webapp2.RequestHandler):
                 value = y.attendValue
                 datelist.append((day_num, value))
             holder.append((x, datelist))
+
+        attend_query = models.AttendanceChecker.query(
+            models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
+        attend_data = attend_query.fetch()
+        logging.info(attend_data)
 
         if user:
             user_email = user.email()
@@ -413,7 +432,8 @@ class Attendance(webapp2.RequestHandler):
             'monthdays': monthdates,
             'auth_ic': auth_ic,
             'auth_platoon': auth_platoon,
-            'attendance_data': holder
+            'attendance_data': holder,
+            'platoon_attendance' : platoon_attendance
         }
 
         template = jinja_environment.get_template('attendance.html')
@@ -437,6 +457,7 @@ class Attendance(webapp2.RequestHandler):
             logging.info(values[x])
             models.update_attendance(soldiers[x].encode('utf-8'), values[x])
             x += 1
+        models.attendance_check(platoon)
         return self.redirect('/attendance?platoon=' + platoon)
 
 
@@ -449,14 +470,12 @@ class TestSoldier(webapp2.RequestHandler):
         for i in testsoldiers:
             newsoldier.addnewsoldier_test(i)
 
-
-
-
         template_values = {
 
         }
 
         return self.redirect('/soldier?platoon=none')
+
 
 # REMOVE BEFORE LIVE
 class UpdateModel(webapp2.RequestHandler):
@@ -468,7 +487,6 @@ class UpdateModel(webapp2.RequestHandler):
         }
 
         return self.redirect('/soldier?platoon=none')
-
 
 
 app = webapp2.WSGIApplication([

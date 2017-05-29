@@ -187,6 +187,7 @@
 <h1>{{monthname}} Attendance for {{platoon | title}}</h1>
 
 <br>
+{% if platoon_attendance == False %}
 {% if auth_ic == True and (auth_platoon == platoon) %}
 <form action="/attendance?platoon={{platoon}}" method="post">
     <table>
@@ -227,6 +228,7 @@
               type="submit"
               value="Add Attendance"></p>
 </form>
+{% endif %}
 {% endif %}
 <br><br>
 <table>

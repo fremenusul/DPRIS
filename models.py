@@ -1,6 +1,7 @@
-from google.appengine.ext import ndb
 import datetime
-import logging
+
+from google.appengine.ext import ndb
+
 import tz2ntz
 
 
@@ -74,12 +75,24 @@ class Attendance(ndb.Model):
     attendValue = ndb.StringProperty(indexed=False)
     attendDate = ndb.DateProperty()
 
+class AttendanceChecker(ndb.Model):
+    datecheck = ndb.DateProperty()
+    platoon = ndb.StringProperty()
+    attend = ndb.IntegerProperty()
 
 def update_attendance(url_string, attendvalue):
     e = Attendance(
         soldier_key=url_string,
         attendDate=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
         attendValue=attendvalue
+    )
+    e.put()
+
+def attendance_check(theplatoon):
+    e = AttendanceChecker(
+        platoon=theplatoon,
+        datecheck=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
+        attend= 1
     )
     e.put()
 

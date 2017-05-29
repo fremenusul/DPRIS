@@ -1,7 +1,8 @@
-from datetime import date, timedelta
+from datetime import date
+
+from google.appengine.ext import ndb
 
 import models
-from google.appengine.ext import ndb
 
 
 def get_first_day(dt, d_years=0, d_months=0):
@@ -10,6 +11,7 @@ def get_first_day(dt, d_years=0, d_months=0):
     a, m = divmod(m-1, 12)
     return date(y+a, m+1, 1)
 
+#TODO(Shangpo) REMOVE BEFORE LIVE
 def updatemodel():
     s_query = models.SoldierData.query(models.SoldierData.platoon == 'viking')
     soldier_data = s_query.fetch()
