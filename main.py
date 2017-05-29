@@ -62,14 +62,14 @@ class SoldierPage(webapp2.RequestHandler):
             auth_ic = False
         if platoon == 'none':
             s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
-                -models.SoldierData.rankorder)
+                -models.SoldierData.rankorder, models.SoldierData.soldierName)
             soldier_data = s_query.fetch()
         else:
             results = memcache.get(platoon)
             soldier_data = results
             if not results:
                 s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
-                    -models.SoldierData.rankorder)
+                    -models.SoldierData.rankorder, models.SoldierData.soldierName)
                 soldier_data = s_query.fetch()
                 memcache.set(platoon, soldier_data, 30)
                 logging.info('No Cache')
@@ -368,7 +368,7 @@ class Attendance(webapp2.RequestHandler):
         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
         todaydate = datetime.datetime.strftime(today, '%B %d')
         s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
-            -models.SoldierData.rankorder)
+            -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
 
         # TODO(Shangpo) Add filter to grab this current month only. Investigate why filters don't work
