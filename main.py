@@ -464,20 +464,6 @@ class Attendance(webapp2.RequestHandler):
         return self.redirect('/attendance?platoon=' + platoon)
 
 
-# REMOVE BEFORE LIVE
-class TestSoldier(webapp2.RequestHandler):
-    def get(self):
-        testsoldiers = ['Frank', 'Mike', 'Jessie', 'Sam', 'Cranky', 'Noveske', 'Ringo', 'Boltz', 'Larry', 'Albert',
-                        'Lanky Pete', 'Keyser Soze', 'Poopy McPooperson', 'Joe Schmuckatelli']
-
-        for i in testsoldiers:
-            newsoldier.addnewsoldier_test(i)
-
-        template_values = {
-
-        }
-
-        return self.redirect('/soldier?platoon=none')
 
 
 # REMOVE BEFORE LIVE
@@ -497,6 +483,5 @@ app = webapp2.WSGIApplication([
     ('/soldier', SoldierPage),
     ('/detailsoldier', DetailSoldier),
     ('/attendance', Attendance),
-    ('/test', TestSoldier),
     ('/model', UpdateModel),
 ], debug=True)

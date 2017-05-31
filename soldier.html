@@ -456,7 +456,32 @@ window.onclick = function(e) {
     </tr>
     {% for i in soldiers %}
     <tr class="notfirst">
-        <td>{{i.rank}}</td>
+        <td> {% if i.rank == 'PV2' %}
+                <img src="img/PV2.png" />
+            {% elif i.rank == 'PFC' %}
+                <img src="img/PFC.png" />
+            {% elif i.rank == 'SPC' %}
+                <img src="img/SPC.png" />
+            {% elif i.rank == 'CPL' %}
+                <img src="img/CPL.png" />
+            {% elif i.rank == 'SGT' %}
+                <img src="img/SGT.png" />
+            {% elif i.rank == 'SSG' %}
+                <img src="img/SSG.png" />
+            {% elif i.rank == 'SFC' %}
+                <img src="img/SFC.png" />
+            {% elif i.rank == 'MSG' %}
+                <img src="img/MSG.png" />
+            {% elif i.rank == '1SG' %}
+                <img src="img/1SG.png" />
+            {% elif i.rank == 'SGM' %}
+                <img src="img/SGM.png" />
+            {% elif i.rank == '2LT' %}
+                <img src="img/2LT.png" />
+            {% endif %}
+            {{i.rank}}
+
+        </td>
         <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
         <td>{{i.lastPromoted}}</td>
         <td>

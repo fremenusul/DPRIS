@@ -229,7 +229,31 @@
                 {% endif %}
 
                 <hr/>
-                <b>Rank:</b> {{soldier.rank}}<br>
+                <b>Rank:</b>
+                {% if soldier.rank == 'PV2' %}
+                <img src="img/PV2.png" />
+            {% elif soldier.rank == 'PFC' %}
+                <img src="img/PFC.png" />
+            {% elif soldier.rank == 'SPC' %}
+                <img src="img/SPC.png" />
+            {% elif soldier.rank == 'CPL' %}
+                <img src="img/CPL.png" />
+            {% elif soldier.rank == 'SGT' %}
+                <img src="img/SGT.png" />
+            {% elif soldier.rank == 'SSG' %}
+                <img src="img/SSG.png" />
+            {% elif soldier.rank == 'SFC' %}
+                <img src="img/SFC.png" />
+            {% elif soldier.rank == 'MSG' %}
+                <img src="img/MSG.png" />
+            {% elif soldier.rank == '1SG' %}
+                <img src="img/1SG.png" />
+            {% elif soldier.rank == 'SGM' %}
+                <img src="img/SGM.png" />
+            {% elif soldier.rank == '2LT' %}
+                <img src="img/2LT.png" />
+            {% endif %}
+                {{soldier.rank}}<br>
                 <hr/>
                 <b>Joined:</b>
                 {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}

@@ -225,7 +225,32 @@
 
         {% for x in soldiers %}
         <tr class="notfirst">
-            <th>{{x.rank}}</th>
+            <th>
+                {% if x.rank == 'PV2' %}
+                <img src="img/PV2.png" />
+            {% elif x.rank == 'PFC' %}
+                <img src="img/PFC.png" />
+            {% elif x.rank == 'SPC' %}
+                <img src="img/SPC.png" />
+            {% elif x.rank == 'CPL' %}
+                <img src="img/CPL.png" />
+            {% elif x.rank == 'SGT' %}
+                <img src="img/SGT.png" />
+            {% elif x.rank == 'SSG' %}
+                <img src="img/SSG.png" />
+            {% elif x.rank == 'SFC' %}
+                <img src="img/SFC.png" />
+            {% elif x.rank == 'MSG' %}
+                <img src="img/MSG.png" />
+            {% elif x.rank == '1SG' %}
+                <img src="img/1SG.png" />
+            {% elif x.rank == 'SGM' %}
+                <img src="img/SGM.png" />
+            {% elif x.rank == '2LT' %}
+                <img src="img/2LT.png" />
+            {% endif %}
+
+                {{x.rank}}</th>
             <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
 
             <td>
@@ -266,7 +291,33 @@
     </tr>
     {% for x in attendance_data %}
     <tr class="notfirst">
-        <th>{{x[0].rank}}</th>
+        <th>
+            {% if x[0].rank == 'PV2' %}
+                <img src="img/PV2.png" />
+            {% elif x[0].rank == 'PFC' %}
+                <img src="img/PFC.png" />
+            {% elif x[0].rank == 'SPC' %}
+                <img src="img/SPC.png" />
+            {% elif x[0].rank == 'CPL' %}
+                <img src="img/CPL.png" />
+            {% elif x[0].rank == 'SGT' %}
+                <img src="img/SGT.png" />
+            {% elif x[0].rank == 'SSG' %}
+                <img src="img/SSG.png" />
+            {% elif x[0].rank == 'SFC' %}
+                <img src="img/SFC.png" />
+            {% elif x[0].rank == 'MSG' %}
+                <img src="img/MSG.png" />
+            {% elif x[0].rank == '1SG' %}
+                <img src="img/1SG.png" />
+            {% elif x[0].rank == 'SGM' %}
+                <img src="img/SGM.png" />
+            {% elif x[0].rank == '2LT' %}
+                <img src="img/2LT.png" />
+            {% endif %}
+        {{x[0].rank}}
+
+        </th>
         <th><a href="/detailsoldier?soldier={{x[0].key.urlsafe()}}">{{x[0].soldierName}}</a></th>
         {% for i in monthdays %}
         <td>
