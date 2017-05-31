@@ -1,209 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    .container {
-      overflow: hidden;
-      background-color: #333;
-      font-family: Arial;
-      
-      display:inline-block;
-      box-shadow: 0px 0px 0px 4px rgba(0,0,0,0.2);
-    }
-    
-    .content {
-      width: 80%;
-      height: auto;
-      margin-left: 20%;
-      margin-right: 10%;
-      
-      position: relative;
-    }
-    
-    .container a {
-      float: left;
-      font-size: 16px;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
+    <meta name="robots" content="noindex"/>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    .dropdown {
-      float: left;
-      overflow: hidden;
-      border-left: thick solid white;
-    }
+        ga('create', 'UA-100164007-1', 'auto');
+        ga('send', 'pageview');
 
-    .dropdown .dropbtn {
-      cursor: pointer;
-      font-size: 16px;    
-      border: none;
-      outline: none;
-      color: white;
-      padding: 14px 16px;
-      background-color: inherit;
-    }
+    </script>
+    <style>
+        .container {
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial;
 
-    .container a:hover, .dropdown:hover .dropbtn {
-      background-color: red;
-    }
+            display: inline-block;
+            box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 2px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
+        .content {
+            width: 80%;
+            height: auto;
+            margin-left: 20%;
+            margin-right: 10%;
 
-    .dropdown-content a {
-      float: none;
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: center;
-    }
+            position: relative;
+        }
 
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
+        .container a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-   .show {
-      display: block;
-    }
-    
-   table {
-      border-collapse: collapse;
-      border: 1px solid black;
-      background-color: #ffffff;
-      width: 100%;
-      border-radius: 10px;
-    }
-    th {
-      text-align: center;
-      height: 50px;
-      border: 1px solid black;
-    }
-    
-    td {
-    text-align: center;
-    border: 1px solid black;
-    }
-    
-    h1 {
-      color: black;
-    }
-    
-    .first{
-      background-color: grey;
-      border: 1px solid black;
-    }
-    
-    .notfirst:hover {
-      background-color: lightgrey;
-      
-    }
-   
-    .navbar{
-     border-collapse: collapse;
-      border: 2px solid black;
-      background-color: #ffffff;
-      width: 50%;
-      margin-left: 25%;
-      margin-right: 25%;
-    }
+        .dropdown {
+            float: left;
+            overflow: hidden;
+            border-left: thick solid white;
+        }
 
-    .navtd{
-      height: 10px;
-    }
-    
-    ul {
-    
-    float: none;
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    
-}
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+        }
 
-li {
-    width: 160;
-    height: 35px;
-    line-height: 35px;
-    padding: 10px;
-    display:inline-block;
-    border-radius: 6px;
-    background: grey;
-    margin: 4px 6px;
-    box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
-    font-weight: bold;
-    text-shadow: 2px 2px black;
-    transition: background-color .5s
-}
+        .container a:hover, .dropdown:hover .dropbtn {
+            background-color: red;
+        }
 
-a{
-    display: block;
-    width: 160px;
-    height: 35px;
-    line-height: 35px;
-    text-decoration: none;
-    text-align: center;
-}
-li a{
-    display: inline-block;
-    color: white;
-    text-align: center;
-    
-    text-decoration: none;
-}
-        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 2px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+            background-color: #ffffff;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        th {
+            text-align: center;
+            height: 50px;
+            border: 1px solid black;
+        }
+
+        td {
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        .first {
+            background-color: grey;
+            border: 1px solid black;
+        }
+
+        .notfirst:hover {
+            background-color: lightgrey;
+
+        }
+
+        .navbar {
+            border-collapse: collapse;
+            border: 2px solid black;
+            background-color: #ffffff;
+            width: 50%;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        .navtd {
+            height: 10px;
+        }
+
+        ul {
+
+            float: none;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
+
+        }
+
+        li {
+            width: 160;
+            height: 35px;
+            line-height: 35px;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 6px;
+            background: grey;
+            margin: 4px 6px;
+            box-shadow: 0px 0px 0px 5px rgba(24, 24, 24, 0.8);
+            font-weight: bold;
+            text-shadow: 2px 2px black;
+            transition: background-color .5s
+        }
+
+        a {
+            display: block;
+            width: 160px;
+            height: 35px;
+            line-height: 35px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        li a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+
+            text-decoration: none;
+        }
+
         #dprisnavbar {
-    
-    color: white;
-    margin: 0 auto;
-    padding: 0;
-    position: relative;
-    border-top: 0px solid #transparent;
-    height:35px;
-    
-}
-#dprisnav {
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-    display: table;
-}
 
+            color: white;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            border-top: 0px solid #transparent;
+            height: 35px;
 
-#dprisnav li ul {
-    z-index: 9999;
-    position: absolute;
-    left: -999em;
-    height: auto;
-    width: 150px;
+        }
 
-    text-align: center;
-}
+        #dprisnav {
+            text-align: center;
+            margin: 0 auto;
+            padding: 0;
+            display: table;
+        }
 
+        #dprisnav li ul {
+            z-index: 9999;
+            position: absolute;
+            left: -999em;
+            height: auto;
+            width: 150px;
 
-#dprisnav li:hover ul{
-    left: auto;
-}
+            text-align: center;
+        }
 
-#dprisnav li:hover{
-    background-color: red;
-}
+        #dprisnav li:hover ul {
+            left: auto;
+        }
 
-#dprisnav li li a:hover, #dprisnavli li a:active {
-    display: block;
-    padding: 0px 0px 6px 6px;
-    text-decoration: none;
-}
+        #dprisnav li:hover {
+            background-color: red;
+        }
 
-</style>
+        #dprisnav li li a:hover, #dprisnavli li a:active {
+            display: block;
+            padding: 0px 0px 6px 6px;
+            text-decoration: none;
+        }
+
+    </style>
     <meta charset="UTF-8">
     <title>Platoon Management</title>
 </head>
@@ -213,7 +232,7 @@ li a{
     <ul id='dprisnav'>
         <li><a href="/">Home</a>
         </li>
-            
+
         </li>
         <li><a href="/soldier?platoon=TOC">TOC</a>
         </li>
@@ -397,87 +416,85 @@ window.onclick = function(e) {
 <br>
 {% if auth_ic == True %}
 <form action="/soldier" method="post">
-Add New Member: <input type="text" name="name"><br>
+    Add New Member: <input type="text" name="name"><br>
     <input type="submit" value="Submit">
 </form>
 {% endif %}
-    <h1 align="center"><u><i>{% filter upper %}{{platoon}}{% endfilter %} ROSTER</i></u></h1>
-    <!--<form action="/soldier" method="post">
-    <select name="selection">
-        <option value="op">Pre-Op View</option>
-        <option value="certifications">Certification View</option>
-        <option value="ribbons">Ribbons View</option>
-        <option value="badges">Badges View</option>
-        <option value="medals">Medals View</option>
-    </select>
-    </form> -->
+<h1 align="center"><u><i>{% filter upper %}{{platoon}}{% endfilter %} ROSTER</i></u></h1>
+<!--<form action="/soldier" method="post">
+<select name="selection">
+    <option value="op">Pre-Op View</option>
+    <option value="certifications">Certification View</option>
+    <option value="ribbons">Ribbons View</option>
+    <option value="badges">Badges View</option>
+    <option value="medals">Medals View</option>
+</select>
+</form> -->
 
-    <table>
-  <tr class="first">
-      <th>Rank</th>
-      <th>Member Name</th>
-      <th>Last Promoted</th>
-      <!-- Need to update this when doing select dropdown -->
-      <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
-      <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
-      <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
-      <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
-      <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
-      <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
-  </tr>
+<table>
+    <tr class="first">
+        <th>Rank</th>
+        <th>Member Name</th>
+        <th>Last Promoted</th>
+        <!-- Need to update this when doing select dropdown -->
+        <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
+        <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
+        <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
+        <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
+        <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
+        <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
+    </tr>
     {% for i in soldiers %}
-  <tr class="notfirst">
-      <td>{{i.rank}}</td>
-      <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
-      <td>{{i.lastPromoted}}</td>
-      <td>
-          {% if i.certSapper == 0 %}
-          NO
-          {% else %}
-          <b>Yes</b>
-          {% endif %}
-      </td>
-      <td>
-          {% if i.certRanger == 0 %}
-          NO
-          {% else %}
-          <b>Yes</b>
-          {% endif %}
-      </td>
-      <td>
-          {% if i.certFO == 0 %}
-          NO
-          {% else %}
-          <b>Yes</b>
-          {% endif %}
-      </td>
-      <td>
-          {% if i.certFDC == 0 %}
-          NO
-          {% else %}
-          <b>Yes</b>
-          {% endif %}
-      </td>
-      <td>
-          {% if i.certJFO == 0 %}
-          NO
-          {% else %}
-          <b>Yes</b>
-          {% endif %}
-      </td>
-      <td>
-          {% if i.certRSLC == 0 %}
-          NO
-          {% else %}
-          <b>Yes</b>
-          {% endif %}
-      </td>
+    <tr class="notfirst">
+        <td>{{i.rank}}</td>
+        <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
+        <td>{{i.lastPromoted}}</td>
+        <td>
+            {% if i.certSapper == 0 %}
+            NO
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+        <td>
+            {% if i.certRanger == 0 %}
+            NO
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+        <td>
+            {% if i.certFO == 0 %}
+            NO
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+        <td>
+            {% if i.certFDC == 0 %}
+            NO
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+        <td>
+            {% if i.certJFO == 0 %}
+            NO
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
+        <td>
+            {% if i.certRSLC == 0 %}
+            NO
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+        </td>
 
-  </tr>
+    </tr>
     {% endfor %}
 </table>
-
-
 
 
 </body>
