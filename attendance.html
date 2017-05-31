@@ -261,7 +261,7 @@
                     <option value="H">Pre-Op Only</option>
                     <option value="HP">Pre-Op + Present</option>
                     <option value="T">Training</option>
-                    <option value="/">No Op/Dev Day</option>
+                    <option value="/">No Op/Dev Day/RASP Day</option>
                 </select>
 
 
@@ -287,6 +287,9 @@
         {% for i in monthdays %}
         <th><br>{{i}}</th>
         {% endfor %}
+        <th>P</th>
+        <th>A</th>
+        <th>T</th>
         <th>Percent</th>
     </tr>
     {% for x in attendance_data %}
@@ -330,7 +333,10 @@
 
         </td>
         {% endfor %}
-        <td>Blank</td>
+        <td>{{x[2]}}</td>
+        <td>{{x[3]}}</td>
+        <td>{{x[4]}}</td>
+        <td>{{x[5]}}</td>
     </tr>
     {% endfor %}
 

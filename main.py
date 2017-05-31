@@ -132,7 +132,6 @@ class DetailSoldier(webapp2.RequestHandler):
             soldier_id = self.request.get('soldier')
             rifle = self.request.get('certRifle')
             models.update_rifle(soldier_id, rifle)
-            logging.info(rifle)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'certNCOPD1':
             soldier_id = self.request.get('soldier')
@@ -389,7 +388,7 @@ class Attendance(webapp2.RequestHandler):
         holder = []
         # first_day = snippets.get_first_day(current_month)
         # startdate = datetime.date(first_day)
-        startdate = snippets.get_first_day(current_month)
+        startdate = snippets.get_first_day(today)
         for x in soldier_data:
             a_query = models.Attendance.query(models.Attendance.soldier_key == x.key.urlsafe())
             # a_query = a_query.filter(models.Attendance.attendDate >= startdate)
@@ -397,14 +396,34 @@ class Attendance(webapp2.RequestHandler):
             # a_query = ndb.gql("SELECT * FROM Attendance WHERE soldier_key = '%s' AND attendDate > DATE('2017-05-01')" % thekey)
             attendance_data = a_query.fetch()
 
+            p = []
+            a = []
+            t = []
+            dev = []
             datelist = []
             for y in attendance_data:
                 if y.attendDate < startdate:
                     continue
                 day_num = int(datetime.datetime.strftime(y.attendDate, '%d'))
                 value = y.attendValue
+                if value == 'T':
+                    t.append(1)
+                elif value == 'HP':
+                    t.append(0.5)
+                    p.append(1)
+                elif value == 'H':
+                    t.append(0.5)
+                elif value == '/':
+                    dev.append(1)
+                elif value =='A':
+                    a.append(1)
+                elif value =='P':
+                    p.append(1)
                 datelist.append((day_num, value))
-            holder.append((x, datelist))
+            present = sum(p)
+            absent = sum(a)
+            training = sum(t)
+            holder.append((x, datelist, present, absent, training))
 
         attend_query = models.AttendanceChecker.query(
             models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
@@ -456,8 +475,6 @@ class Attendance(webapp2.RequestHandler):
 
         x = 0
         while x <= num_entities:
-            logging.info(soldiers[x])
-            logging.info(values[x])
             models.update_attendance(soldiers[x].encode('utf-8'), values[x])
             x += 1
         models.attendance_check(platoon)

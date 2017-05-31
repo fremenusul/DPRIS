@@ -97,15 +97,6 @@ def attendance_check(theplatoon):
     )
     e.put()
 
-#TODO Shangpo: REMOVE THIS BEFORE LIVE
-def update_attendance_test(url_string, thedate, attendvalue):
-    e = Attendance(
-        soldier_key=url_string,
-        attendDate=thedate,
-        attendValue=attendvalue
-    )
-    e.put()
-
 
 def get_entity_from_url_safe_key(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
