@@ -423,7 +423,11 @@ class Attendance(webapp2.RequestHandler):
             present = sum(p)
             absent = sum(a)
             training = sum(t)
-            holder.append((x, datelist, present, absent, training))
+            devday = sum(dev)
+            totalattend = present + training
+            subtractdays = len(monthdates) - devday
+            actual_percent = '{0:.0f}%'.format(totalattend/subtractdays * 100)
+            holder.append((x, datelist, present, absent, training, actual_percent))
 
         attend_query = models.AttendanceChecker.query(
             models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
