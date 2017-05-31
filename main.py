@@ -258,6 +258,10 @@ class DetailSoldier(webapp2.RequestHandler):
             soldier_id = self.request.get('soldier')
             models.update_badgeCombatMedic(soldier_id)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'badgeFreeFall':
+            soldier_id = self.request.get('soldier')
+            models.update_badgeFreeFall(soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'medArmedForces':
             soldier_id = self.request.get('soldier')
             models.update_medArmedForces(soldier_id)
@@ -479,7 +483,7 @@ class TestSoldier(webapp2.RequestHandler):
 # REMOVE BEFORE LIVE
 class UpdateModel(webapp2.RequestHandler):
     def get(self):
-        snippets.updatemodel2()
+        snippets.updatemodel3()
 
         template_values = {
 

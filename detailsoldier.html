@@ -896,6 +896,24 @@
             {% endif %}
             {% endif %}
         </td>
+        <td>
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
+            {% if soldier.badgeFreeFall == 0 %}
+            No
+            <form name="badgeFreeFall" action="/detailsoldier?soldier={{soldier_id}}&action=badgeFreeFall"
+                  method="post">
+                <input type="submit" value="Add"></form>
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% else %}
+            {% if soldier.badgeFreeFall == 0 %}
+            No
+            {% else %}
+            <b>Yes</b>
+            {% endif %}
+            {% endif %}
+        </td>
     </tr>
 </table>
 

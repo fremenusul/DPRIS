@@ -45,6 +45,7 @@ def addnewsoldier(soldiername):
         badgeArmor=0,
         badgeTransport=0,
         badgeCombatMedic=0,
+        badgeFreeFall =0,
         medArmedForces=0,
         medNationalDefense=0,
         medDSM=0,

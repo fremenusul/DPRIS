@@ -34,3 +34,12 @@ def updatemodel2():
         attend=1)
     e.put()
 
+def updatemodel3():
+    s_query = models.SoldierData.query(models.SoldierData.platoon == 'viking')
+    soldier_data = s_query.fetch()
+
+    for x in soldier_data:
+        soldier_key = ndb.Key(urlsafe=x.key.urlsafe())
+        soldier = soldier_key.get()
+        soldier.badgeFreeFall = 0
+        soldier.put()

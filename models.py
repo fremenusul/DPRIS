@@ -44,6 +44,7 @@ class SoldierData(ndb.Model):
     badgeArmor = ndb.IntegerProperty(indexed=False)
     badgeTransport = ndb.IntegerProperty(indexed=False)
     badgeCombatMedic = ndb.IntegerProperty(indexed=False)
+    badgeFreeFall = ndb.IntegerProperty(indexed=False)
     medArmedForces = ndb.IntegerProperty(indexed=False)
     medNationalDefense = ndb.IntegerProperty(indexed=False)
     medDSM = ndb.IntegerProperty(indexed=False)
@@ -398,6 +399,14 @@ def update_badgeCombatMedic(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.badgeCombatMedic = 1
+    soldier.num_badges += 1
+    soldier.put()
+
+
+def update_badgeFreeFall(url_string):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.badgeFreeFall = 1
     soldier.num_badges += 1
     soldier.put()
 
