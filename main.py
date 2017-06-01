@@ -15,6 +15,7 @@ import newsoldier
 import ranks
 import snippets
 import tz2ntz
+import calendarbuilder
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -22,14 +23,14 @@ jinja_environment = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        #Find current user
+        # Find current user
         user = users.get_current_user()
-        #If user exists, show logout and get user email
+        # If user exists, show logout and get user email
         if user:
             url = users.create_logout_url(self.request.uri)
             url_linktext = 'Logout'
             user_email = user.email()
-        #If user does not exist, create login and create a default to ensure checks work.
+        # If user does not exist, create login and create a default to ensure checks work.
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
@@ -50,7 +51,7 @@ class SoldierPage(webapp2.RequestHandler):
     def get(self):
         platoon = self.request.get('platoon')
         user = users.get_current_user()
-        #Get user email and check to see if the person is authorized to make changes in checker.py
+        # Get user email and check to see if the person is authorized to make changes in checker.py
         if user:
             user_email = user.email()
             auth = checker.isIC(user_email)
@@ -60,7 +61,7 @@ class SoldierPage(webapp2.RequestHandler):
             auth_ic = True
         else:
             auth_ic = False
-        #If RCT pull direct, no memecache
+        # If RCT pull direct, no memecache
         if platoon == 'none':
             s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
                 -models.SoldierData.rankorder, models.SoldierData.soldierName)
@@ -86,12 +87,12 @@ class SoldierPage(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
-        #check to see if someone added nothing, return to page.
+        # check to see if someone added nothing, return to page.
         soldiername = self.request.get('name')
         platoon = self.request.get('platoon')
         if soldiername == "":
             return self.redirect('/soldier?platoon=none')
-        #cgi escape to ensure no bad things. Add soldier.
+        # cgi escape to ensure no bad things. Add soldier.
         else:
             newsoldier.addnewsoldier(cgi.escape(soldiername))
             memcache.delete(platoon, 0)
@@ -113,63 +114,13 @@ class DetailSoldier(webapp2.RequestHandler):
             auth_ic = False
             auth_platoon = 'N/A'
         soldier_id = self.request.get('soldier')
+        platoon = self.request.get('platoon')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
 
-        cal = calendar.Calendar()
-        # date object
-        current_month = datetime.datetime.today()
-        # get current month by name
-
-        # build the number of days in a month
-        today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
-        monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
-        # get current day fixed
-
-        # TODO(Shangpo) Add filter to grab this current month only. Investigate why filters don't work
-        holder = []
-        startdate = snippets.get_first_day(today)
-        a_query = models.Attendance.query(models.Attendance.soldier_key == soldier_data.key.urlsafe())
-        attendance_data = a_query.fetch()
-
-        p = []
-        a = []
-        t = []
-        dev = []
-        datelist = []
-        for y in attendance_data:
-            if y.attendDate < startdate:
-                continue
-            day_num = int(datetime.datetime.strftime(y.attendDate, '%d'))
-            value = y.attendValue
-            logging.info(value)
-            if value == 'T':
-                t.append(1)
-            elif value == 'HP':
-                t.append(0.5)
-                p.append(1)
-            elif value == 'H':
-                t.append(0.5)
-            elif value == '/':
-                dev.append(1)
-            elif value == 'A':
-                a.append(1)
-            elif value == 'P':
-                p.append(1)
-            datelist.append((day_num, value))
-        present = sum(p)
-        absent = sum(a)
-        training = sum(t)
-        training_len = len(t)
-        devday = sum(dev)
-        totalattend = present + training
-        logging.info(totalattend)
-        # subtractdays = (present + absent + training_len) - devday
-        subtractdays = len(monthdates) - devday
-        actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
-        holder.append((soldier_data, datelist, present, absent, training, actual_percent))
-
+        holder = calendarbuilder.buildcalendar(platoon, soldier_data)[0]
+        monthdates = calendarbuilder.buildcalendar(platoon, soldier_data)[1]
 
         template_values = {
             'soldier': soldier_data,
@@ -177,7 +128,7 @@ class DetailSoldier(webapp2.RequestHandler):
             'nextRank': nextRank,
             'auth_ic': auth_ic,
             'auth_platoon': auth_platoon,
-            'attendance_data' : holder,
+            'attendance_data': holder,
             'monthdays': monthdates,
 
         }
@@ -421,27 +372,33 @@ class DetailSoldier(webapp2.RequestHandler):
             platoon = self.request.get('platoon')
             models.delete_soldier(soldier_id)
             return self.redirect('/soldier?platoon=' + platoon)
+        elif self.request.get('action') == 'editattendance':
+            soldier_id = self.request.get('soldier')
+            platoon = self.request.get('platoon')
+
 
 
 class Attendance(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         platoon = self.request.get('platoon')
-        #Build Cal object
-        cal = calendar.Calendar()
-        #date object
-        current_month = datetime.datetime.today()
-        #get current month by name
 
-        #build the number of days in a month
+
+        # Build Cal object
+        cal = calendar.Calendar()
+        # date object
+        current_month = datetime.datetime.today()
+        # get current month by name
+
+        # build the number of days in a month
         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
         long_month = today.strftime("%B")
         monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
-        #get current day fixed
+        # get current day fixed
 
-        #Print today
+        # Print today
         todaydate = datetime.datetime.strftime(today, '%B %d')
-        #Fetch soldier data
+        # Fetch soldier data
         s_query = models.SoldierData.query(models.SoldierData.platoon == platoon).order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
@@ -477,9 +434,9 @@ class Attendance(webapp2.RequestHandler):
                     t.append(0.5)
                 elif value == '/':
                     dev.append(1)
-                elif value =='A':
+                elif value == 'A':
                     a.append(1)
-                elif value =='P':
+                elif value == 'P':
                     p.append(1)
                 datelist.append((day_num, value))
             present = sum(p)
@@ -488,9 +445,9 @@ class Attendance(webapp2.RequestHandler):
             training_len = len(t)
             devday = sum(dev)
             totalattend = present + training
-            #subtractdays = (present + absent + training_len) - devday
-            subtractdays =  len(monthdates) - devday
-            actual_percent = '{0:.0f}%'.format(totalattend/subtractdays * 100)
+            # subtractdays = (present + absent + training_len) - devday
+            subtractdays = len(monthdates) - devday
+            actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
             holder.append((x, datelist, present, absent, training, actual_percent))
 
         attend_query = models.AttendanceChecker.query(
@@ -523,7 +480,7 @@ class Attendance(webapp2.RequestHandler):
             'auth_ic': auth_ic,
             'auth_platoon': auth_platoon,
             'attendance_data': holder,
-            'platoon_attendance' : platoon_attendance
+            'platoon_attendance': platoon_attendance
         }
 
         template = jinja_environment.get_template('attendance.html')
@@ -549,12 +506,10 @@ class Attendance(webapp2.RequestHandler):
         return self.redirect('/attendance?platoon=' + platoon)
 
 
-
-
 # REMOVE BEFORE LIVE
 class UpdateModel(webapp2.RequestHandler):
     def get(self):
-        snippets.updatemodel3()
+        #snippets.updatemodel3()
 
         template_values = {
 

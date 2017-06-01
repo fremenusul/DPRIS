@@ -231,28 +231,28 @@
                 <hr/>
                 <b>Rank:</b>
                 {% if soldier.rank == 'PV2' %}
-                <img src="img/PV2.png" />
-            {% elif soldier.rank == 'PFC' %}
-                <img src="img/PFC.png" />
-            {% elif soldier.rank == 'SPC' %}
-                <img src="img/SPC.png" />
-            {% elif soldier.rank == 'CPL' %}
-                <img src="img/CPL.png" />
-            {% elif soldier.rank == 'SGT' %}
-                <img src="img/SGT.png" />
-            {% elif soldier.rank == 'SSG' %}
-                <img src="img/SSG.png" />
-            {% elif soldier.rank == 'SFC' %}
-                <img src="img/SFC.png" />
-            {% elif soldier.rank == 'MSG' %}
-                <img src="img/MSG.png" />
-            {% elif soldier.rank == '1SG' %}
-                <img src="img/1SG.png" />
-            {% elif soldier.rank == 'SGM' %}
-                <img src="img/SGM.png" />
-            {% elif soldier.rank == '2LT' %}
-                <img src="img/2LT.png" />
-            {% endif %}
+                <img src="img/PV2.png"/>
+                {% elif soldier.rank == 'PFC' %}
+                <img src="img/PFC.png"/>
+                {% elif soldier.rank == 'SPC' %}
+                <img src="img/SPC.png"/>
+                {% elif soldier.rank == 'CPL' %}
+                <img src="img/CPL.png"/>
+                {% elif soldier.rank == 'SGT' %}
+                <img src="img/SGT.png"/>
+                {% elif soldier.rank == 'SSG' %}
+                <img src="img/SSG.png"/>
+                {% elif soldier.rank == 'SFC' %}
+                <img src="img/SFC.png"/>
+                {% elif soldier.rank == 'MSG' %}
+                <img src="img/MSG.png"/>
+                {% elif soldier.rank == '1SG' %}
+                <img src="img/1SG.png"/>
+                {% elif soldier.rank == 'SGM' %}
+                <img src="img/SGM.png"/>
+                {% elif soldier.rank == '2LT' %}
+                <img src="img/2LT.png"/>
+                {% endif %}
                 {{soldier.rank}}<br>
                 <hr/>
                 <b>Joined:</b>
@@ -1342,6 +1342,32 @@
         <th>Percent</th>
     </tr>
     {% for x in attendance_data %}
+    {% if auth_ic == True and auth_platoon == soldier.platoon %}
+    <form name="editattendance" action="/detailsoldier?soldier={{soldier_id}}&action=editattendance"
+          method="post">
+        <tr>
+            {% for i in monthdays %}
+            <td>
+                {% for y in x[1] %}
+                {% if y[0] == i %}
+                <input type="text" name="{{i}}" value="{{y[1]}}" size="1">
+                <input type="hidden" name="key" value="{{y[2]}}">
+                {% else %}
+                <input type="text" name="{{i}}" size="1">
+                <input type="hidden" name="key" value="none">
+                {% endif %}
+
+                {% endfor %}
+
+            </td>
+            {% endfor %}
+            <td>{{x[2]}}</td>
+            <td>{{x[3]}}</td>
+            <td>{{x[4]}}</td>
+            <td>{{x[5]}}</td>
+        </tr>
+
+    {% else %}
     <tr>
         {% for i in monthdays %}
         <td>
@@ -1358,9 +1384,12 @@
         <td>{{x[4]}}</td>
         <td>{{x[5]}}</td>
     </tr>
+    {% endif %}
     {% endfor %}
-    </table>
+</table>
 {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
+<input type="submit" value="Change Attendance">
+</form>
 <p>
 <form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
       method="post">
