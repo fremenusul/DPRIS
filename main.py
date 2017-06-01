@@ -114,13 +114,12 @@ class DetailSoldier(webapp2.RequestHandler):
             auth_ic = False
             auth_platoon = 'N/A'
         soldier_id = self.request.get('soldier')
-        platoon = self.request.get('platoon')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
 
-        holder = calendarbuilder.buildcalendar(platoon, soldier_data)[0]
-        monthdates = calendarbuilder.buildcalendar(platoon, soldier_data)[1]
+        holder = calendarbuilder.buildcalendar(soldier_data)[0]
+        monthdates = calendarbuilder.buildcalendar(soldier_data)[1]
 
         template_values = {
             'soldier': soldier_data,

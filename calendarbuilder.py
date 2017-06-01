@@ -4,7 +4,7 @@ import tz2ntz
 import models
 import snippets
 
-def buildcalendar(platoon, soldier_data):
+def buildcalendar(soldier_data):
 
     cal = calendar.Calendar()
     # date object

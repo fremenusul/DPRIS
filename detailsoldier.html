@@ -1352,12 +1352,10 @@
                 {% if y[0] == i %}
                 <input type="text" name="{{i}}" value="{{y[1]}}" size="1">
                 <input type="hidden" name="key" value="{{y[2]}}">
-                {% else %}
+                {% endif %}
+                {% endfor %}
                 <input type="text" name="{{i}}" size="1">
                 <input type="hidden" name="key" value="none">
-                {% endif %}
-
-                {% endfor %}
 
             </td>
             {% endfor %}
@@ -1388,7 +1386,7 @@
     {% endfor %}
 </table>
 {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
-<input type="submit" value="Change Attendance">
+<input type="submit" value="Change Attendance - DOES NOT WORK YET">
 </form>
 <p>
 <form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
