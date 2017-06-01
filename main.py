@@ -88,11 +88,13 @@ class SoldierPage(webapp2.RequestHandler):
     def post(self):
         #check to see if someone added nothing, return to page.
         soldiername = self.request.get('name')
+        platoon = self.request.get('platoon')
         if soldiername == "":
             return self.redirect('/soldier?platoon=none')
         #cgi escape to ensure no bad things. Add soldier.
         else:
             newsoldier.addnewsoldier(cgi.escape(soldiername))
+            memcache.delete(platoon, 0)
             return self.redirect('/soldier?platoon=none')
 
 
@@ -115,12 +117,68 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_data = soldier_key
         nextRank = ranks.rankBuilder(soldier_data.rank)
 
+        cal = calendar.Calendar()
+        # date object
+        current_month = datetime.datetime.today()
+        # get current month by name
+
+        # build the number of days in a month
+        today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+        monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
+        # get current day fixed
+
+        # TODO(Shangpo) Add filter to grab this current month only. Investigate why filters don't work
+        holder = []
+        startdate = snippets.get_first_day(today)
+        a_query = models.Attendance.query(models.Attendance.soldier_key == soldier_data.key.urlsafe())
+        attendance_data = a_query.fetch()
+
+        p = []
+        a = []
+        t = []
+        dev = []
+        datelist = []
+        for y in attendance_data:
+            if y.attendDate < startdate:
+                continue
+            day_num = int(datetime.datetime.strftime(y.attendDate, '%d'))
+            value = y.attendValue
+            logging.info(value)
+            if value == 'T':
+                t.append(1)
+            elif value == 'HP':
+                t.append(0.5)
+                p.append(1)
+            elif value == 'H':
+                t.append(0.5)
+            elif value == '/':
+                dev.append(1)
+            elif value == 'A':
+                a.append(1)
+            elif value == 'P':
+                p.append(1)
+            datelist.append((day_num, value))
+        present = sum(p)
+        absent = sum(a)
+        training = sum(t)
+        training_len = len(t)
+        devday = sum(dev)
+        totalattend = present + training
+        logging.info(totalattend)
+        # subtractdays = (present + absent + training_len) - devday
+        subtractdays = len(monthdates) - devday
+        actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
+        holder.append((soldier_data, datelist, present, absent, training, actual_percent))
+
+
         template_values = {
             'soldier': soldier_data,
             'soldier_id': soldier_id,
             'nextRank': nextRank,
             'auth_ic': auth_ic,
-            'auth_platoon': auth_platoon
+            'auth_platoon': auth_platoon,
+            'attendance_data' : holder,
+            'monthdays': monthdates,
 
         }
 
@@ -343,8 +401,10 @@ class DetailSoldier(webapp2.RequestHandler):
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'promote':
             soldier_id = self.request.get('soldier')
+            platoon = self.request.get('platoon')
             nextRank = self.request.get('rank')
             models.promote_soldier(soldier_id, nextRank)
+            memcache.delete(platoon)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'editsoldier':
             soldier_id = self.request.get('soldier')
