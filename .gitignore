@@ -5,3 +5,5 @@
 *.pyc
 .idea/
 checker.py
+cron.yaml
+
