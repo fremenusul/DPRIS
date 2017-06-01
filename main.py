@@ -372,11 +372,13 @@ class Attendance(webapp2.RequestHandler):
         #date object
         current_month = datetime.datetime.today()
         #get current month by name
-        long_month = current_month.strftime("%B")
+
         #build the number of days in a month
-        monthdates = [x for x in cal.itermonthdays(current_month.year, current_month.month) if x != 0]
-        #get current day fixed
         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+        long_month = today.strftime("%B")
+        monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
+        #get current day fixed
+
         #Print today
         todaydate = datetime.datetime.strftime(today, '%B %d')
         #Fetch soldier data
@@ -423,9 +425,11 @@ class Attendance(webapp2.RequestHandler):
             present = sum(p)
             absent = sum(a)
             training = sum(t)
+            training_len = len(t)
             devday = sum(dev)
             totalattend = present + training
-            subtractdays = len(monthdates) - devday
+            #subtractdays = (present + absent + training_len) - devday
+            subtractdays =  len(monthdates) - devday
             actual_percent = '{0:.0f}%'.format(totalattend/subtractdays * 100)
             holder.append((x, datelist, present, absent, training, actual_percent))
 
