@@ -444,9 +444,13 @@ class Attendance(webapp2.RequestHandler):
             training_len = len(t)
             devday = sum(dev)
             totalattend = present + training
-            # subtractdays = (present + absent + training_len) - devday
-            subtractdays = len(monthdates) - devday
-            actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
+            subtractdays = (present + absent + training_len) - devday
+            if subtractdays == 0:
+                actual_percent = '0'
+            else:
+                actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
+            logging.info(subtractdays)
+            #subtractdays = len(monthdates) - devday
             holder.append((x, datelist, present, absent, training, actual_percent))
 
         attend_query = models.AttendanceChecker.query(

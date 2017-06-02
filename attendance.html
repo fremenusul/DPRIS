@@ -227,30 +227,31 @@
         <tr class="notfirst">
             <th>
                 {% if x.rank == 'PV2' %}
-                <img src="img/PV2.png" />
-            {% elif x.rank == 'PFC' %}
-                <img src="img/PFC.png" />
-            {% elif x.rank == 'SPC' %}
-                <img src="img/SPC.png" />
-            {% elif x.rank == 'CPL' %}
-                <img src="img/CPL.png" />
-            {% elif x.rank == 'SGT' %}
-                <img src="img/SGT.png" />
-            {% elif x.rank == 'SSG' %}
-                <img src="img/SSG.png" />
-            {% elif x.rank == 'SFC' %}
-                <img src="img/SFC.png" />
-            {% elif x.rank == 'MSG' %}
-                <img src="img/MSG.png" />
-            {% elif x.rank == '1SG' %}
-                <img src="img/1SG.png" />
-            {% elif x.rank == 'SGM' %}
-                <img src="img/SGM.png" />
-            {% elif x.rank == '2LT' %}
-                <img src="img/2LT.png" />
-            {% endif %}
+                <img src="img/PV2.png"/>
+                {% elif x.rank == 'PFC' %}
+                <img src="img/PFC.png"/>
+                {% elif x.rank == 'SPC' %}
+                <img src="img/SPC.png"/>
+                {% elif x.rank == 'CPL' %}
+                <img src="img/CPL.png"/>
+                {% elif x.rank == 'SGT' %}
+                <img src="img/SGT.png"/>
+                {% elif x.rank == 'SSG' %}
+                <img src="img/SSG.png"/>
+                {% elif x.rank == 'SFC' %}
+                <img src="img/SFC.png"/>
+                {% elif x.rank == 'MSG' %}
+                <img src="img/MSG.png"/>
+                {% elif x.rank == '1SG' %}
+                <img src="img/1SG.png"/>
+                {% elif x.rank == 'SGM' %}
+                <img src="img/SGM.png"/>
+                {% elif x.rank == '2LT' %}
+                <img src="img/2LT.png"/>
+                {% endif %}
 
-                {{x.rank}}</th>
+                {{x.rank}}
+            </th>
             <th><a href="/detailsoldier?soldier={{x.key.urlsafe()}}">{{x.soldierName}}</a></th>
 
             <td>
@@ -295,29 +296,29 @@
     <tr class="notfirst">
         <th>
             {% if x[0].rank == 'PV2' %}
-                <img src="img/PV2.png" />
+            <img src="img/PV2.png"/>
             {% elif x[0].rank == 'PFC' %}
-                <img src="img/PFC.png" />
+            <img src="img/PFC.png"/>
             {% elif x[0].rank == 'SPC' %}
-                <img src="img/SPC.png" />
+            <img src="img/SPC.png"/>
             {% elif x[0].rank == 'CPL' %}
-                <img src="img/CPL.png" />
+            <img src="img/CPL.png"/>
             {% elif x[0].rank == 'SGT' %}
-                <img src="img/SGT.png" />
+            <img src="img/SGT.png"/>
             {% elif x[0].rank == 'SSG' %}
-                <img src="img/SSG.png" />
+            <img src="img/SSG.png"/>
             {% elif x[0].rank == 'SFC' %}
-                <img src="img/SFC.png" />
+            <img src="img/SFC.png"/>
             {% elif x[0].rank == 'MSG' %}
-                <img src="img/MSG.png" />
+            <img src="img/MSG.png"/>
             {% elif x[0].rank == '1SG' %}
-                <img src="img/1SG.png" />
+            <img src="img/1SG.png"/>
             {% elif x[0].rank == 'SGM' %}
-                <img src="img/SGM.png" />
+            <img src="img/SGM.png"/>
             {% elif x[0].rank == '2LT' %}
-                <img src="img/2LT.png" />
+            <img src="img/2LT.png"/>
             {% endif %}
-        {{x[0].rank}}
+            {{x[0].rank}}
 
         </th>
         <th><a href="/detailsoldier?soldier={{x[0].key.urlsafe()}}">{{x[0].soldierName}}</a></th>
@@ -339,77 +340,6 @@
     </tr>
     {% endfor %}
 
-    <!--
-
-        .navbar {
-                border-collapse: collapse;
-                border: 1px solid black;
-                background-color: #ffffff;
-                width: 50%;
-                margin-left: 25%;
-                margin-right: 25%;
-            }
-
-            .navtd {
-                height: 10px;
-            }
-
-            .navtr {
-
-            }
-        .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-
-    .dropdown-content a:hover {background-color: #f1f1f1}
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-        <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-        <div class="dropdown-content">
-          <a href="/soldier?platoon=TOC">Command Roster</a>
-          <a href="/soldier?platoon=nightmare">Platoon Roster</a>
-          <a href="/attendance?platoon=nightmare">Platoon Attendance</a>
-        </div>
-      </li>
-    </ul>-->
-
-    <!--<table border="1" class="navbar">
-        <tr>
-            <td class="navtd"><a href="/">Home Page</a></td>
-            <!--<td class="navtd"><a href="/attendance">Attendance</a></td
-            <td class="navtd"><a href="/soldier?platoon=TOC">TOC</a></td>
-            <td class="navtd"><a href="/soldier?platoon=nightmare">Nightmare</a><br>- <a
-                    href="/attendance?platoon=nightmare"> Attendance</a></td>
-            <td class="navtd"><a href="/soldier?platoon=viking">Viking</a><br>- <a href="/attendance?platoon=viking">
-                Attendance</a></td>
-            <td class="navtd"><a href="/soldier?platoon=guardian">Guardian</a><br>- <a href="/attendance?platoon=guardian">
-                Attendance</a></td>
-            <td class="navtd"><a href="/soldier?platoon=whiskey">Whiskey</a><br>- <a href="/attendance?platoon=whiskey">
-                Attendance</a></td>
-            <td class="navtd"><a href="/soldier?platoon=none">Recruits</a><br>- <a href="/attendance?platoon=none">
-                Attendance</a></td>
-        </tr>
-
-    </table>-->
 
 
 </table>
