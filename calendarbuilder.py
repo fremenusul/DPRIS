@@ -52,13 +52,12 @@ def buildcalendar(soldier_data):
     training = sum(t)
     training_len = len(t)
     devday = sum(dev)
-    totalattend = present + training
+    totalattend = present + training_len
     subtractdays = (present + absent + training_len) - devday
-    #subtractdays = len(monthdates) - devday
     if subtractdays == 0:
         actual_percent = '0'
     else:
-        actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
+        actual_percent = '{0:.0f}%'.format(float(totalattend) / subtractdays * 100)
     holder.append((soldier_data, datelist, present, absent, training, actual_percent))
     return holder, monthdates
 

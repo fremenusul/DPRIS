@@ -457,12 +457,12 @@ class Attendance(webapp2.RequestHandler):
             training = sum(t)
             training_len = len(t)
             devday = sum(dev)
-            totalattend = present + training
+            totalattend = present + training_len
             subtractdays = (present + absent + training_len) - devday
             if subtractdays == 0:
                 actual_percent = '0'
             else:
-                actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
+                actual_percent = '{0:.0f}%'.format(float(totalattend) / subtractdays * 100)
             #subtractdays = len(monthdates) - devday
             holder.append((x, datelist, present, absent, training, actual_percent))
 
