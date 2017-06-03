@@ -374,6 +374,15 @@ class DetailSoldier(webapp2.RequestHandler):
         elif self.request.get('action') == 'editattendance':
             soldier_id = self.request.get('soldier')
             platoon = self.request.get('platoon')
+            looper = calendarbuilder.monthbuilder()
+            for x in looper:
+                fieldname = self.request.get(str(x))
+                logging.info(fieldname)
+                attendvar = 'key'
+                attendvar += str(x)
+                attend_key = self.request.get(attendvar)
+                logging.info(attend_key)
+
 
 
 
@@ -381,8 +390,6 @@ class Attendance(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         platoon = self.request.get('platoon')
-
-
         # Build Cal object
         cal = calendar.Calendar()
         # date object
@@ -449,7 +456,6 @@ class Attendance(webapp2.RequestHandler):
                 actual_percent = '0'
             else:
                 actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
-            logging.info(subtractdays)
             #subtractdays = len(monthdates) - devday
             holder.append((x, datelist, present, absent, training, actual_percent))
 

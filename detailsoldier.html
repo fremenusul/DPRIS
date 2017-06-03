@@ -1339,10 +1339,10 @@
                 {% for y in x[1] %}
                 {% if y[0] == i %}
                 <input type="text" name="{{i}}" value="{{y[1]}}" size="1">
-                <input type="hidden" name="key" value="{{y[2]}}">
+                <input type="hidden" name="key{{i}}" value="{{y[2]}}">
                 {% else %}
                 <input type="text" name="{{i}}" size="1">
-                <input type="hidden" name="key" value="none">
+                <input type="hidden" name="key{{i}}" value="none">
                 {% endif %}
                 {% endfor %}
 

@@ -61,3 +61,10 @@ def buildcalendar(soldier_data):
         actual_percent = '{0:.0f}%'.format(totalattend / subtractdays * 100)
     holder.append((soldier_data, datelist, present, absent, training, actual_percent))
     return holder, monthdates
+
+def monthbuilder():
+    cal = calendar.Calendar()
+    current_month = datetime.datetime.today()
+    today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+    monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
+    return monthdates
