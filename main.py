@@ -373,25 +373,26 @@ class DetailSoldier(webapp2.RequestHandler):
             return self.redirect('/soldier?platoon=' + platoon)
         elif self.request.get('action') == 'editattendance':
             soldier_id = self.request.get('soldier')
-            platoon = self.request.get('platoon')
             looper = calendarbuilder.monthbuilder()
-            for x in looper:
-                fieldname = self.request.get(str(x))
-                #logging.info(fieldname)
-                attendvar = 'key'
-                attendvar += str(x)
-                attend_key = self.request.get(attendvar)
-                #logging.info(attend_key)
-                if fieldname is not '':
-                    #logging.info(fieldname)
-                    current_month = datetime.datetime.today()
-                    today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
-                    fixeddate = datetime.datetime(today.year, today.month, x)
-                    logging.info(fixeddate)
-                    models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
-
-
-
+            logging.info(looper)
+            # for x in looper:
+            #     logging.info(x)
+            #     fieldname = self.request.get(str(x))
+            #     if fieldname is not '':
+            #         logging.info(fieldname)
+            #         attendvar = 'key'
+            #         attendvar += str(x)
+            #         attend_key = self.request.get(attendvar)
+            #         logging.info(attend_key)
+            #         #logging.info(fieldname)
+            #         current_month = datetime.datetime.today()
+            #         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+            #         fixeddate = datetime.datetime(today.year, today.month, x)
+            #         logging.info(fixeddate)
+            #         models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
+            #         return self.redirect('/detailsoldier?soldier=' + soldier_id)
+            #     else:
+            #         return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
 
 class Attendance(webapp2.RequestHandler):
