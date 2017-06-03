@@ -382,12 +382,13 @@ class DetailSoldier(webapp2.RequestHandler):
                 attendvar += str(x)
                 attend_key = self.request.get(attendvar)
                 #logging.info(attend_key)
-                #if fieldname is not None:
-                #    current_month = datetime.datetime.today()
-                #    today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
-                #    fixeddate = datetime.datetime(today.year, today.month, x)
-                #    logging.info(fixeddate)
-                #    models.change_attendance('aghkZXZ-Tm9uZXIXCxIKQXR0ZW5kYW5jZRiAgICAgLqHCgw', fixeddate, fieldname, soldier_id)
+                if fieldname is not '':
+                    #logging.info(fieldname)
+                    current_month = datetime.datetime.today()
+                    today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+                    fixeddate = datetime.datetime(today.year, today.month, x)
+                    logging.info(fixeddate)
+                    models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
 
 
 
