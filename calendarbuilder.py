@@ -68,3 +68,4 @@ def monthbuilder():
     today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
     monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
     return monthdates
+

@@ -116,11 +116,12 @@ def update_soldier_from_rct(url_string):
     soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()
 
-def change_attendance(url_string, attenddate, attendvalue):
+def change_attendance(url_string, attenddate, attendvalue, soldier_key):
     attend_key = ndb.Key(urlsafe=url_string)
     attend = attend_key.get()
     attend.attendDate = attenddate
     attend.attendValue = attendvalue
+    attend.soldier_key = soldier_key
     attend.put()
 
 
