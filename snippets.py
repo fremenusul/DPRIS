@@ -1,5 +1,6 @@
 import datetime
 from datetime import date
+import ast
 
 from google.appengine.ext import ndb
 
@@ -43,3 +44,17 @@ def updatemodel3():
         soldier = soldier_key.get()
         soldier.badgeFreeFall = 0
         soldier.put()
+
+def fix_unicode(data):
+    if isinstance(data, unicode):
+        return data.encode('utf-8')
+    elif isinstance(data, dict):
+        data = dict((fix_unicode(k), fix_unicode(data[k])) for k in data)
+    elif isinstance(data, list):
+        for i in xrange(0, len(data)):
+            data[i] = fix_unicode(data[i])
+    return data
+
+def unicodestrip(uni):
+     x = ast.literal_eval(uni)
+     return x

@@ -121,6 +121,7 @@ class DetailSoldier(webapp2.RequestHandler):
         holder = calendarbuilder.buildcalendar(soldier_data)[0]
         monthdates = calendarbuilder.buildcalendar(soldier_data)[1]
 
+
         template_values = {
             'soldier': soldier_data,
             'soldier_id': soldier_id,
@@ -372,27 +373,48 @@ class DetailSoldier(webapp2.RequestHandler):
             models.delete_soldier(soldier_id)
             return self.redirect('/soldier?platoon=' + platoon)
         elif self.request.get('action') == 'editattendance':
+            attend_keys = snippets.fix_unicode(self.request.get_all('key'))
+            logging.info(attend_keys)
+            values = snippets.fix_unicode(self.request.get_all('value'))
+            logging.info(values)
+            datevalue = snippets.fix_unicode(self.request.get_all('date'))
+            logging.info(len(datevalue))
             soldier_id = self.request.get('soldier')
-            looper = calendarbuilder.monthbuilder()
-            logging.info(looper)
+
+            z = 0
+            for x in datevalue:
+                logging.info(z)
+                attend_key = attend_keys[z]
+                logging.info('Attend key' + attend_key)
+                fixeddate = datetime.datetime.strptime(datevalue[z], '%Y-%m-%d')
+                logging.info('Date' + str(fixeddate))
+                fieldname = values[z]
+                logging.info('Value' +fieldname)
+                z += 1
+
+                models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+
+
+            #soldier_id = self.request.get('soldier')
+            #looper = calendarbuilder.monthbuilder()
             # for x in looper:
-            #     logging.info(x)
-            #     fieldname = self.request.get(str(x))
-            #     if fieldname is not '':
-            #         logging.info(fieldname)
-            #         attendvar = 'key'
-            #         attendvar += str(x)
-            #         attend_key = self.request.get(attendvar)
-            #         logging.info(attend_key)
-            #         #logging.info(fieldname)
-            #         current_month = datetime.datetime.today()
-            #         today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
-            #         fixeddate = datetime.datetime(today.year, today.month, x)
-            #         logging.info(fixeddate)
-            #         models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
-            #         return self.redirect('/detailsoldier?soldier=' + soldier_id)
-            #     else:
-            #         return self.redirect('/detailsoldier?soldier=' + soldier_id)
+            #      fieldname = self.request.get(str(x))
+            #      logging.info(fieldname)
+            #      attendvar = 'key'
+            #      attendvar += str(x)
+            #      attend_key = self.request.get('key2')
+            #      logging.info(attend_key)
+            #      if fieldname is not '':
+            #          logging.info(fieldname)
+            #          current_month = datetime.datetime.today()
+            #          today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
+            #          fixeddate = datetime.datetime(today.year, today.month, x)
+            #          logging.info(fixeddate)
+            #          models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
+            #          return self.redirect('/detailsoldier?soldier=' + soldier_id)
+            #      else:
+            #          return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
 
 class Attendance(webapp2.RequestHandler):

@@ -31,6 +31,7 @@ def buildcalendar(soldier_data):
         if y.attendDate < startdate:
             continue
         day_num = int(datetime.datetime.strftime(y.attendDate, '%d'))
+
         value = y.attendValue
         if value == 'T':
             t.append(1)
@@ -45,7 +46,7 @@ def buildcalendar(soldier_data):
             a.append(1)
         elif value == 'P':
             p.append(1)
-        datelist.append((day_num, value, y.key.urlsafe()))
+        datelist.append((day_num, value, y.key.urlsafe(), y.attendDate))
 
     present = sum(p)
     absent = sum(a)
@@ -68,3 +69,7 @@ def monthbuilder():
     monthdates = [x for x in cal.itermonthdays(today.year, today.month) if x != 0]
     return monthdates
 
+def today():
+    current_day = datetime.datetime.today()
+    today = tz2ntz.tz2ntz(current_day, 'UTC', 'US/Pacific')
+    return today
