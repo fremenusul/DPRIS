@@ -16,6 +16,7 @@ import ranks
 import snippets
 import tz2ntz
 import calendarbuilder
+import cleanattendance
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -366,55 +367,34 @@ class DetailSoldier(webapp2.RequestHandler):
             joined_date = datetime.datetime.strptime(joined, '%Y-%m-%d')
             promote_date = datetime.datetime.strptime(lastpromote, '%Y-%m-%d')
             models.update_soldier(soldier_id, cgi.escape(soldiername), joined_date, platoon, promote_date)
+            memcache.delete(platoon, 0)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'deletesoldier':
             soldier_id = self.request.get('soldier')
             platoon = self.request.get('platoon')
             models.delete_soldier(soldier_id)
+            memcache.delete(platoon, 0)
             return self.redirect('/soldier?platoon=' + platoon)
         elif self.request.get('action') == 'editattendance':
             attend_keys = snippets.fix_unicode(self.request.get_all('key'))
-            logging.info(attend_keys)
+            #logging.info(attend_keys)
             values = snippets.fix_unicode(self.request.get_all('value'))
-            logging.info(values)
+            #logging.info(values)
             datevalue = snippets.fix_unicode(self.request.get_all('date'))
-            logging.info(len(datevalue))
+            #logging.info(len(datevalue))
             soldier_id = self.request.get('soldier')
-
             z = 0
             for x in datevalue:
-                logging.info(z)
+                #logging.info(z)
                 attend_key = attend_keys[z]
-                logging.info('Attend key' + attend_key)
+                #logging.info('Attend key' + attend_key)
                 fixeddate = datetime.datetime.strptime(datevalue[z], '%Y-%m-%d')
-                logging.info('Date' + str(fixeddate))
+                #logging.info('Date' + str(fixeddate))
                 fieldname = values[z]
-                logging.info('Value' +fieldname)
+                #logging.info('Value' +fieldname)
                 z += 1
-
                 models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
-
-
-            #soldier_id = self.request.get('soldier')
-            #looper = calendarbuilder.monthbuilder()
-            # for x in looper:
-            #      fieldname = self.request.get(str(x))
-            #      logging.info(fieldname)
-            #      attendvar = 'key'
-            #      attendvar += str(x)
-            #      attend_key = self.request.get('key2')
-            #      logging.info(attend_key)
-            #      if fieldname is not '':
-            #          logging.info(fieldname)
-            #          current_month = datetime.datetime.today()
-            #          today = tz2ntz.tz2ntz(current_month, 'UTC', 'US/Pacific')
-            #          fixeddate = datetime.datetime(today.year, today.month, x)
-            #          logging.info(fixeddate)
-            #          models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
-            #          return self.redirect('/detailsoldier?soldier=' + soldier_id)
-            #      else:
-            #          return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
 
 class Attendance(webapp2.RequestHandler):
@@ -476,6 +456,15 @@ class Attendance(webapp2.RequestHandler):
                 elif value == 'P':
                     p.append(1)
                 datelist.append((day_num, value))
+            #totaldates = []
+            #datetotals = []
+            # if datelist is not None:
+            #     for i in range(32):
+            #         newdates =  int(datelist[0][0])
+            #         logging.info(datelist[0][1])
+            #         if i == newdates:
+            #             datetotals.append(newdates)
+
             present = sum(p)
             absent = sum(a)
             training = sum(t)
@@ -487,7 +476,6 @@ class Attendance(webapp2.RequestHandler):
                 actual_percent = '0'
             else:
                 actual_percent = '{0:.0f}%'.format(float(totalattend) / subtractdays * 100)
-            #subtractdays = len(monthdates) - devday
             holder.append((x, datelist, present, absent, training, actual_percent))
 
         attend_query = models.AttendanceChecker.query(
@@ -550,12 +538,50 @@ class Attendance(webapp2.RequestHandler):
 class UpdateModel(webapp2.RequestHandler):
     def get(self):
         #snippets.updatemodel3()
+        cleanattendance.cleaner()
 
         template_values = {
 
         }
 
-        return self.redirect('/soldier?platoon=none')
+        #return self.redirect('/soldier?platoon=none')
+
+
+class AttendanceAdd(webapp2.RequestHandler):
+    def get(self):
+        s_query = models.SoldierData.query()
+        soldier_data = s_query.fetch()
+
+        user = users.get_current_user()
+        # Get user email and check to see if the person is authorized to make changes in checker.py
+        if user:
+            user_email = user.email()
+            auth = checker.isIC(user_email)
+        else:
+            auth = False, 'N/A'
+        if auth[0] is True:
+            auth_ic = True
+        else:
+            auth_ic = False
+
+        template_values = {
+            'soldiers': soldier_data,
+            'auth_ic': auth_ic,
+        }
+
+
+        template = jinja_environment.get_template('attendance_add.html')
+        self.response.out.write(template.render(template_values))
+
+    def post(self):
+        if self.request.get('action') == 'addattendance':
+            logging.info('I AM ADDING')
+            soldier_id = self.request.get('soldier')
+            newdate = datetime.datetime.strptime(self.request.get('date'), '%Y-%m-%d')
+            value = self.request.get('attendance')
+            models.add_attendance(soldier_id, value, newdate)
+        return self.redirect('/detailsoldier?soldier=' + soldier_id)
+
 
 
 app = webapp2.WSGIApplication([
@@ -564,4 +590,5 @@ app = webapp2.WSGIApplication([
     ('/detailsoldier', DetailSoldier),
     ('/attendance', Attendance),
     ('/model', UpdateModel),
+    ('/add', AttendanceAdd),
 ], debug=True)

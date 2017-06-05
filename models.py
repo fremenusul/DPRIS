@@ -89,6 +89,16 @@ def update_attendance(url_string, attendvalue):
     )
     e.put()
 
+
+def add_attendance(url_string, attendvalue, attenddate):
+    e = Attendance(
+        soldier_key=url_string,
+        attendDate=attenddate,
+        attendValue=attendvalue
+    )
+    e.put()
+
+
 def attendance_check(theplatoon):
     e = AttendanceChecker(
         platoon=theplatoon,
