@@ -481,10 +481,11 @@ class Attendance(webapp2.RequestHandler):
             models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
         attend_data = attend_query.fetch()
 
-        if len(attend_data) > 0:
-            platoon_attendance = True
-        else:
-            platoon_attendance = False
+        for i in attend_data:
+            if i.platoon == platoon:
+                platoon_attendance = True
+            else:
+                platoon_attendance = False
 
         if user:
             user_email = user.email()
@@ -526,10 +527,18 @@ class Attendance(webapp2.RequestHandler):
         num_entities = len(values) - 1
 
         x = 0
+        datetotal = []
         while x <= num_entities:
             models.update_attendance(soldiers[x].encode('utf-8'), values[x])
+            if values[x] == 'P':
+                datetotal.append(1)
+            elif values[x] == 'HP':
+                datetotal.append(1)
+            elif values[x] == 'T':
+                datetotal.append(1)
             x += 1
-        models.attendance_check(platoon)
+        total = sum(datetotal)
+        models.attendance_check(platoon, total)
         return self.redirect('/attendance?platoon=' + platoon)
 
 

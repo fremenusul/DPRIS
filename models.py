@@ -80,6 +80,7 @@ class AttendanceChecker(ndb.Model):
     datecheck = ndb.DateProperty()
     platoon = ndb.StringProperty()
     attend = ndb.IntegerProperty()
+    datetotal = ndb.IntegerProperty(indexed=False)
 
 def update_attendance(url_string, attendvalue):
     e = Attendance(
@@ -103,11 +104,12 @@ def delete_attendance(url_string):
     attend_key.delete()
 
 
-def attendance_check(theplatoon):
+def attendance_check(theplatoon, total):
     e = AttendanceChecker(
         platoon=theplatoon,
         datecheck=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
-        attend= 1
+        attend= 1,
+        datetotal = total
     )
     e.put()
 
