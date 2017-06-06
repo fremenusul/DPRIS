@@ -548,6 +548,8 @@ class UpdateModel(webapp2.RequestHandler):
 
 class AttendanceAdd(webapp2.RequestHandler):
     def get(self):
+        cleaner = cleanattendance.cleaner()
+
         s_query = models.SoldierData.query()
         soldier_data = s_query.fetch()
 
@@ -566,6 +568,7 @@ class AttendanceAdd(webapp2.RequestHandler):
         template_values = {
             'soldiers': soldier_data,
             'auth_ic': auth_ic,
+            'cleaner' : cleaner
         }
 
         template = jinja_environment.get_template('attendance_add.html')

@@ -98,6 +98,10 @@ def add_attendance(url_string, attendvalue, attenddate):
     )
     e.put()
 
+def delete_attendance(url_string):
+    attend_key = ndb.Key(urlsafe=url_string)
+    attend_key.delete()
+
 
 def attendance_check(theplatoon):
     e = AttendanceChecker(

@@ -31,5 +31,10 @@
 
 </form>
 {% endif %}
+<br><br>
+Soldier Keys in Attendance that do not exist anymore<br><br>
+{% for y in cleaner %}
+    <a href="/detailsoldier?soldier={{y}}">Soldier Check</a><br><br>
+{% endfor %}
 </body>
 </html>
