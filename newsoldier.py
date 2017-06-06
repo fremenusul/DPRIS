@@ -11,7 +11,7 @@ def addnewsoldier(soldiername):
         lastPromoted=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
         platoon='none',
         rank='RCT',
-        rankorder = 1,
+        rankorder=1,
         certRifle='None',
         certNCOPD1=0,
         certNCOPD2=0,
@@ -45,7 +45,7 @@ def addnewsoldier(soldiername):
         badgeArmor=0,
         badgeTransport=0,
         badgeCombatMedic=0,
-        badgeFreeFall =0,
+        badgeFreeFall=0,
         medArmedForces=0,
         medNationalDefense=0,
         medDSM=0,
@@ -64,15 +64,16 @@ def addnewsoldier(soldiername):
         medAFCombatAction=0,
         medCombatHelo=0,
         medDFC=0,
-        num_certs = 0,
-        num_ribbons = 0,
-        num_badges = 0,
-        num_medals = 0,
-        num_awards = 0
+        num_certs=0,
+        num_ribbons=0,
+        num_badges=0,
+        num_medals=0,
+        num_awards=0
     )
     e.put()
 
-#TODO(Shangpo): Remove this before live
+
+# TODO(Shangpo): Remove this before live
 def addnewsoldier_test(soldiername):
     e = models.SoldierData(
         soldierName=soldiername,
@@ -80,7 +81,7 @@ def addnewsoldier_test(soldiername):
         lastPromoted=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
         platoon='viking',
         rank='RCT',
-        rankorder = 1,
+        rankorder=1,
         certRifle='None',
         certNCOPD1=0,
         certNCOPD2=0,
@@ -132,12 +133,11 @@ def addnewsoldier_test(soldiername):
         medAFCombatAction=0,
         medCombatHelo=0,
         medDFC=0,
-        num_certs = 0,
-        num_ribbons = 0,
-        num_badges = 0,
-        num_medals = 0,
-        num_awards = 0
+        num_certs=0,
+        num_ribbons=0,
+        num_badges=0,
+        num_medals=0,
+        num_awards=0
 
     )
     e.put()
-

@@ -5,31 +5,31 @@
     <title>Attendance Add</title>
 </head>
 <body>
- {% if auth_ic == True  %}
- <form name="editattendance" action="/add?action=addattendance" method="post">
+{% if auth_ic == True %}
+<form name="editattendance" action="/add?action=addattendance" method="post">
 
 
-      <select name="soldier">
-          {% for i in soldiers %}
-                    <option value="{{i.key.urlsafe()}}">{{i.soldierName}}</option>
-          {% endfor %}
-                </select><br><br>
-      <input type="text" name="date"><br><i>Use YYYY-MM-DD</i><br><br>
-        <select name="attendance">
-                    <option value="A">Absent</option>
-                    <option value="P">Present</option>
-                    <option value="H">Pre-Op Only</option>
-                    <option value="HP">Pre-Op + Present</option>
-                    <option value="T">Training</option>
-                    <option value="/">Dev Day/RASP Day</option>
-                    <option value="-">LOA</option>
-                </select><br><br>
-      <input
-                        type="submit"
-                        value="Edit Attendance">
+    <select name="soldier">
+        {% for i in soldiers %}
+        <option value="{{i.key.urlsafe()}}">{{i.soldierName}}</option>
+        {% endfor %}
+    </select><br><br>
+    <input type="text" name="date"><br><i>Use YYYY-MM-DD</i><br><br>
+    <select name="attendance">
+        <option value="A">Absent</option>
+        <option value="P">Present</option>
+        <option value="H">Pre-Op Only</option>
+        <option value="HP">Pre-Op + Present</option>
+        <option value="T">Training</option>
+        <option value="/">Dev Day/RASP Day</option>
+        <option value="-">LOA</option>
+    </select><br><br>
+    <input
+            type="submit"
+            value="Edit Attendance">
 
 
- </form>
+</form>
 {% endif %}
 </body>
 </html>
