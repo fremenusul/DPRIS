@@ -481,11 +481,10 @@ class Attendance(webapp2.RequestHandler):
             models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
         attend_data = attend_query.fetch()
 
-        for i in attend_data:
-            if i.platoon == platoon:
-                platoon_attendance = True
-            else:
-                platoon_attendance = False
+        if len(attend_data) > 0:
+            platoon_attendance = True
+        else:
+            platoon_attendance = False
 
         if user:
             user_email = user.email()
