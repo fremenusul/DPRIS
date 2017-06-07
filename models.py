@@ -76,11 +76,13 @@ class Attendance(ndb.Model):
     attendValue = ndb.StringProperty(indexed=False)
     attendDate = ndb.DateProperty()
 
+
 class AttendanceChecker(ndb.Model):
     datecheck = ndb.DateProperty()
     platoon = ndb.StringProperty()
     attend = ndb.IntegerProperty()
     datetotal = ndb.IntegerProperty(indexed=False)
+
 
 def update_attendance(url_string, attendvalue):
     e = Attendance(
@@ -99,6 +101,7 @@ def add_attendance(url_string, attendvalue, attenddate):
     )
     e.put()
 
+
 def delete_attendance(url_string):
     attend_key = ndb.Key(urlsafe=url_string)
     attend_key.delete()
@@ -108,10 +111,19 @@ def attendance_check(theplatoon, total):
     e = AttendanceChecker(
         platoon=theplatoon,
         datecheck=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
-        attend= 1,
-        datetotal = total
+        attend=1,
+        datetotal=total
     )
     e.put()
+
+
+def update_total_attendance(url_string, op):
+    attend_key = ndb.Key(urlsafe=url_string)
+    attend = attend_key.get()
+    if op == 'sub':
+        attend.datetotal -= 1
+    else:
+        attend.datetotal += 1
 
 
 def get_entity_from_url_safe_key(url_string):
@@ -131,6 +143,7 @@ def update_soldier_from_rct(url_string):
     soldier.num_medals += 1
     soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()
+
 
 def change_attendance(url_string, attenddate, attendvalue, soldier_key):
     attend_key = ndb.Key(urlsafe=url_string)
@@ -535,6 +548,7 @@ def update_medSilver(url_string):
     soldier.medSilver = 1
     soldier.num_medals += 1
     soldier.put()
+
 
 def update_certRotor(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)

@@ -75,7 +75,6 @@ class SoldierPage(webapp2.RequestHandler):
                     -models.SoldierData.rankorder, models.SoldierData.soldierName)
                 soldier_data = s_query.fetch()
                 memcache.set(platoon, soldier_data, 30)
-                logging.info('No Cache')
 
         template_values = {
             'soldiers': soldier_data,
@@ -375,6 +374,7 @@ class DetailSoldier(webapp2.RequestHandler):
             memcache.delete(platoon, 0)
             return self.redirect('/soldier?platoon=' + platoon)
         elif self.request.get('action') == 'editattendance':
+            platoon = self.request.get('platoon')
             attend_keys = snippets.fix_unicode(self.request.get_all('key'))
             # logging.info(attend_keys)
             values = snippets.fix_unicode(self.request.get_all('value'))
@@ -393,6 +393,8 @@ class DetailSoldier(webapp2.RequestHandler):
                 # logging.info('Value' +fieldname)
                 z += 1
                 models.change_attendance(attend_key, fixeddate, fieldname, soldier_id)
+            # TODO(Shangpo) Run a checker here to handle any changes to totals.
+
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
 
@@ -477,9 +479,17 @@ class Attendance(webapp2.RequestHandler):
                 actual_percent = '{0:.0f}%'.format(float(totalattend) / subtractdays * 100)
             holder.append((x, datelist, present, absent, training, actual_percent))
 
+        # Check to see if the platoon already updated their attendance for that day
         attend_query = models.AttendanceChecker.query(
             models.AttendanceChecker.platoon == platoon, models.AttendanceChecker.datecheck == today)
         attend_data = attend_query.fetch()
+
+        # Get date totals
+        # TODO(Shangpo) Fix this to just get the current month
+        attend_query2 = models.AttendanceChecker.query(
+            models.AttendanceChecker.platoon == platoon)
+        attend_data2 = attend_query2.fetch()
+        # logging.info(attend_data2)
 
         if len(attend_data) > 0:
             platoon_attendance = True
@@ -576,7 +586,7 @@ class AttendanceAdd(webapp2.RequestHandler):
         template_values = {
             'soldiers': soldier_data,
             'auth_ic': auth_ic,
-            'cleaner' : cleaner
+            'cleaner': cleaner
         }
 
         template = jinja_environment.get_template('attendance_add.html')
@@ -585,7 +595,6 @@ class AttendanceAdd(webapp2.RequestHandler):
     def post(self):
         soldier_id = self.request.get('soldier')
         if self.request.get('action') == 'addattendance':
-            logging.info('I AM ADDING')
             newdate = datetime.datetime.strptime(self.request.get('date'), '%Y-%m-%d')
             value = self.request.get('attendance')
             models.add_attendance(soldier_id, value, newdate)

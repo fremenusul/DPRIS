@@ -1373,7 +1373,9 @@
         {% endfor %}
 </table>
 {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
+    <input type="hidden" name="platoon" value="{{soldier.platoon}}">
 <input type="submit" value="Change Attendance">
+
 </form>
 <p>
 <form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
