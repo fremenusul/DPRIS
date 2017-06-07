@@ -478,7 +478,7 @@ class Attendance(webapp2.RequestHandler):
             holder.append((x, datelist, present, absent, training, actual_percent))
 
         attend_query = models.AttendanceChecker.query(
-            models.AttendanceChecker.platoon == platoon and models.AttendanceChecker.datecheck == today)
+            models.AttendanceChecker.platoon == platoon, models.AttendanceChecker.datecheck == today)
         attend_data = attend_query.fetch()
 
         if len(attend_data) > 0:
