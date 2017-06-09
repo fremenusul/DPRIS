@@ -489,7 +489,15 @@ class Attendance(webapp2.RequestHandler):
         attend_query2 = models.AttendanceChecker.query(
             models.AttendanceChecker.platoon == platoon)
         attend_data2 = attend_query2.fetch()
-        # logging.info(attend_data2)
+
+        totaldate = []
+        for z in attend_data2:
+            if z.datecheck < startdate:
+                continue
+            day_num = int(datetime.datetime.strftime(z.datecheck, '%d'))
+            total = z.datetotal
+            totaldate.append((day_num, total))
+            logging.info(totaldate)
 
         if len(attend_data) > 0:
             platoon_attendance = True
@@ -517,7 +525,8 @@ class Attendance(webapp2.RequestHandler):
             'auth_ic': auth_ic,
             'auth_platoon': auth_platoon,
             'attendance_data': holder,
-            'platoon_attendance': platoon_attendance
+            'platoon_attendance': platoon_attendance,
+            'totals' : totaldate
         }
 
         template = jinja_environment.get_template('attendance.html')

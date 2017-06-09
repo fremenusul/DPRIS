@@ -344,7 +344,11 @@
     <th> </th>
     {% for i in monthdays %}
         <td>
-           X
+           {% for z in totals %}
+            {% if z[0] == i %}
+            {{z[1]}}
+            {% endif %}
+            {% endfor %}
 
         </td>
         {% endfor %}
