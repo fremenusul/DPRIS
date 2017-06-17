@@ -340,11 +340,11 @@
     </tr>
     {% endfor %}
     <tr class="notfirst">
-     <th> </th>
-    <th> </th>
-    {% for i in monthdays %}
+        <th></th>
+        <th></th>
+        {% for i in monthdays %}
         <td>
-           {% for z in totals %}
+            {% for z in totals %}
             {% if z[0] == i %}
             {{z[1]}}
             {% endif %}
