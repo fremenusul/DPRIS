@@ -23,6 +23,11 @@ handlers:
   static_dir: css
   mime_type: "text/css"
 
+- url: /xml/(.*\.xml)
+  mime_type: application/xml
+  static_files: static/\1
+  upload: static/(.*\.xml)
+
 - url: /favicon.ico
   static_files: favicon.ico
   upload: favicon.ico
