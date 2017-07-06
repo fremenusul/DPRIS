@@ -609,6 +609,16 @@ class AttendanceAdd(webapp2.RequestHandler):
             models.add_attendance(soldier_id, value, newdate)
         return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
+class VikingXML(webapp2.RequestHandler):
+    def get(self):
+        # Find current user
+
+        template_values = {
+
+        }
+
+        template = jinja_environment.get_template('viking.xml')
+        self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -617,4 +627,5 @@ app = webapp2.WSGIApplication([
     ('/attendance', Attendance),
     ('/model', UpdateModel),
     ('/add', AttendanceAdd),
+    ('/viking', VikingXML),
 ], debug=True)
