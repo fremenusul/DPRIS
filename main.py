@@ -636,6 +636,30 @@ class VikingXML(webapp2.RequestHandler):
         bottomxml = '</squad>'
         self.response.write(bottomxml)
 
+class NightmareXML(webapp2.RequestHandler):
+    def get(self):
+
+        s_query = models.SoldierData.query(models.SoldierData.platoon == 'nightmare').order(
+            -models.SoldierData.rankorder, models.SoldierData.soldierName)
+        soldier_data = s_query.fetch()
+
+        self.response.headers['Content-Type'] = "application/xml"
+        headerxml = """<?xml version="1.0"?>
+        <!DOCTYPE squad SYSTEM "squad.dtd">
+        <?xml-stylesheet href="squad.xsl" type="text/xsl"?>
+        <squad nick="1st">
+        <name>1st Platoon "Nightmare"</name>
+        <email>N/A</email>
+        <web>http://21starmyrangers.enjin.com/</web>
+        <picture>21stLogo_Nightmare.paa</picture>
+        <title>1st Platoon "Nightmare"</title> \n"""
+        self.response.write(headerxml)
+        for x in soldier_data:
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            self.response.write(primexml)
+        bottomxml = '</squad>'
+        self.response.write(bottomxml)
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -645,4 +669,5 @@ app = webapp2.WSGIApplication([
     ('/model', UpdateModel),
     ('/add', AttendanceAdd),
     ('/viking/squad.xml', VikingXML),
+    ('/nightmare/squad.xml', NightmareXML),
 ], debug=True)

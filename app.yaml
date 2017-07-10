@@ -34,7 +34,37 @@ handlers:
   upload: viking/(.*\.xsl)
   mime_type: text/html
 
+- url: /viking/(.*\.png)
+  static_files: viking/\1
+  upload: viking/(.*\.png)
+  mime_type: "image/png"
+
 - url: /viking/(.*\.css)
+  static_files: css/\1
+  upload: css/(.*\.css)
+  mime_type: "text/css"
+
+- url: /nightmare/(.*\.paa)
+  static_files: nightmare/\1
+  upload: nightmare/.*\.paa
+  mime_type: application/octet-stream
+
+- url: /nightmare/(.*\.dtd)
+  static_files: nightmare/\1
+  upload: nightmare/(.*\.dtd)
+  mime_type: application/xml-dtd
+
+- url: /nightmare/(.*\.xsl)
+  static_files: nightmare/\1
+  upload: nightmare/(.*\.xsl)
+  mime_type: text/html
+
+- url: /nightmare/(.*\.png)
+  static_files: nightmare/\1
+  upload: nightmare/(.*\.png)
+  mime_type: "image/png"
+
+- url: /nightmare/(.*\.css)
   static_files: css/\1
   upload: css/(.*\.css)
   mime_type: "text/css"
