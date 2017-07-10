@@ -10,6 +10,7 @@ class SoldierData(ndb.Model):
     soldierName = ndb.StringProperty()
     platoon = ndb.StringProperty()
     rank = ndb.StringProperty()
+    xmlid = ndb.IntegerProperty()
     rankorder = ndb.IntegerProperty()
     certRifle = ndb.StringProperty(indexed=False)
     certNCOPD1 = ndb.IntegerProperty(indexed=False)
@@ -159,13 +160,14 @@ def delete_soldier(url_string):
     soldier_key.delete()
 
 
-def update_soldier(url_string, name, joined, platoon, lastpromoted):
+def update_soldier(url_string, name, joined, platoon, lastpromoted, xmlid):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
     soldier.soldierName = name
     soldier.addedDate = joined
     soldier.platoon = platoon
     soldier.lastPromoted = lastpromoted
+    soldier.xmlid = xmlid
     soldier.put()
 
 
@@ -181,6 +183,13 @@ def promote_soldier(url_string, rank):
     soldier.rank = rank
     soldier.rankorder += 1
     soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
+    soldier.put()
+
+
+def updateXMLID(url_string, xmlid):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.xmlid = xmlid
     soldier.put()
 
 

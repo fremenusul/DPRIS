@@ -362,9 +362,11 @@ class DetailSoldier(webapp2.RequestHandler):
             joined = self.request.get('joined')
             platoon = self.request.get('platoon')
             lastpromote = self.request.get('lastpromote')
+            xmlidform = self.request.get('xmlid')
+            xmlid = long(xmlidform)
             joined_date = datetime.datetime.strptime(joined, '%Y-%m-%d')
             promote_date = datetime.datetime.strptime(lastpromote, '%Y-%m-%d')
-            models.update_soldier(soldier_id, cgi.escape(soldiername), joined_date, platoon, promote_date)
+            models.update_soldier(soldier_id, cgi.escape(soldiername), joined_date, platoon, promote_date, xmlid)
             memcache.delete(platoon, 0)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'deletesoldier':
@@ -526,7 +528,7 @@ class Attendance(webapp2.RequestHandler):
             'auth_platoon': auth_platoon,
             'attendance_data': holder,
             'platoon_attendance': platoon_attendance,
-            'totals' : totaldate
+            'totals': totaldate
         }
 
         template = jinja_environment.get_template('attendance.html')
@@ -609,16 +611,30 @@ class AttendanceAdd(webapp2.RequestHandler):
             models.add_attendance(soldier_id, value, newdate)
         return self.redirect('/detailsoldier?soldier=' + soldier_id)
 
+
 class VikingXML(webapp2.RequestHandler):
     def get(self):
-        # Find current user
 
-        template_values = {
+        s_query = models.SoldierData.query(models.SoldierData.platoon == 'viking').order(
+            -models.SoldierData.rankorder, models.SoldierData.soldierName)
+        soldier_data = s_query.fetch()
 
-        }
+        self.response.headers['Content-Type'] = 'text/xml'
+        headerxml = """<?xml version="1.0"?>
+        <!DOCTYPE squad SYSTEM "squad.dtd">
+        <?xml-stylesheet href="squad.xsl" type="text/xsl"?>
+        <name>2nd Platoon "Viking"</name>
+        <email>N/A</email>
+        <web>http://21starmyrangers.enjin.com/</web>
+        <picture>21stLogo_VikingPatch.paa</picture>
+        <title>2nd Platoon "Viking"</title>"""
+        self.response.write(headerxml)
+        for x in soldier_data:
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '">'
+            self.response.write(primexml)
+        bottomxml = '<name></name><email></email><icq></icq><remark></remark></member></squad>'
+        self.response.write(bottomxml)
 
-        template = jinja_environment.get_template('viking.xml')
-        self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),

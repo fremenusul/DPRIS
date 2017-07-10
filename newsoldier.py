@@ -11,6 +11,7 @@ def addnewsoldier(soldiername):
         lastPromoted=tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific'),
         platoon='none',
         rank='RCT',
+        xmlid=0,
         rankorder=1,
         certRifle='None',
         certNCOPD1=0,

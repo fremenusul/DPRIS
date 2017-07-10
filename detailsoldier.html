@@ -272,6 +272,13 @@
                 {{soldier.platoon | title}}
                 {% endif %}
                 <hr/>
+                <b>XML Member ID</b>
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
+                <input type="text" name="xmlid" value="{{soldier.xmlid}}"><br>
+                {% else %}
+                {{solder.xmlid}}
+                {% endif %}
+                <hr/>
                 <b>Last Promoted:</b>
                 {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
                 <input type="text" name="lastpromote" value="{{soldier.lastPromoted}}"><br>
