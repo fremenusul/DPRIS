@@ -565,8 +565,8 @@ class Attendance(webapp2.RequestHandler):
 # REMOVE BEFORE LIVE
 class UpdateModel(webapp2.RequestHandler):
     def get(self):
-        # snippets.updatemodel3()
-        cleanattendance.cleaner()
+        snippets.updatemodel4()
+        #cleanattendance.cleaner()
 
         template_values = {
 
@@ -619,20 +619,21 @@ class VikingXML(webapp2.RequestHandler):
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
 
-        self.response.headers['Content-Type'] = 'text/xml'
+        self.response.headers['Content-Type'] = "application/xml"
         headerxml = """<?xml version="1.0"?>
         <!DOCTYPE squad SYSTEM "squad.dtd">
         <?xml-stylesheet href="squad.xsl" type="text/xsl"?>
+        <squad nick="2nd">
         <name>2nd Platoon "Viking"</name>
         <email>N/A</email>
         <web>http://21starmyrangers.enjin.com/</web>
         <picture>21stLogo_VikingPatch.paa</picture>
-        <title>2nd Platoon "Viking"</title>"""
+        <title>2nd Platoon "Viking"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '">'
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
-        bottomxml = '<name></name><email></email><icq></icq><remark></remark></member></squad>'
+        bottomxml = '</squad>'
         self.response.write(bottomxml)
 
 
@@ -643,5 +644,5 @@ app = webapp2.WSGIApplication([
     ('/attendance', Attendance),
     ('/model', UpdateModel),
     ('/add', AttendanceAdd),
-    ('/viking', VikingXML),
+    ('/viking/squad.xml', VikingXML),
 ], debug=True)

@@ -48,6 +48,16 @@ def updatemodel3():
         soldier.badgeFreeFall = 0
         soldier.put()
 
+def updatemodel4():
+    s_query = models.SoldierData.query()
+    soldier_data = s_query.fetch()
+
+    for x in soldier_data:
+        soldier_key = ndb.Key(urlsafe=x.key.urlsafe())
+        soldier = soldier_key.get()
+        soldier.xmlid = 0
+        soldier.put()
+
 
 def fix_unicode(data):
     if isinstance(data, unicode):

@@ -19,8 +19,24 @@ handlers:
   upload: img/.*\.jpg
   mime_type: "image/jpeg"
 
-- url: /css
-  static_dir: css
+- url: /viking/(.*\.paa)
+  static_files: viking/\1
+  upload: viking/.*\.paa
+  mime_type: application/octet-stream
+
+- url: /viking/(.*\.dtd)
+  static_files: viking/\1
+  upload: viking/(.*\.dtd)
+  mime_type: application/xml-dtd
+
+- url: /viking/(.*\.xsl)
+  static_files: viking/\1
+  upload: viking/(.*\.xsl)
+  mime_type: text/html
+
+- url: /viking/(.*\.css)
+  static_files: css/\1
+  upload: css/(.*\.css)
   mime_type: "text/css"
 
 - url: /favicon.ico
