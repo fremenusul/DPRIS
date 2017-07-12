@@ -69,6 +69,81 @@ handlers:
   upload: css/(.*\.css)
   mime_type: "text/css"
 
+- url: /guardian/(.*\.paa)
+  static_files: guardian/\1
+  upload: guardian/.*\.paa
+  mime_type: application/octet-stream
+
+- url: /guardian/(.*\.dtd)
+  static_files: guardian/\1
+  upload: guardian/(.*\.dtd)
+  mime_type: application/xml-dtd
+
+- url: /guardian/(.*\.xsl)
+  static_files: guardian/\1
+  upload: guardian/(.*\.xsl)
+  mime_type: text/html
+
+- url: /guardian/(.*\.png)
+  static_files: guardian/\1
+  upload: guardian/(.*\.png)
+  mime_type: "image/png"
+
+- url: /guardian/(.*\.css)
+  static_files: css/\1
+  upload: css/(.*\.css)
+  mime_type: "text/css"
+
+- url: /whiskey/(.*\.paa)
+  static_files: whiskey/\1
+  upload: whiskey/.*\.paa
+  mime_type: application/octet-stream
+
+- url: /whiskey/(.*\.dtd)
+  static_files: whiskey/\1
+  upload: whiskey/(.*\.dtd)
+  mime_type: application/xml-dtd
+
+- url: /whiskey/(.*\.xsl)
+  static_files: whiskey/\1
+  upload: whiskey/(.*\.xsl)
+  mime_type: text/html
+
+- url: /whiskey/(.*\.png)
+  static_files: whiskey/\1
+  upload: whiskey/(.*\.png)
+  mime_type: "image/png"
+
+- url: /whiskey/(.*\.css)
+  static_files: css/\1
+  upload: css/(.*\.css)
+  mime_type: "text/css"
+
+- url: /toc/(.*\.paa)
+  static_files: toc/\1
+  upload: toc/.*\.paa
+  mime_type: application/octet-stream
+
+- url: /toc/(.*\.dtd)
+  static_files: toc/\1
+  upload: toc/(.*\.dtd)
+  mime_type: application/xml-dtd
+
+- url: /toc/(.*\.xsl)
+  static_files: toc/\1
+  upload: toc/(.*\.xsl)
+  mime_type: text/html
+
+- url: /toc/(.*\.png)
+  static_files: toc/\1
+  upload: toc/(.*\.png)
+  mime_type: "image/png"
+
+- url: /toc/(.*\.css)
+  static_files: css/\1
+  upload: css/(.*\.css)
+  mime_type: "text/css"
+
 - url: /favicon.ico
   static_files: favicon.ico
   upload: favicon.ico
