@@ -631,7 +631,7 @@ class VikingXML(webapp2.RequestHandler):
         <title>2nd Platoon "Viking"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
@@ -655,7 +655,7 @@ class NightmareXML(webapp2.RequestHandler):
         <title>1st Platoon "Nightmare"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
@@ -679,7 +679,7 @@ class GuardianXML(webapp2.RequestHandler):
         <title>3rd Platoon "Guardian"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
@@ -703,7 +703,7 @@ class WhiskeyXML(webapp2.RequestHandler):
         <title>Airteam</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
@@ -727,7 +727,7 @@ class TOCXML(webapp2.RequestHandler):
         <title>TOC</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>N/A</name>N/A<email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
