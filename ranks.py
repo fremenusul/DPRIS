@@ -27,3 +27,49 @@ def rankBuilder(rank):
         return 'MAJ'
     elif rank == 'MAJ':
         return 'LTC'
+
+def rankBuilderW(rank):
+    if rank == 'PV2':
+        return 'WOC'
+    elif rank == 'WOC':
+        return 'WO1'
+    elif rank == 'WO1':
+        return 'WO2'
+    elif rank == 'WO2':
+        return 'WO3'
+    elif rank == 'WO3':
+        return 'WO4'
+    elif rank == 'WO4':
+        return 'WO5'
+
+def rankDemote(rank):
+    if rank == 'LTC':
+        return 'MAJ'
+    elif rank == 'MAJ':
+        return 'CPT'
+    elif rank == 'CPT':
+        return '1LT'
+    elif rank == '1LT':
+        return '2LT'
+    elif rank == '2LT':
+        return 'SGM'
+    elif rank == 'SGM':
+        return '1SG'
+    elif rank == '1SGT':
+        return 'MSG'
+    elif rank == 'MSG':
+        return 'SFC'
+    elif rank == 'SFC':
+        return 'SSG'
+    elif rank == 'SSG':
+        return 'SGT'
+    elif rank == 'SGT':
+        return 'CPL'
+    elif rank == 'CPL':
+        return 'SPC'
+    elif rank == 'SPC':
+        return 'PFC'
+    elif rank == 'PFC':
+        return 'PV2'
+    elif rank == 'PV2':
+        return 'RCT'

@@ -186,6 +186,15 @@ def promote_soldier(url_string, rank):
     soldier.put()
 
 
+def demote_soldier(url_string, rank):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.rank = rank
+    soldier.rankorder -= 1
+    soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
+    soldier.put()
+
+
 def updateXMLID(url_string, xmlid):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()

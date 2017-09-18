@@ -116,7 +116,11 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_id = self.request.get('soldier')
         soldier_key = models.get_entity_from_url_safe_key(soldier_id)
         soldier_data = soldier_key
-        nextRank = ranks.rankBuilder(soldier_data.rank)
+        if soldier_data.platoon == 'whiskey':
+            nextRank = ranks.rankBuilderW(soldier_data.rank)
+        else:
+            nextRank = ranks.rankBuilder(soldier_data.rank)
+        demote = ranks.rankDemote(soldier_data.rank)
 
         holder = calendarbuilder.buildcalendar(soldier_data)[0]
         monthdates = calendarbuilder.buildcalendar(soldier_data)[1]
@@ -129,6 +133,7 @@ class DetailSoldier(webapp2.RequestHandler):
             'auth_platoon': auth_platoon,
             'attendance_data': holder,
             'monthdays': monthdates,
+            'prevRank': demote,
 
         }
 
@@ -354,6 +359,13 @@ class DetailSoldier(webapp2.RequestHandler):
             platoon = self.request.get('platoon')
             nextRank = self.request.get('rank')
             models.promote_soldier(soldier_id, nextRank)
+            memcache.delete(platoon)
+            return self.redirect('/detailsoldier?soldier=' + soldier_id)
+        elif self.request.get('action') == 'demote':
+            soldier_id = self.request.get('soldier')
+            platoon = self.request.get('platoon')
+            prevRank = self.request.get('rank')
+            models.demote_soldier(soldier_id, prevRank)
             memcache.delete(platoon)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)
         elif self.request.get('action') == 'editsoldier':

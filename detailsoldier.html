@@ -242,6 +242,24 @@
                 <img src="img/2LT.png"/>
                 {% elif soldier.rank == '1LT' %}
                 <img src="img/1LT.png" />
+                {% elif soldier.rank == 'CPT' %}
+                <img src="img/CPT.png" />
+                {% elif soldier.rank == 'MAJ' %}
+                <img src="img/MAJ.png" />
+                {% elif soldier.rank == 'LTC' %}
+                <img src="img/LTC.png" />
+                {% elif soldier.rank == 'WOC' %}
+                <img src="img/WOC.png" />
+                {% elif soldier.rank == 'WO1' %}
+                <img src="img/WO1.png" />
+                {% elif soldier.rank == 'WO2' %}
+                <img src="img/WO2.png" />
+                {% elif soldier.rank == 'WO3' %}
+                <img src="img/WO3.png" />
+                {% elif soldier.rank == 'WO4' %}
+                <img src="img/WO4.png" />
+                {% elif soldier.rank == 'WO5' %}
+                <img src="img/WO5.png" />
                 {% endif %}
                 {{soldier.rank}}<br>
                 <hr/>
@@ -304,7 +322,12 @@
             <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}"
                   method="post">
                 <input type="submit" value="Promote to {{nextRank}}"></form>
-            {% endif %}</p>
+            <p> <form name="demote" action="/detailsoldier?soldier={{soldier_id}}&action=demote&rank={{prevRank}}"
+                  method="post">
+                <input type="submit" value="Demote to {{prevRank}}"></form>
+            </p>
+            {% endif %}
+
             {% endif %}
         </td>
     </tr>
