@@ -206,11 +206,11 @@
 <table class="soldiertable">
     <tr>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             <form name="editsoldier" action="/detailsoldier?soldier={{soldier_id}}&action=editsoldier" method="post">
                 {% endif %}
                 <b>Soldier Name:</b>
-                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
                 <input type="text" name="name" value="{{soldier.soldierName}}"><br>
                 {% else %}
                 {{soldier.soldierName}}
@@ -264,14 +264,14 @@
                 {{soldier.rank}}<br>
                 <hr/>
                 <b>Joined:</b>
-                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
                 <input type="text" name="joined" value="{{soldier.addedDate}}"><br><i>Use YYYY-MM-DD</i><br>
                 {% else %}
                 {{soldier.addedDate}}
                 {% endif %}
                 <hr/>
                 <b>Platoon:</b>
-                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
                 <select name="platoon">
                     <option value="nightmare" {% if soldier.platoon==
                     "nightmare" %} selected{% endif %}>Nightmare</option>
@@ -293,19 +293,19 @@
                 {% endif %}
                 <hr/>
                 <b>XML Member ID</b>
-                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
                 <input type="text" name="xmlid" value="{{soldier.xmlid}}"><br>
                 {% else %}
                 {{soldier.xmlid}}
                 {% endif %}
                 <hr/>
                 <b>Last Promoted:</b>
-                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
                 <input type="text" name="lastpromote" value="{{soldier.lastPromoted}}"><br>
                 {% else %}
                 {{soldier.lastPromoted}}<br>
                 {% endif %}
-                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+                {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
                 <input
                         type="submit"
                         value="Edit Soldier">
@@ -358,7 +358,7 @@
     <tr>
         <td>{{soldier.num_certs}}</td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certRifle == "Expert" %}
             <b>{{soldier.certRifle}}</b>
             {% else %}
@@ -382,7 +382,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certNCOPD1 == 0 %}
             No
             <form name="certNCOPD1" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD1" method="post">
@@ -402,7 +402,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certNCOPD2 == 0 %}
             No
             <form name="certNCOPD2" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD2" method="post">
@@ -420,7 +420,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certNCOPD3 == 0 %}
             No
             <form name="certNCOPD3" action="/detailsoldier?soldier={{soldier_id}}&action=certNCOPD3" method="post">
@@ -437,7 +437,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certAirAssult == 0 %}
             No
             <form name="certAirAssult" action="/detailsoldier?soldier={{soldier_id}}&action=certAirAssult"
@@ -455,7 +455,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certSapper == 0 %}
             No
             <form name="certSapper" action="/detailsoldier?soldier={{soldier_id}}&action=certSapper" method="post">
@@ -472,7 +472,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certRanger == 0 %}
             No
             <form name="certRanger" action="/detailsoldier?soldier={{soldier_id}}&action=certRanger" method="post">
@@ -489,7 +489,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certPathfinder == 0 %}
             No
             <form name="certPathfinder" action="/detailsoldier?soldier={{soldier_id}}&action=certPathfinder"
@@ -507,7 +507,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certFO == 0 %}
             No
             <form name="certFO" action="/detailsoldier?soldier={{soldier_id}}&action=certFO" method="post">
@@ -524,7 +524,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certFDC == 0 %}
             No
             <form name="certFDC" action="/detailsoldier?soldier={{soldier_id}}&action=certFDC" method="post">
@@ -541,7 +541,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certJFO == 0 %}
             No
             <form name="certJFO" action="/detailsoldier?soldier={{soldier_id}}&action=certJFO" method="post">
@@ -558,7 +558,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certDMR == 0 %}
             No
             <form name="certDMR" action="/detailsoldier?soldier={{soldier_id}}&action=certDMR" method="post">
@@ -575,7 +575,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certRSLC == 0 %}
             No
             <form name="certRSLC" action="/detailsoldier?soldier={{soldier_id}}&action=certRSLC" method="post">
@@ -592,7 +592,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certRecruit == 0 %}
             No
             <form name="certRecruit" action="/detailsoldier?soldier={{soldier_id}}&action=certRecruit" method="post">
@@ -627,7 +627,7 @@
     <tr>
         <td>{{soldier.num_ribbons}}</td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ribPistol == 0 %}
             No
             <form name="ribPistol" action="/detailsoldier?soldier={{soldier_id}}&action=ribPistol" method="post">
@@ -644,7 +644,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ribStaff == 0 %}
             No
             <form name="ribStaff" action="/detailsoldier?soldier={{soldier_id}}&action=ribStaff" method="post">
@@ -661,7 +661,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ribCommand == 0 %}
             No
             <form name="ribCommand" action="/detailsoldier?soldier={{soldier_id}}&action=ribCommand" method="post">
@@ -678,7 +678,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ribAT == 0 %}
             No
             <form name="ribAT" action="/detailsoldier?soldier={{soldier_id}}&action=ribAT" method="post">
@@ -695,7 +695,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ribGround == 0 %}
             No
             <form name="ribGround" action="/detailsoldier?soldier={{soldier_id}}&action=ribGround" method="post">
@@ -712,7 +712,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ribDM == 0 %}
             No
             <form name="ribDM" action="/detailsoldier?soldier={{soldier_id}}&action=ribDM" method="post">
@@ -729,7 +729,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.ripSupport == 0 %}
             No
             <form name="ripSupport" action="/detailsoldier?soldier={{soldier_id}}&action=ripSupport" method="post">
@@ -767,7 +767,7 @@
     <tr>
         <td>{{soldier.num_badges}}</td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeJump == 0 %}
             No
             <form name="badgeJump" action="/detailsoldier?soldier={{soldier_id}}&action=badgeJump" method="post">
@@ -784,7 +784,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeCIB == 0 %}
             No
             <form name="badgeCIB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCIB" method="post">
@@ -801,7 +801,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeIB == 0 %}
             No
             <form name="badgeIB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeIB" method="post">
@@ -818,7 +818,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeMedic == 0 %}
             No
             <form name="badgeMedic" action="/detailsoldier?soldier={{soldier_id}}&action=badgeMedic" method="post">
@@ -835,7 +835,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeExplosive == 0 %}
             No
             <form name="badgeExplosive" action="/detailsoldier?soldier={{soldier_id}}&action=badgeExplosive"
@@ -853,7 +853,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeCAB == 0 %}
             No
             <form name="badgeCAB" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCAB" method="post">
@@ -870,7 +870,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeAirDefense == 0 %}
             No
             <form name="badgeAirDefense" action="/detailsoldier?soldier={{soldier_id}}&action=badgeAirDefense"
@@ -888,7 +888,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeArmor == 0 %}
             No
             <form name="badgeArmor" action="/detailsoldier?soldier={{soldier_id}}&action=badgeArmor" method="post">
@@ -905,7 +905,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeTransport == 0 %}
             No
             <form name="badgeTransport" action="/detailsoldier?soldier={{soldier_id}}&action=badgeTransport"
@@ -923,7 +923,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeCombatMedic == 0 %}
             No
             <form name="badgeCombatMedic" action="/detailsoldier?soldier={{soldier_id}}&action=badgeCombatMedic"
@@ -941,7 +941,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.badgeFreeFall == 0 %}
             No
             <form name="badgeFreeFall" action="/detailsoldier?soldier={{soldier_id}}&action=badgeFreeFall"
@@ -983,7 +983,7 @@
     <tr>
         <td>{{soldier.num_medals}}</td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medArmedForces == 0 %}
             No
             <form name="medArmedForces" action="/detailsoldier?soldier={{soldier_id}}&action=medArmedForces"
@@ -1001,7 +1001,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medNationalDefense == 0 %}
             No
             <form name="medNationalDefense" action="/detailsoldier?soldier={{soldier_id}}&action=medNationalDefense"
@@ -1019,7 +1019,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medDSM == 0 %}
             No
             <form name="medDSM" action="/detailsoldier?soldier={{soldier_id}}&action=medDSM" method="post">
@@ -1036,7 +1036,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medMOV == 0 %}
             No
             <form name="medMOV" action="/detailsoldier?soldier={{soldier_id}}&action=medMOV" method="post">
@@ -1053,7 +1053,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medCommendation == 0 %}
             No
             <form name="medCommendation" action="/detailsoldier?soldier={{soldier_id}}&action=medCommendation"
@@ -1071,7 +1071,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medAchievement == 0 %}
             No
             <form name="medAchievement" action="/detailsoldier?soldier={{soldier_id}}&action=medAchievement"
@@ -1089,7 +1089,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medDsync == 0 %}
             No
             <form name="medDsync" action="/detailsoldier?soldier={{soldier_id}}&action=medDsync" method="post">
@@ -1106,7 +1106,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medConduct == 0 %}
             No
             <form name="medConduct" action="/detailsoldier?soldier={{soldier_id}}&action=medConduct" method="post">
@@ -1123,7 +1123,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medPH == 0 %}
             No
             <form name="medPH" action="/detailsoldier?soldier={{soldier_id}}&action=medPH" method="post">
@@ -1140,7 +1140,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medVolunteer == 0 %}
             No
             <form name="medVolunteer" action="/detailsoldier?soldier={{soldier_id}}&action=medVolunteer" method="post">
@@ -1157,7 +1157,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medDSC == 0 %}
             No
             <form name="medDSC" action="/detailsoldier?soldier={{soldier_id}}&action=medDSC" method="post">
@@ -1174,7 +1174,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medMerit == 0 %}
             No
             <form name="medMerit" action="/detailsoldier?soldier={{soldier_id}}&action=medMerit" method="post">
@@ -1191,7 +1191,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medBronze == 0 %}
             No
             <form name="medBronze" action="/detailsoldier?soldier={{soldier_id}}&action=medBronze" method="post">
@@ -1208,7 +1208,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medSilver == 0 %}
             No
             <form name="medSilver" action="/detailsoldier?soldier={{soldier_id}}&action=medSilver" method="post">
@@ -1241,7 +1241,7 @@
     <tr>
         <td>{{soldier.num_awards}}</td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certRotor == 0 %}
             No
             <form name="certRotor" action="/detailsoldier?soldier={{soldier_id}}&action=certRotor" method="post">
@@ -1258,7 +1258,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.certWings == 0 %}
             No
             <form name="certWings" action="/detailsoldier?soldier={{soldier_id}}&action=certWings" method="post">
@@ -1275,7 +1275,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medAir == 0 %}
             No
             <form name="medAir" action="/detailsoldier?soldier={{soldier_id}}&action=medAir"
@@ -1293,7 +1293,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medAFCombatAction == 0 %}
             No
             <form name="medAFCombatAction" action="/detailsoldier?soldier={{soldier_id}}&action=medAFCombatAction"
@@ -1311,7 +1311,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medCombatHelo == 0 %}
             No
             <form name="medCombatHelo" action="/detailsoldier?soldier={{soldier_id}}&action=medCombatHelo"
@@ -1329,7 +1329,7 @@
             {% endif %}
         </td>
         <td>
-            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or solider.platoon =='toc') %}
+            {% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none' or soldier.platoon =='toc') %}
             {% if soldier.medDFC == 0 %}
             No
             <form name="medDFC" action="/detailsoldier?soldier={{soldier_id}}&action=medDFC"
