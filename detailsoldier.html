@@ -168,28 +168,28 @@
         <li><a href="/soldier?platoon=toc">TOC</a>
         </li>
         <li><a href="/soldier?platoon=nightmare">Nightmare</a>
-            <ul>
+          <!--  <ul>
                 <li><a href="/attendance?platoon=nightmare">Platoon Attendance</a>
                 </li>
-            </ul>
+            </ul>-->
         </li>
         <li><a href="/soldier?platoon=viking">Viking</a>
-            <ul>
+          <!--  <ul>
                 <li><a href="/attendance?platoon=viking">Platoon Attendance</a>
                 </li>
-            </ul>
+            </ul>-->
         </li>
         <li><a href="/soldier?platoon=guardian">Guardian</a>
-            <ul>
+         <!--   <ul>
                 <li><a href="/attendance?platoon=guardian">Platoon Attendance</a>
                 </li>
-            </ul>
+            </ul>-->
         </li>
         <li><a href="/soldier?platoon=whiskey">Whiskey</a>
-            <ul>
+          <!--  <ul>
                 <li><a href="/attendance?platoon=whiskey">Airteam Attendance</a>
                 </li>
-            </ul>
+            </ul>-->
         </li>
         <li><a href="">No Element</a>
             <ul>
@@ -1351,6 +1351,7 @@
     </tr>
 </table>
 <br><br>
+<!--
 <table border="1" class="bling">
     <tr>
         {% for i in monthdays %}
@@ -1408,7 +1409,7 @@
 <input type="hidden" name="platoon" value="{{soldier.platoon}}">
 <input type="submit" value="Change Attendance">
 
-</form>
+</form> -->
 <p>
 <form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
       method="post">
