@@ -707,12 +707,12 @@ class WhiskeyXML(webapp2.RequestHandler):
         headerxml = """<?xml version="1.0"?>
         <!DOCTYPE squad SYSTEM "squad.dtd">
         <?xml-stylesheet href="squad.xsl" type="text/xsl"?>
-        <squad nick="Air">
-        <name>Airteam</name>
+        <squad nick="Whiskey">
+        <name>Whiskey</name>
         <email>N/A</email>
         <web>http://21starmyrangers.enjin.com/</web>
         <picture>21stLogo_WhiskeyPatch.paa</picture>
-        <title>Airteam</title> \n"""
+        <title>Whiskey</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
             primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'

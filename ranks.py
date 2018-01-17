@@ -34,13 +34,13 @@ def rankBuilderW(rank):
     elif rank == 'WOC':
         return 'WO1'
     elif rank == 'WO1':
-        return 'WO2'
-    elif rank == 'WO2':
-        return 'WO3'
-    elif rank == 'WO3':
-        return 'WO4'
-    elif rank == 'WO4':
-        return 'WO5'
+        return 'CW2'
+    elif rank == 'CW2':
+        return 'CW3'
+    elif rank == 'CW3':
+        return 'CW4'
+    elif rank == 'CW4':
+        return 'CW5'
 
 def rankDemote(rank):
     if rank == 'LTC':
