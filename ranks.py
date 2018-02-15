@@ -18,6 +18,8 @@ def rankBuilder(rank):
     elif rank == '1SG':
         return 'SGM'
     elif rank == 'SGM':
+        return 'CSM'
+    elif rank == 'CSM':
         return '2LT'
     elif rank == '2LT':
         return '1LT'
@@ -52,6 +54,8 @@ def rankDemote(rank):
     elif rank == '1LT':
         return '2LT'
     elif rank == '2LT':
+        return 'CSM'
+    elif rank == 'CSM':
         return 'SGM'
     elif rank == 'SGM':
         return '1SG'

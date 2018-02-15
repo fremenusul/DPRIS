@@ -299,32 +299,52 @@
     </tr>
     {% for i in soldiers %}
     <tr class="notfirst">
-        <td> {% if i.rank == 'PV2' %}
-                <img src="img/PV2.png" />
-            {% elif i.rank == 'PFC' %}
-                <img src="img/PFC.png" />
-            {% elif i.rank == 'SPC' %}
-                <img src="img/SPC.png" />
-            {% elif i.rank == 'CPL' %}
-                <img src="img/CPL.png" />
-            {% elif i.rank == 'SGT' %}
-                <img src="img/SGT.png" />
-            {% elif i.rank == 'SSG' %}
-                <img src="img/SSG.png" />
-            {% elif i.rank == 'SFC' %}
-                <img src="img/SFC.png" />
-            {% elif i.rank == 'MSG' %}
-                <img src="img/MSG.png" />
-            {% elif i.rank == '1SG' %}
-                <img src="img/1SG.png" />
-            {% elif i.rank == 'SGM' %}
+        <td>
+            {% if i.rank == 'PV2' %}
+                <img src="img/PV2.png"/>
+                {% elif i.rank == 'PFC' %}
+                <img src="img/PFC.png"/>
+                {% elif i.rank == 'SPC' %}
+                <img src="img/SPC.png"/>
+                {% elif i.rank == 'CPL' %}
+                <img src="img/CPL.png"/>
+                {% elif i.rank == 'SGT' %}
+                <img src="img/SGT.png"/>
+                {% elif i.rank == 'SSG' %}
+                <img src="img/SSG.png"/>
+                {% elif i.rank == 'SFC' %}
+                <img src="img/SFC.png"/>
+                {% elif i.rank == 'MSG' %}
+                <img src="img/MSG.png"/>
+                {% elif i.rank == '1SG' %}
+                <img src="img/1SG.png"/>
+                {% elif i.rank == 'SGM' %}
                 <img src="img/SGM.png" />
-            {% elif i.rank == '2LT' %}
-                <img src="img/2LT.png" />
-            {% elif i.rank == '1LT' %}
+                {% elif i.rank == 'CSM' %}
+                <img src="img/CSM.png" />
+                {% elif i.rank == '2LT' %}
+                <img src="img/2LT.png"/>
+                {% elif i.rank == '1LT' %}
                 <img src="img/1LT.png" />
-
-            {% endif %}
+                {% elif i.rank == 'CPT' %}
+                <img src="img/CPT.png" />
+                {% elif i.rank == 'MAJ' %}
+                <img src="img/MAJ.png" />
+                {% elif i.rank == 'LTC' %}
+                <img src="img/LTC.png" />
+                {% elif i.rank == 'WOC' %}
+                <img src="img/WOC.png" />
+                {% elif i.rank == 'WO1' %}
+                <img src="img/WO1.png" />
+                {% elif i.rank == 'CW2' %}
+                <img src="img/WO2.png" />
+                {% elif i.rank == 'CW3' %}
+                <img src="img/WO3.png" />
+                {% elif i.rank == 'CW4' %}
+                <img src="img/WO4.png" />
+                {% elif i.rank == 'CW5' %}
+                <img src="img/WO5.png" />
+                {% endif %}
             {{i.rank}}
 
         </td>
