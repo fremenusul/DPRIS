@@ -1352,65 +1352,7 @@
     </tr>
 </table>
 <br><br>
-<!--
-<table border="1" class="bling">
-    <tr>
-        {% for i in monthdays %}
-        <th><br>{{i}}</th>
-        {% endfor %}
-        <th>P</th>
-        <th>A</th>
-        <th>T</th>
-        <th>Percent</th>
-    </tr>
-    {% for x in attendance_data %}
-    {% if auth_ic == True and auth_platoon == soldier.platoon %}
-    <form name="editattendance" action="/detailsoldier?soldier={{soldier_id}}&action=editattendance"
-          method="post">
-        <tr>
-            {% for i in monthdays %}
-            <td>
-                {% for y in x[1] %}
-                {% if y[0] == i %}
-                <input type="text" name="value" value="{{y[1]}}" size="2">
-                <input type="hidden" name="key" value="{{y[2]}}">
-                <input type="hidden" name="date" value="{{y[3]}}">
-                {% endif %}
-                {% endfor %}
-
-            </td>
-            {% endfor %}
-            <td>{{x[2]}}</td>
-            <td>{{x[3]}}</td>
-            <td>{{x[4]}}</td>
-            <td>{{x[5]}}</td>
-        </tr>
-
-        {% else %}
-        <tr>
-            {% for i in monthdays %}
-            <td>
-                {% for y in x[1] %}
-                {% if y[0] == i %}
-                {{y[1]}}
-                {% endif %}
-                {% endfor %}
-
-            </td>
-            {% endfor %}
-            <td>{{x[2]}}</td>
-            <td>{{x[3]}}</td>
-            <td>{{x[4]}}</td>
-            <td>{{x[5]}}</td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-</table>
-{% if auth_ic == True and (auth_platoon == soldier.platoon or soldier.platoon == 'none') %}
-<input type="hidden" name="platoon" value="{{soldier.platoon}}">
-<input type="submit" value="Change Attendance">
-
-</form> -->
+{% if auth_ic == True and (auth_platoon == soldier.platoon) or (soldier.platoon == 'none') or (auth_platoon =='toc') %}
 <p>
 <form name="deletesoldier" action="/detailsoldier?soldier={{soldier_id}}&action=deletesoldier"
       method="post">
