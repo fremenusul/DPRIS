@@ -266,10 +266,12 @@
 {% if auth_ic == True %}
 <form action="/soldier" method="post">
     Add New Member: <input type="text" name="name"><br>
-    <input type="submit" value="Submit">
+        <input type="submit" value="Submit"><br>
+
 </form>
+    <a href="{{platoon}}/squad.xml">{% filter upper %}{{platoon}}{% endfilter %}  XML</a>
 {% endif %}
-<h1 align="center"><u><i>{% filter upper %}{{platoon}}{% endfilter %} ROSTER</i></u></h1>
+<h1 align="center"><u><i>{% filter upper %}{{platoon}}{% endfilter %} ROSTER </i></u></h1>
 <table>
     <tr class="first">
         <th>Rank</th>
