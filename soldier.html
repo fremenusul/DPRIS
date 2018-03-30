@@ -277,13 +277,6 @@
         <th>Rank</th>
         <th>Member Name</th>
         <th>Last Promoted</th>
-        <!-- Need to update this when doing select dropdown -->
-        <th><img src="img/sapper.png" height="105" width="110"/><br>Sapper</th>
-        <th><img src="img/ranger.png" height="105" width="110"/><br>Ranger</th>
-        <th><img src="img/fister.png" height="105" width="110"/><br>FO</th>
-        <th><img src="img/fdc.png" height="105" width="110"/><br>FDC</th>
-        <th><img src="img/jfo.png" height="105" width="110"/><br>JFO</th>
-        <th><img src="img/rslc.png" height="105" width="110"/><br>RSLC</th>
     </tr>
     {% for i in soldiers %}
     <tr class="notfirst">
@@ -338,48 +331,7 @@
         </td>
         <td><a href="/detailsoldier?soldier={{i.key.urlsafe()}}">{{i.soldierName}}</a></td>
         <td>{{i.lastPromoted}}</td>
-        <td>
-            {% if i.certSapper == 0 %}
-            NO
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
-        <td>
-            {% if i.certRanger == 0 %}
-            NO
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
-        <td>
-            {% if i.certFO == 0 %}
-            NO
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
-        <td>
-            {% if i.certFDC == 0 %}
-            NO
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
-        <td>
-            {% if i.certJFO == 0 %}
-            NO
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
-        <td>
-            {% if i.certRSLC == 0 %}
-            NO
-            {% else %}
-            <b>Yes</b>
-            {% endif %}
-        </td>
+
 
     </tr>
     {% endfor %}
