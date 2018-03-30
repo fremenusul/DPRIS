@@ -119,7 +119,7 @@ class DetailSoldier(webapp2.RequestHandler):
             nextRank = ranks.rankBuilderW(soldier_data.rank)
         else:
             nextRank = ranks.rankBuilder(soldier_data.rank)
-        demote = ranks.rankDemote(soldier_data.rank)
+            demote = ranks.rankDemote(soldier_data.rank)
 
         template_values = {
             'soldier': soldier_data,

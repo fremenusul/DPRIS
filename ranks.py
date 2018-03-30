@@ -59,7 +59,7 @@ def rankDemote(rank):
         return 'SGM'
     elif rank == 'SGM':
         return '1SG'
-    elif rank == '1SGT':
+    elif rank == '1SG':
         return 'MSG'
     elif rank == 'MSG':
         return 'SFC'
