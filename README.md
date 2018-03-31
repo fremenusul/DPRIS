@@ -12,7 +12,6 @@ This system keeps track of:
 
 Additionally, this system allows for the XML Patch system within Arma and manages it automatically.
 
->>>>>>> origin/master
 Getting Started
 -
 This code is written in python 2.7 and runs on app engine. 
