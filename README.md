@@ -7,9 +7,7 @@ This system keeps track of:
 - Rank
 - Platoon
 - Attendance
-- Awards
-- Certifications
-
+- XML Patches
 Getting Started
 -
 This code is written in python 2.7 and runs on app engine. 
