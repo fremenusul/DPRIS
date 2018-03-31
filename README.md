@@ -6,7 +6,6 @@ This system keeps track of:
 - Soldier Name
 - Rank
 - Platoon
-<<<<<<< HEAD
 - Attendance
 - XML Patches
 =======

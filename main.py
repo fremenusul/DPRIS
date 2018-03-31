@@ -174,7 +174,6 @@ class DetailSoldier(webapp2.RequestHandler):
             return self.redirect('/soldier?platoon=' + platoon)
 
 
-<<<<<<< HEAD
 # REMOVE BEFORE LIVE
 class UpdateModel(webapp2.RequestHandler):
     def get(self):
@@ -188,8 +187,7 @@ class UpdateModel(webapp2.RequestHandler):
         # return self.redirect('/soldier?platoon=none')
 
 
-=======
->>>>>>> origin/master
+
 class VikingXML(webapp2.RequestHandler):
     def get(self):
 
