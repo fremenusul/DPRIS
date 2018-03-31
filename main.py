@@ -117,6 +117,7 @@ class DetailSoldier(webapp2.RequestHandler):
         soldier_data = soldier_key
         if soldier_data.platoon == 'whiskey':
             nextRank = ranks.rankBuilderW(soldier_data.rank)
+            demote = ranks.rankDemoteW(soldier_data.rank)
         else:
             nextRank = ranks.rankBuilder(soldier_data.rank)
             demote = ranks.rankDemote(soldier_data.rank)

@@ -77,3 +77,17 @@ def rankDemote(rank):
         return 'PV2'
     elif rank == 'PV2':
         return 'RCT'
+
+def rankDemoteW(rank):
+    if rank == 'CW5':
+        return 'CW4'
+    elif rank == 'CW4':
+        return 'CW3'
+    elif rank == 'CW3':
+        return 'CW2'
+    elif rank == 'CW2':
+        return 'WO1'
+    elif rank == 'WO1':
+        return 'WOC'
+    elif rank == 'WOC':
+        return 'PV2'
