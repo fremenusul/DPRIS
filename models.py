@@ -29,6 +29,10 @@ def update_soldier_from_rct(url_string):
     soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 def delete_soldier(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier_key.delete()
@@ -74,4 +78,7 @@ def updateXMLID(url_string, xmlid):
     soldier = soldier_key.get()
     soldier.xmlid = xmlid
     soldier.put()
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
