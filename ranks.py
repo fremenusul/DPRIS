@@ -29,6 +29,8 @@ def rankBuilder(rank):
         return 'MAJ'
     elif rank == 'MAJ':
         return 'LTC'
+    elif rank == 'LTC':
+        return 'COL'
 
 def rankBuilderW(rank):
     if rank == 'PV2':
@@ -45,7 +47,9 @@ def rankBuilderW(rank):
         return 'CW5'
 
 def rankDemote(rank):
-    if rank == 'LTC':
+    if rank == 'COL':
+        return 'LTC'
+    elif rank == 'LTC':
         return 'MAJ'
     elif rank == 'MAJ':
         return 'CPT'
