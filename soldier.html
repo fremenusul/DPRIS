@@ -282,7 +282,9 @@
     {% for i in soldiers %}
     <tr class="notfirst">
         <td>
-            {% if i.rank == 'PV2' %}
+            {% if i.rank == 'PVT' %}
+                <img src="img/PVT.png"/>
+                {% elif i.rank == 'PV2' %}
                 <img src="img/PV2.png"/>
                 {% elif i.rank == 'PFC' %}
                 <img src="img/PFC.png"/>

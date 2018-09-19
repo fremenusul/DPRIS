@@ -24,7 +24,7 @@ def get_entity_from_url_safe_key(url_string):
 def update_soldier_from_rct(url_string):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
-    soldier.rank = "PV2"
+    soldier.rank = "PVT"
     soldier.rankorder = 2
     soldier.lastPromoted = tz2ntz.tz2ntz(datetime.datetime.today(), 'UTC', 'US/Pacific')
     soldier.put()

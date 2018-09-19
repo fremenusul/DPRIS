@@ -136,7 +136,7 @@ class DetailSoldier(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
-        if self.request.get('action') == 'promotepv2':
+        if self.request.get('action') == 'promotepvt':
             soldier_id = self.request.get('soldier')
             models.update_soldier_from_rct(soldier_id)
             return self.redirect('/detailsoldier?soldier=' + soldier_id)

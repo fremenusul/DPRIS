@@ -1,5 +1,7 @@
 def rankBuilder(rank):
-    if rank == 'PV2':
+    if rank == 'PVT':
+        return 'PV2'
+    elif rank == 'PV2':
         return 'PFC'
     elif rank == 'PFC':
         return 'SPC'
@@ -33,7 +35,7 @@ def rankBuilder(rank):
         return 'COL'
 
 def rankBuilderW(rank):
-    if rank == 'PV2':
+    if rank == 'PVT':
         return 'WOC'
     elif rank == 'WOC':
         return 'WO1'
@@ -80,6 +82,8 @@ def rankDemote(rank):
     elif rank == 'PFC':
         return 'PV2'
     elif rank == 'PV2':
+        return 'PVT'
+    elif rank == 'PVT':
         return 'RCT'
 
 def rankDemoteW(rank):

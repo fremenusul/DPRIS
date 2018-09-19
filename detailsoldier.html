@@ -206,7 +206,9 @@
 
                 <hr/>
                 <b>Rank:</b>
-                {% if soldier.rank == 'PV2' %}
+                {% if soldier.rank == 'PVT' %}
+                <img src="img/PVT.png"/>
+                {% elif soldier.rank == 'PV2' %}
                 <img src="img/PV2.png"/>
                 {% elif soldier.rank == 'PFC' %}
                 <img src="img/PFC.png"/>
@@ -304,10 +306,10 @@
             <p>
 
                 {%if soldier.rank == "RCT" %}
-            <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepv2" method="post">
+            <form name="promotepv2" action="/detailsoldier?soldier={{soldier_id}}&action=promotepvt" method="post">
                 <input
                         type="submit"
-                        value="Promote to PV2">
+                        value="Promote to PVT">
             </form>
             {% else %}
             <form name="promote" action="/detailsoldier?soldier={{soldier_id}}&action=promote&rank={{nextRank}}"
