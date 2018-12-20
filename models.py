@@ -51,6 +51,28 @@ def update_platoon(url_string, platoon):
     soldier.platoon = platoon
 
 
+# Rank Guide
+# RCT 1
+# PVT 2
+# PV2 3
+# PFC 4
+# SPC 5
+# CPL 6
+# SGT 7
+# SSG 8
+# SFC 9
+# MSG 10
+# 1SG 11
+# SGM 12
+# CSM 13
+# 2LT 14
+# 1LT 15
+# CPT 16
+# MAJ 17
+# LTC 18
+# COL 19
+
+
 def promote_soldier(url_string, rank):
     soldier_key = ndb.Key(urlsafe=url_string)
     soldier = soldier_key.get()
