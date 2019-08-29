@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMINISTRATION</title>
+</head>
+<body>
+<p>Admin Page</p>
+<p> <i><b>NOTE:</b></i> Emails must be a gmail account. Capitalization <b>DOES MATTER</b>. If the login doesn't work, more than likley their email is wrong in some way.<br>
+The admin power is based on their platoon. If they change platoons, they will have access to whatever platoon they are in unless you remove them from here.</p>
+{% for i in soldiers %}
+<p><b>{{i.soldierName}}</b> | {{i.platoon}}
+{%if i.isAdmin == False %}</p>
+<form action="/admin?action=admin&soldier={{i.key.urlsafe()}}" method="post">
+    Add Email: <input type="text" name="email">
+        <input type="submit" value="Make Admin"></form>
+{% endif %}
+    {%if i.isAdmin == True %}
+ <form action="/admin?action=noadmin&soldier={{i.key.urlsafe()}}" method="post">
+        <input type="submit" value="Delete Admin"></form>
+    {% endif %}
+    <br>
+{% endfor %}
+
+<p>
+
+</p>
+</body>
+</html>

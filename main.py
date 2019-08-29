@@ -1,7 +1,5 @@
-import calendar
 import cgi
 import datetime
-import logging
 import os
 
 import jinja2
@@ -9,13 +7,10 @@ import webapp2
 from google.appengine.api import memcache
 from google.appengine.api import users
 
-
 import checker
 import models
 import newsoldier
 import ranks
-import snippets
-import tz2ntz
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -36,11 +31,15 @@ class MainPage(webapp2.RequestHandler):
             url_linktext = 'Login'
             user_email = 'none@none.com'
 
+        s_query = models.SoldierData.query(models.SoldierData.soldierEmail == user_email)
+        soldier_data = s_query.fetch()
+
         template_values = {
             'user': user,
             'user_email': user_email,
             'url': url,
-            'url_linktext': url_linktext
+            'url_linktext': url_linktext,
+            'soldier': soldier_data,
         }
 
         template = jinja_environment.get_template('index.html')
@@ -176,22 +175,28 @@ class DetailSoldier(webapp2.RequestHandler):
 
 
 # REMOVE BEFORE LIVE
-class UpdateModel(webapp2.RequestHandler):
-    def get(self):
-        #snippets.updatemodel4()
-        #cleanattendance.cleaner()
+#class UpdateModel(webapp2.RequestHandler):
+    #def get(self):
+        # snippets.updatemodel4()
+        # cleanattendance.cleaner()
+        #s_query = models.SoldierData.query().order(models.SoldierData.soldierName)
+        #soldier_data = s_query.fetch()
 
-        template_values = {
+        #for x in soldier_data:
+            #soldier_key = ndb.Key(urlsafe=x.key.urlsafe())
+            #soldier = soldier_key.get()
+            #soldier.isAdmin = False
+            #soldier.put()
 
-        }
+        #template_values = {
+
+        #}
 
         # return self.redirect('/soldier?platoon=none')
 
 
-
 class VikingXML(webapp2.RequestHandler):
     def get(self):
-
         s_query = models.SoldierData.query(models.SoldierData.platoon == 'viking').order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
@@ -203,19 +208,20 @@ class VikingXML(webapp2.RequestHandler):
         <squad nick="2nd">
         <name>2nd Platoon "Viking"</name>
         <email>N/A</email>
-        <web>http://21starmyrangers.enjin.com/</web>
+        <web>http://www.21strealism.com/</web>
         <picture>21stLogo_VikingPatch.paa</picture>
         <title>2nd Platoon "Viking"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(
+                x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName + ' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
 
+
 class NightmareXML(webapp2.RequestHandler):
     def get(self):
-
         s_query = models.SoldierData.query(models.SoldierData.platoon == 'nightmare').order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
@@ -227,19 +233,20 @@ class NightmareXML(webapp2.RequestHandler):
         <squad nick="1st">
         <name>1st Platoon "Nightmare"</name>
         <email>N/A</email>
-        <web>http://21starmyrangers.enjin.com/</web>
+        <web>http://www.21strealism.com/</web>
         <picture>21stLogo_NightmarePatch.paa</picture>
         <title>1st Platoon "Nightmare"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(
+                x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName + ' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
 
+
 class GuardianXML(webapp2.RequestHandler):
     def get(self):
-
         s_query = models.SoldierData.query(models.SoldierData.platoon == 'guardian').order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
@@ -251,19 +258,20 @@ class GuardianXML(webapp2.RequestHandler):
         <squad nick="3rd">
         <name>3rd Platoon "Guardian"</name>
         <email>N/A</email>
-        <web>http://21starmyrangers.enjin.com/</web>
+        <web>http://www.21strealism.com/</web>
         <picture>21stLogo_GuardianPatch.paa</picture>
         <title>3rd Platoon "Guardian"</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(
+                x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName + ' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
 
+
 class WhiskeyXML(webapp2.RequestHandler):
     def get(self):
-
         s_query = models.SoldierData.query(models.SoldierData.platoon == 'whiskey').order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
@@ -275,19 +283,20 @@ class WhiskeyXML(webapp2.RequestHandler):
         <squad nick="Whiskey">
         <name>Whiskey</name>
         <email>N/A</email>
-        <web>http://21starmyrangers.enjin.com/</web>
+        <web>http://www.21strealism.com/</web>
         <picture>21stLogo_WhiskeyPatch.paa</picture>
         <title>Whiskey</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(
+                x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName + ' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
 
+
 class TOCXML(webapp2.RequestHandler):
     def get(self):
-
         s_query = models.SoldierData.query(models.SoldierData.platoon == 'toc').order(
             -models.SoldierData.rankorder, models.SoldierData.soldierName)
         soldier_data = s_query.fetch()
@@ -299,15 +308,62 @@ class TOCXML(webapp2.RequestHandler):
         <squad nick="TOC">
         <name>TOC</name>
         <email>N/A</email>
-        <web>http://21starmyrangers.enjin.com/</web>
+        <web>http://www.21strealism.com/</web>
         <picture>21stLogo_TOCPatch.paa</picture>
         <title>TOC</title> \n"""
         self.response.write(headerxml)
         for x in soldier_data:
-            primexml = '<member id="' + str(x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName +' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
+            primexml = '<member id="' + str(
+                x.xmlid) + '" nick="' + x.rank + ' ' + x.soldierName + '"><name>' + x.rank + ' ' + x.soldierName + ' </name><email>N/A</email><icq>N/A</icq><remark>N/A</remark></member> \n'
             self.response.write(primexml)
         bottomxml = '</squad>'
         self.response.write(bottomxml)
+
+
+class Noveske(webapp2.RequestHandler):
+    def get(self):
+        s_query = models.SoldierData.query().order(models.SoldierData.soldierName)
+        soldier_data = s_query.fetch()
+
+        # Find current user
+        user = users.get_current_user()
+        # If user exists, show logout and get user email
+        if user:
+            url = users.create_logout_url(self.request.uri)
+            url_linktext = 'Logout'
+            user_email = user.email()
+        # If user does not exist, create login and create a default to ensure checks work.
+        else:
+            url = users.create_login_url(self.request.uri)
+            url_linktext = 'Login'
+            user_email = 'none@none.com'
+
+        template_values = {
+            'user': user,
+            'user_email': user_email,
+            'url': url,
+            'url_linktext': url_linktext,
+            'soldiers': soldier_data,
+
+        }
+
+        template = jinja_environment.get_template('admin.html')
+        self.response.out.write(template.render(template_values))
+
+    def post(self):
+        if self.request.get('action') == 'admin':
+            soldier_id = self.request.get('soldier')
+            soldierEmail = self.request.get('email')
+            isAdmin = True
+            models.update_admin(soldier_id, soldierEmail.strip(), isAdmin)
+            return self.redirect('/admin')
+        if self.request.get('action') == 'noadmin':
+            soldier_id = self.request.get('soldier')
+            soldierEmail = 'none@none.com'
+            isAdmin = False
+            models.update_admin(soldier_id, soldierEmail.strip(), isAdmin)
+            return self.redirect('/admin')
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -318,4 +374,6 @@ app = webapp2.WSGIApplication([
     ('/guardian/squad.xml', GuardianXML),
     ('/whiskey/squad.xml', WhiskeyXML),
     ('/toc/squad.xml', TOCXML),
+    ('/admin', Noveske),
+
 ], debug=True)

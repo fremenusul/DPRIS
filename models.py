@@ -13,6 +13,8 @@ class SoldierData(ndb.Model):
     xmlid = ndb.IntegerProperty()
     rankorder = ndb.IntegerProperty()
     lastPromoted = ndb.DateProperty(indexed=False)
+    isAdmin = ndb.BooleanProperty()
+    soldierEmail = ndb.StringProperty()
 
 
 def get_entity_from_url_safe_key(url_string):
@@ -96,3 +98,14 @@ def updateXMLID(url_string, xmlid):
     soldier = soldier_key.get()
     soldier.xmlid = xmlid
     soldier.put()
+
+def update_admin(url_string, email, isadmin):
+    soldier_key = ndb.Key(urlsafe=url_string)
+    soldier = soldier_key.get()
+    soldier.soldierEmail = email
+    soldier.isAdmin = isadmin
+    soldier.put()
+
+
+
+
